@@ -18,8 +18,8 @@ namespace AirHome
 
         /// <summary>
         /// 默认构造方法
-        ///  <para>住所名称为NULL</para>
-        ///  <para>默认为主要住所</para>
+        ///     <para>住所名称为NULL</para>
+        ///     <para>默认为主要住所</para>
         /// </summary>
         public House()
         {
@@ -30,6 +30,7 @@ namespace AirHome
         /// 初始化住所
         /// </summary>
         /// <param name="name">住所名称</param>
+        ///     <para>默认为主要住所</para>
         /// <param name="isPrimary">是否是主要住所</param>
         public House(string name, bool isPrimary = true)
         {
