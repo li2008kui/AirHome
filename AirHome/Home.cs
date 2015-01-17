@@ -7,5 +7,6 @@ namespace AirHome
 {
     public class Home
     {
+        public int Name { get; private set; }
     }
 }
