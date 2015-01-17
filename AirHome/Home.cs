@@ -7,6 +7,9 @@ namespace AirHome
 {
     public class Home
     {
-        public int Name { get; private set; }
+        /// <summary>
+        /// 家庭的名称
+        /// </summary>
+        public string Name { get; private set; }
     }
 }
