@@ -1,12 +1,12 @@
 ﻿namespace AirHome
 {
     /// <summary>
-    /// 家庭类
+    /// 用户类
     /// </summary>
-    public class Home
+    public class User
     {
         /// <summary>
-        /// 家庭的名称
+        /// 用户名称
         /// </summary>
         public string Name { get; private set; }
     }
