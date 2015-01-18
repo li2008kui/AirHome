@@ -144,6 +144,11 @@ namespace AirHome
         public event EventHandler RemoveDeviceCompleted;
 
         /// <summary>
+        /// 处理分配设备到房间的事件
+        /// </summary>
+        public event EventHandler AssignDeviceToRoomCompleted;
+
+        /// <summary>
         /// 引发处理添加设备的事件
         /// </summary>
         /// <param name="e">事件参数</param>
@@ -160,6 +165,18 @@ namespace AirHome
         /// </summary>
         /// <param name="e">事件参数</param>
         private void OnRemoveDevice(UpdateEventArgs e)
+        {
+            if (this.RemoveDeviceCompleted != null)
+            {
+                this.RemoveDeviceCompleted(this, e);
+            }
+        }
+
+        /// <summary>
+        /// 引发处理分配设备到房间的事件
+        /// </summary>
+        /// <param name="e">事件参数</param>
+        private void OnAssignDeviceToRoom(UpdateEventArgs e)
         {
             if (this.RemoveDeviceCompleted != null)
             {
@@ -239,6 +256,35 @@ namespace AirHome
 
             UpdateEventArgs arg = new UpdateEventArgs(ex);
             OnRemoveDevice(arg);
+        }
+
+        /// <summary>
+        /// 分配设备到房间
+        /// </summary>
+        /// <param name="device">设备对象</param>
+        /// <param name="room">房间对象</param>
+        public void AssignDeviceToRoom(Device device, Room room)
+        {
+            Exception ex = null;
+
+            if (device != null)
+            {
+                if (room != null)
+                {
+                    throw new NotImplementedException();
+                }
+                else
+                {
+                    ex = new Exception("房间对象不能为空。");
+                }
+            }
+            else
+            {
+                ex = new Exception("设备对象不能为空。");
+            }
+
+            UpdateEventArgs arg = new UpdateEventArgs(ex);
+            OnAssignDeviceToRoom(arg);
         }
     }
 }
