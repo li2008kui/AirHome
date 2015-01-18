@@ -26,6 +26,7 @@ namespace AirHome
         {
             IsPrimary = true;
             devices = new List<Device>();
+            users = new List<User>();
         }
 
         /// <summary>
@@ -39,6 +40,7 @@ namespace AirHome
             Name = name;
             IsPrimary = isPrimary;
             devices = new List<Device>();
+            users = new List<User>();
         }
 
         /// <summary>
@@ -285,6 +287,125 @@ namespace AirHome
 
             UpdateEventArgs arg = new UpdateEventArgs(ex);
             OnAssignDeviceToRoom(arg);
+        }
+    }
+
+    /// <summary>
+    /// 用户住所用户分部类
+    /// </summary>
+    public partial class House
+    {
+        /// <summary>
+        /// 用户对象列表
+        /// </summary>
+        public List<User> users { get; private set; }
+
+        /// <summary>
+        /// 处理添加用户的事件
+        /// </summary>
+        public event EventHandler AddUserCompleted;
+
+        /// <summary>
+        /// 处理移除用户的事件
+        /// </summary>
+        public event EventHandler RemoveUserCompleted;
+
+        /// <summary>
+        /// 引发处理添加用户的事件
+        /// </summary>
+        /// <param name="e">事件参数</param>
+        private void OnAddUser(UpdateEventArgs e)
+        {
+            if (this.AddUserCompleted != null)
+            {
+                this.AddUserCompleted(this, e);
+            }
+        }
+
+        /// <summary>
+        /// 引发处理移除用户的事件
+        /// </summary>
+        /// <param name="e">事件参数</param>
+        private void OnRemoveUser(UpdateEventArgs e)
+        {
+            if (this.RemoveUserCompleted != null)
+            {
+                this.RemoveUserCompleted(this, e);
+            }
+        }
+
+        /// <summary>
+        /// 添加用户
+        /// </summary>
+        /// <param name="user">用户对象</param>
+        public void AddUser(User user)
+        {
+            Exception ex = null;
+
+            if (user != null)
+            {
+                if (users == null)
+                {
+                    ex = new Exception("用户列表重新初始化，添加用户成功。");
+                    users = new List<User>();
+                    users.Add(user);
+                }
+                else
+                {
+                    if (users.IndexOf(user) >= 0)
+                    {
+                        ex = new Exception("用户已经存在于用户列表中。");
+                    }
+                    else
+                    {
+                        ex = new Exception("添加用户成功。");
+                        users.Add(user);
+                    }
+                }
+            }
+            else
+            {
+                ex = new Exception("用户对象不能为空。");
+            }
+
+            UpdateEventArgs arg = new UpdateEventArgs(ex);
+            OnAddUser(arg);
+        }
+
+        /// <summary>
+        /// 移除用户
+        /// </summary>
+        /// <param name="user">用户对象</param>
+        public void RemoveUser(User user)
+        {
+            Exception ex = null;
+
+            if (user != null)
+            {
+                if (users == null)
+                {
+                    ex = new Exception("用户列表不存在，已将其重新初始化。");
+                    users = new List<User>();
+                }
+                else
+                {
+                    if (users.Remove(user))
+                    {
+                        ex = new Exception("从用户列表中移除用户成功。");
+                    }
+                    else
+                    {
+                        ex = new Exception("用户在用户列表中不存在。");
+                    }
+                }
+            }
+            else
+            {
+                ex = new Exception("用户对象不能为空。");
+            }
+
+            UpdateEventArgs arg = new UpdateEventArgs(ex);
+            OnRemoveUser(arg);
         }
     }
 }
