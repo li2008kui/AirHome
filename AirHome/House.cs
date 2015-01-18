@@ -18,7 +18,7 @@ namespace AirHome
         public bool IsPrimary { get; private set; }
 
         /// <summary>
-        /// 默认构造方法
+        /// 无参构造方法
         ///     <para>住所名称为NULL</para>
         ///     <para>默认为主要住所</para>
         /// </summary>
