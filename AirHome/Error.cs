@@ -5,7 +5,8 @@ using System.Text;
 
 namespace AirHome
 {
-    class Error
+    enum Error
     {
+
     }
 }
