@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace AirHome
 {
@@ -42,6 +39,10 @@ namespace AirHome
         /// 处理更新住所名称的事件
         /// </summary>
         private event EventHandler UpdateNameCompleted;
+        /// <summary>
+        /// 处理使住所成为主要住所的事件
+        /// </summary>
+        private event EventHandler BecomePrimaryCompleted;
 
         /// <summary>
         /// 引发处理更新住所名称的事件
@@ -56,12 +57,23 @@ namespace AirHome
         }
 
         /// <summary>
+        /// 引发处理使住所成为主要住所的事件
+        /// </summary>
+        /// <param name="e">事件参数</param>
+        private void OnBecomePrimary(UpdateEventArgs e)
+        {
+            if (this.BecomePrimaryCompleted != null)
+            {
+                this.BecomePrimaryCompleted(this, e);
+            }
+        }
+
+        /// <summary>
         /// 更新住所名称
         /// </summary>
         /// <param name="name">住所名称</param>
         private void UpdateName(string name)
         {
-            UpdateEventArgs arg = null;
             Exception ex = null;
 
             if (string.IsNullOrEmpty(name))
@@ -78,8 +90,30 @@ namespace AirHome
                 ex = new Exception("住所名称更新成功。");
             }
 
-            arg = new UpdateEventArgs(ex);
+            UpdateEventArgs arg = new UpdateEventArgs(ex);
             OnUpdateName(arg);
+        }
+
+        /// <summary>
+        /// 使住所成为主要住所
+        /// </summary>
+        private void BecomePrimary()
+        {
+            Exception ex = null;
+            string name = "[" + (Name ?? "null") + "]";
+
+            if (IsPrimary)
+            {
+                ex = new Exception(name + "已经是主要住所。");
+            }
+            else
+            {
+                IsPrimary = true;
+                ex = new Exception("设置" + name + "为主要住所成功。");
+            }
+
+            UpdateEventArgs arg = new UpdateEventArgs(ex);
+            OnBecomePrimary(arg);
         }
     }
 }
