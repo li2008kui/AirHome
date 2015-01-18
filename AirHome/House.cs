@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AirHome
 {
     /// <summary>
-    /// 用户住所类
+    /// 用户住所主类
     /// </summary>
     public partial class House
     {
@@ -24,6 +25,7 @@ namespace AirHome
         public House()
         {
             IsPrimary = true;
+            devices = new List<Device>();
         }
 
         /// <summary>
@@ -36,6 +38,7 @@ namespace AirHome
         {
             Name = name;
             IsPrimary = isPrimary;
+            devices = new List<Device>();
         }
 
         /// <summary>
@@ -120,7 +123,122 @@ namespace AirHome
         }
     }
 
+    /// <summary>
+    /// 用户住所设备分部类
+    /// </summary>
     public partial class House
     {
+        /// <summary>
+        /// 设备对象列表
+        /// </summary>
+        public List<Device> devices { get; private set; }
+
+        /// <summary>
+        /// 处理添加设备的事件
+        /// </summary>
+        public event EventHandler AddDeviceCompleted;
+
+        /// <summary>
+        /// 处理移除设备的事件
+        /// </summary>
+        public event EventHandler RemoveDeviceCompleted;
+
+        /// <summary>
+        /// 引发处理添加设备的事件
+        /// </summary>
+        /// <param name="e">事件参数</param>
+        private void OnAddDevice(UpdateEventArgs e)
+        {
+            if (this.AddDeviceCompleted != null)
+            {
+                this.AddDeviceCompleted(this, e);
+            }
+        }
+
+        /// <summary>
+        /// 引发处理移除设备的事件
+        /// </summary>
+        /// <param name="e">事件参数</param>
+        private void OnRemoveDevice(UpdateEventArgs e)
+        {
+            if (this.RemoveDeviceCompleted != null)
+            {
+                this.RemoveDeviceCompleted(this, e);
+            }
+        }
+
+        /// <summary>
+        /// 添加设备
+        /// </summary>
+        /// <param name="device">设备对象</param>
+        public void AddDevice(Device device)
+        {
+            Exception ex = null;
+
+            if (device != null)
+            {
+                if (devices == null)
+                {
+                    ex = new Exception("设备列表重新初始化，添加设备成功。");
+                    devices = new List<Device>();
+                    devices.Add(device);
+                }
+                else
+                {
+                    if (devices.IndexOf(device) >= 0)
+                    {
+                        ex = new Exception("设备已经存在于设备列表中。");
+                    }
+                    else
+                    {
+                        ex = new Exception("添加设备成功。");
+                        devices.Add(device);
+                    }
+                }
+            }
+            else
+            {
+                ex = new Exception("设备对象不能为空。");
+            }
+
+            UpdateEventArgs arg = new UpdateEventArgs(ex);
+            OnAddDevice(arg);
+        }
+
+        /// <summary>
+        /// 移除设备
+        /// </summary>
+        /// <param name="device">设备对象</param>
+        public void RemoveDevice(Device device)
+        {
+            Exception ex = null;
+
+            if (device != null)
+            {
+                if (devices == null)
+                {
+                    ex = new Exception("设备列表不存在，已将其重新初始化。");
+                    devices = new List<Device>();
+                }
+                else
+                {
+                    if (devices.Remove(device))
+                    {
+                        ex = new Exception("从设备列表中移除设备成功。");
+                    }
+                    else
+                    {
+                        ex = new Exception("设备在设备列表中不存在。");
+                    }
+                }
+            }
+            else
+            {
+                ex = new Exception("设备对象不能为空。");
+            }
+
+            UpdateEventArgs arg = new UpdateEventArgs(ex);
+            OnRemoveDevice(arg);
+        }
     }
 }
