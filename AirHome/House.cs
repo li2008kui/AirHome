@@ -2,16 +2,19 @@
 
 namespace AirHome
 {
-    public class House
+    /// <summary>
+    /// 用户住所类
+    /// </summary>
+    public partial class House
     {
         /// <summary>
         /// 住所名称
         /// </summary>
-        private string Name { get; private set; }
+        public string Name { get; private set; }
         /// <summary>
         /// 是否是主要住所
         /// </summary>
-        private bool IsPrimary { get; private set; }
+        public bool IsPrimary { get; private set; }
 
         /// <summary>
         /// 默认构造方法
@@ -38,11 +41,11 @@ namespace AirHome
         /// <summary>
         /// 处理更新住所名称的事件
         /// </summary>
-        private event EventHandler UpdateNameCompleted;
+        public event EventHandler UpdateNameCompleted;
         /// <summary>
         /// 处理使住所成为主要住所的事件
         /// </summary>
-        private event EventHandler BecomePrimaryCompleted;
+        public event EventHandler BecomePrimaryCompleted;
 
         /// <summary>
         /// 引发处理更新住所名称的事件
@@ -72,7 +75,7 @@ namespace AirHome
         /// 更新住所名称
         /// </summary>
         /// <param name="name">住所名称</param>
-        private void UpdateName(string name)
+        public void UpdateName(string name)
         {
             Exception ex = null;
 
@@ -97,7 +100,7 @@ namespace AirHome
         /// <summary>
         /// 使住所成为主要住所
         /// </summary>
-        private void BecomePrimary()
+        public void BecomePrimary()
         {
             Exception ex = null;
             string name = "[" + (Name ?? "null") + "]";
@@ -115,5 +118,9 @@ namespace AirHome
             UpdateEventArgs arg = new UpdateEventArgs(ex);
             OnBecomePrimary(arg);
         }
+    }
+
+    public partial class House
+    {
     }
 }
