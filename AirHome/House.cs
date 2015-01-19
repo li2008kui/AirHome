@@ -27,6 +27,7 @@ namespace AirHome
             IsPrimary = true;
             devices = new List<Device>();
             users = new List<User>();
+            rooms = new List<Room>();
         }
 
         /// <summary>
@@ -41,6 +42,7 @@ namespace AirHome
             IsPrimary = isPrimary;
             devices = new List<Device>();
             users = new List<User>();
+            rooms = new List<Room>();
         }
 
         /// <summary>
@@ -406,6 +408,144 @@ namespace AirHome
 
             UpdateEventArgs arg = new UpdateEventArgs(ex);
             OnRemoveUser(arg);
+        }
+    }
+
+    /// <summary>
+    /// 用户住所房间分部类
+    /// </summary>
+    public partial class House
+    {
+        /// <summary>
+        /// 房间对象列表
+        /// </summary>
+        public List<Room> rooms { get; private set; }
+
+        /// <summary>
+        /// 处理添加房间的事件
+        /// </summary>
+        public event EventHandler AddRoomCompleted;
+
+        /// <summary>
+        /// 处理移除房间的事件
+        /// </summary>
+        public event EventHandler RemoveRoomCompleted;
+
+        /// <summary>
+        /// 引发处理添加房间的事件
+        /// </summary>
+        /// <param name="e">事件参数</param>
+        private void OnAddRoom(UpdateEventArgs e)
+        {
+            if (this.AddRoomCompleted != null)
+            {
+                this.AddRoomCompleted(this, e);
+            }
+        }
+
+        /// <summary>
+        /// 引发处理移除房间的事件
+        /// </summary>
+        /// <param name="e">事件参数</param>
+        private void OnRemoveRoom(UpdateEventArgs e)
+        {
+            if (this.RemoveRoomCompleted != null)
+            {
+                this.RemoveRoomCompleted(this, e);
+            }
+        }
+
+        /// <summary>
+        /// 添加房间
+        /// </summary>
+        /// <param name="name">房间名称</param>
+        public void AddRoom(string name)
+        {
+            if (!string.IsNullOrEmpty(name))
+            {
+                Room room = new Room(name.Trim());
+                this.AddRoom(room);
+            }
+            else
+            {
+                Exception ex = new Exception("房间名称不能为空。");
+                UpdateEventArgs arg = new UpdateEventArgs(ex);
+                OnAddRoom(arg);
+            }
+        }
+
+        /// <summary>
+        /// 添加房间
+        /// </summary>
+        /// <param name="room">房间对象</param>
+        public void AddRoom(Room room)
+        {
+            Exception ex = null;
+
+            if (room != null)
+            {
+                if (rooms == null)
+                {
+                    ex = new Exception("房间列表重新初始化，添加房间成功。");
+                    rooms = new List<Room>();
+                    rooms.Add(room);
+                }
+                else
+                {
+                    if (rooms.IndexOf(room) >= 0)
+                    {
+                        ex = new Exception("房间已经存在于房间列表中。");
+                    }
+                    else
+                    {
+                        ex = new Exception("添加房间成功。");
+                        rooms.Add(room);
+                    }
+                }
+            }
+            else
+            {
+                ex = new Exception("房间对象不能为空。");
+            }
+
+            UpdateEventArgs arg = new UpdateEventArgs(ex);
+            OnAddRoom(arg);
+        }
+
+        /// <summary>
+        /// 移除房间
+        /// </summary>
+        /// <param name="room">房间对象</param>
+        public void RemoveRoom(Room room)
+        {
+            Exception ex = null;
+
+            if (room != null)
+            {
+                if (rooms == null)
+                {
+                    ex = new Exception("房间列表不存在，已将其重新初始化。");
+                    rooms = new List<Room>();
+                }
+                else
+                {
+                    if (rooms.Remove(room))
+                    {
+                        ex = new Exception("从房间列表中移除房间成功。");
+                    }
+                    else
+                    {
+                        ex = new Exception("房间在房间列表中不存在。");
+                    }
+                }
+            }
+            else
+            {
+                ex = new Exception("房间对象不能为空。");
+            }
+
+            UpdateEventArgs arg = new UpdateEventArgs(ex);
+            OnRemoveRoom(arg);
         }
     }
 }
