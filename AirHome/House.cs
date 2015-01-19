@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace AirHome
 {
     /// <summary>
-    /// 用户住所主类
+    /// 住所主类
     /// </summary>
     public partial class House
     {
@@ -28,6 +28,7 @@ namespace AirHome
             devices = new List<Device>();
             users = new List<User>();
             rooms = new List<Room>();
+            zones = new List<Zone>();
         }
 
         /// <summary>
@@ -43,6 +44,7 @@ namespace AirHome
             devices = new List<Device>();
             users = new List<User>();
             rooms = new List<Room>();
+            zones = new List<Zone>();
         }
 
         /// <summary>
@@ -128,7 +130,7 @@ namespace AirHome
     }
 
     /// <summary>
-    /// 用户住所设备分部类
+    /// 住所设备分部类
     /// </summary>
     public partial class House
     {
@@ -293,7 +295,7 @@ namespace AirHome
     }
 
     /// <summary>
-    /// 用户住所用户分部类
+    /// 住所用户分部类
     /// </summary>
     public partial class House
     {
@@ -412,7 +414,7 @@ namespace AirHome
     }
 
     /// <summary>
-    /// 用户住所房间分部类
+    /// 住所房间分部类
     /// </summary>
     public partial class House
     {
@@ -587,6 +589,157 @@ namespace AirHome
             }
 
             return room;
+        }
+    }
+
+    /// <summary>
+    /// 住所区域分部类
+    /// </summary>
+    public partial class House
+    {
+        /// <summary>
+        /// 区域对象列表
+        /// </summary>
+        public List<Zone> zones { get; private set; }
+
+        /// <summary>
+        /// 处理添加区域的事件
+        /// </summary>
+        public event EventHandler AddZoneCompleted;
+
+        /// <summary>
+        /// 处理移除区域的事件
+        /// </summary>
+        public event EventHandler RemoveZoneCompleted;
+
+        /// <summary>
+        /// 引发处理添加区域的事件
+        /// </summary>
+        /// <param name="e">事件参数</param>
+        private void OnAddZone(UpdateEventArgs e)
+        {
+            if (this.AddZoneCompleted != null)
+            {
+                this.AddZoneCompleted(this, e);
+            }
+        }
+
+        /// <summary>
+        /// 引发处理移除区域的事件
+        /// </summary>
+        /// <param name="e">事件参数</param>
+        private void OnRemoveZone(UpdateEventArgs e)
+        {
+            if (this.RemoveZoneCompleted != null)
+            {
+                this.RemoveZoneCompleted(this, e);
+            }
+        }
+
+        /// <summary>
+        /// 添加区域
+        /// </summary>
+        /// <param name="name">区域名称</param>
+        public void AddZone(string name)
+        {
+            if (!string.IsNullOrEmpty(name) && "all" != name.Trim())
+            {
+                Zone zone = new Zone(name.Trim());
+                this.AddZone(zone);
+                return;
+            }
+
+            Exception ex = new Exception("区域名称不能为" + (string.IsNullOrEmpty(name) ? "空" : "all") + "。");
+            UpdateEventArgs arg = new UpdateEventArgs(ex);
+            OnAddZone(arg);
+        }
+
+        /// <summary>
+        /// 添加区域
+        /// </summary>
+        /// <param name="zone">区域对象</param>
+        public void AddZone(Zone zone)
+        {
+            Exception ex = null;
+
+            if (zone != null)
+            {
+                if (!string.IsNullOrEmpty(zone.Name) && "all" != zone.Name.Trim())
+                {
+                    if (zones == null)
+                    {
+                        ex = new Exception("区域列表重新初始化，添加区域成功。");
+                        zones = new List<Zone>();
+                        zones.Add(zone);
+                    }
+                    else
+                    {
+                        if (zones.Contains(zone))
+                        {
+                            ex = new Exception("区域已经存在于区域列表中。");
+                        }
+                        else
+                        {
+                            ex = new Exception("添加区域成功。");
+                            zones.Add(zone);
+                        }
+                    }
+                }
+                else
+                {
+                    ex = new Exception("区域名称不能为" + (string.IsNullOrEmpty(zone.Name) ? "空" : "all") + "。");
+                }
+            }
+            else
+            {
+                ex = new Exception("区域对象不能为空。");
+            }
+
+            UpdateEventArgs arg = new UpdateEventArgs(ex);
+            OnAddZone(arg);
+        }
+
+        /// <summary>
+        /// 移除区域
+        /// </summary>
+        /// <param name="zone">区域对象</param>
+        public void RemoveZone(Zone zone)
+        {
+            Exception ex = null;
+
+            if (zone != null)
+            {
+                if (!string.IsNullOrEmpty(zone.Name) && "all" != zone.Name.Trim())
+                {
+                    if (rooms == null)
+                    {
+                        ex = new Exception("区域列表不存在，已将其重新初始化。");
+                        rooms = new List<Room>();
+                    }
+                    else
+                    {
+                        if (zones.Remove(zone))
+                        {
+                            ex = new Exception("从区域列表中移除区域成功。");
+                        }
+                        else
+                        {
+                            ex = new Exception("区域在区域列表中不存在。");
+                        }
+                    }
+                }
+                else
+                {
+                    ex = new Exception("区域名称不能为" + (string.IsNullOrEmpty(zone.Name) ? "空" : "all") + "。");
+                }
+            }
+            else
+            {
+                ex = new Exception("区域对象不能为空。");
+            }
+
+            UpdateEventArgs arg = new UpdateEventArgs(ex);
+            OnRemoveZone(arg);
         }
     }
 }
