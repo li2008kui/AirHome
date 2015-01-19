@@ -23,6 +23,7 @@ namespace AirHome
         /// </summary>
         public Room()
         {
+            Name = "all";//代表所有房间的特殊房间
             devices = new List<Device>();
         }
 
