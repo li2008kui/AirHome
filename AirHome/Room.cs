@@ -70,9 +70,13 @@ namespace AirHome
             {
                 ex = new Exception("新房间名称与旧房间名称没有变化。");
             }
+            else if ("all" == name.Trim())
+            {
+                ex = new Exception("新房间名称不能为all。");
+            }
             else
             {
-                Name = name;
+                Name = name.Trim();
                 ex = new Exception("房间名称更新成功。");
             }
 
