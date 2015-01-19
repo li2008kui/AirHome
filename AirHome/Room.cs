@@ -55,9 +55,9 @@ namespace AirHome
         }
 
         /// <summary>
-        /// 更新住所名称
+        /// 更新房间名称
         /// </summary>
-        /// <param name="name">住所名称</param>
+        /// <param name="name">房间名称</param>
         public void UpdateName(string name)
         {
             Exception ex = null;
