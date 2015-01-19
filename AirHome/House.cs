@@ -461,17 +461,16 @@ namespace AirHome
         /// <param name="name">房间名称</param>
         public void AddRoom(string name)
         {
-            if (!string.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(name) && "all" != name.Trim())
             {
                 Room room = new Room(name.Trim());
                 this.AddRoom(room);
+                return;
             }
-            else
-            {
-                Exception ex = new Exception("房间名称不能为空。");
-                UpdateEventArgs arg = new UpdateEventArgs(ex);
-                OnAddRoom(arg);
-            }
+
+            Exception ex = new Exception("房间名称不能为" + (string.IsNullOrEmpty(name) ? "空" : "all") + "。");
+            UpdateEventArgs arg = new UpdateEventArgs(ex);
+            OnAddRoom(arg);
         }
 
         /// <summary>
@@ -484,23 +483,31 @@ namespace AirHome
 
             if (room != null)
             {
-                if (rooms == null)
+                if (!string.IsNullOrEmpty(room.Name) && "all" != room.Name.Trim())
                 {
-                    ex = new Exception("房间列表重新初始化，添加房间成功。");
-                    rooms = new List<Room>();
-                    rooms.Add(room);
-                }
-                else
-                {
-                    if (rooms.IndexOf(room) >= 0)
+                    if (rooms == null)
                     {
-                        ex = new Exception("房间已经存在于房间列表中。");
+                        ex = new Exception("房间列表重新初始化，添加房间成功。");
+                        rooms = new List<Room>();
+                        rooms.Add(room);
                     }
                     else
                     {
-                        ex = new Exception("添加房间成功。");
-                        rooms.Add(room);
+                        if (rooms.Contains(room))
+                        //if (rooms.IndexOf(room) >= 0)
+                        {
+                            ex = new Exception("房间已经存在于房间列表中。");
+                        }
+                        else
+                        {
+                            ex = new Exception("添加房间成功。");
+                            rooms.Add(room);
+                        }
                     }
+                }
+                else
+                {
+                    ex = new Exception("房间名称不能为" + (string.IsNullOrEmpty(room.Name) ? "空" : "all") + "。");
                 }
             }
             else
@@ -522,21 +529,28 @@ namespace AirHome
 
             if (room != null)
             {
-                if (rooms == null)
+                if (!string.IsNullOrEmpty(room.Name) && "all" != room.Name.Trim())
                 {
-                    ex = new Exception("房间列表不存在，已将其重新初始化。");
-                    rooms = new List<Room>();
-                }
-                else
-                {
-                    if (rooms.Remove(room))
+                    if (rooms == null)
                     {
-                        ex = new Exception("从房间列表中移除房间成功。");
+                        ex = new Exception("房间列表不存在，已将其重新初始化。");
+                        rooms = new List<Room>();
                     }
                     else
                     {
-                        ex = new Exception("房间在房间列表中不存在。");
+                        if (rooms.Remove(room))
+                        {
+                            ex = new Exception("从房间列表中移除房间成功。");
+                        }
+                        else
+                        {
+                            ex = new Exception("房间在房间列表中不存在。");
+                        }
                     }
+                }
+                else
+                {
+                    ex = new Exception("房间名称不能为" + (string.IsNullOrEmpty(room.Name) ? "空" : "all") + "。");
                 }
             }
             else
@@ -546,6 +560,33 @@ namespace AirHome
 
             UpdateEventArgs arg = new UpdateEventArgs(ex);
             OnRemoveRoom(arg);
+        }
+
+        /// <summary>
+        /// 获取代表所有房间的特殊房间
+        /// </summary>
+        /// <returns></returns>
+        public Room GetSpecialRoom()
+        {
+            Room room = null;
+
+            if (rooms == null)
+            {
+                throw new NotImplementedException();
+            }
+            else
+            {
+                foreach (var rm in rooms)
+                {
+                    if (rm.Name == "all")
+                    {
+                        room = rm;
+                        break;
+                    }
+                }
+            }
+
+            return room;
         }
     }
 }
