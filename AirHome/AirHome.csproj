@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Circuit.cs" />
+    <Compile Include="Datagram.cs" />
     <Compile Include="DataPoint.cs" />
     <Compile Include="Device.cs" />
     <Compile Include="Error.cs" />
