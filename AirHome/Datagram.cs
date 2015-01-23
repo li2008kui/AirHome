@@ -63,6 +63,35 @@ namespace AirHome
 
             return dg.ToArray();
         }
+
+        /// <summary>
+        /// 获取消息报文十六进制字符串
+        /// </summary>
+        /// <param name="separator">
+        /// 分隔符
+        ///     <para>默认为空字符</para>
+        /// </param>
+        /// <returns></returns>
+        public string ToHexString(string separator = "")
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var item in this.GetDatagram())
+            {
+                sb.Append(item.ToString("X2") + separator);
+            }
+
+            return sb.ToString().TrimEnd(separator.ToCharArray());
+        }
+
+        /// <summary>
+        /// 获取消息报文字符串
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return Encoding.UTF8.GetString(this.GetDatagram());
+        }
     }
 
     /// <summary>
@@ -101,7 +130,7 @@ namespace AirHome
         /// 获取消息头字节数组
         /// </summary>
         /// <returns></returns>
-        internal Byte[] GetHead()
+        public Byte[] GetHead()
         {
             List<Byte> mh = new List<byte>();
             mh.Add((Byte)(this.Length >> 8));
@@ -123,6 +152,35 @@ namespace AirHome
             mh.Add((Byte)(this.Crc));
 
             return mh.ToArray();
+        }
+
+        /// <summary>
+        /// 获取消息头十六进制字符串
+        /// </summary>
+        /// <param name="separator">
+        /// 分隔符
+        ///     <para>默认为空字符</para>
+        /// </param>
+        /// <returns></returns>
+        public string ToHexString(string separator = "")
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var item in this.GetHead())
+            {
+                sb.Append(item.ToString("X2") + separator);
+            }
+
+            return sb.ToString().TrimEnd(separator.ToCharArray());
+        }
+
+        /// <summary>
+        /// 获取消息头字符串
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return Encoding.UTF8.GetString(this.GetHead());
         }
     }
 
@@ -152,7 +210,7 @@ namespace AirHome
         /// 获取消息体字节数组
         /// </summary>
         /// <returns></returns>
-        internal Byte[] GetBody()
+        public Byte[] GetBody()
         {
             List<Byte> mb = new List<byte>();
             mb.Add((Byte)((UInt16)(this.MsgId) >> 8));
@@ -169,6 +227,35 @@ namespace AirHome
             }
 
             return mb.ToArray();
+        }
+
+        /// <summary>
+        /// 获取消息体十六进制字符串
+        /// </summary>
+        /// <param name="separator">
+        /// 分隔符
+        ///     <para>默认为空字符</para>
+        /// </param>
+        /// <returns></returns>
+        public string ToHexString(string separator = "")
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var item in this.GetBody())
+            {
+                sb.Append(item.ToString("X2") + separator);
+            }
+
+            return sb.ToString().TrimEnd(separator.ToCharArray());
+        }
+
+        /// <summary>
+        /// 获取消息体字符串
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return Encoding.UTF8.GetString(this.GetBody());
         }
     }
 
