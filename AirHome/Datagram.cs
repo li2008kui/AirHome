@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace AirHome
 {
@@ -47,6 +48,21 @@ namespace AirHome
             }
             private set { }
         }
+
+        /// <summary>
+        /// 获取消息报文字节数组
+        /// </summary>
+        /// <returns></returns>
+        public Byte[] GetDatagram()
+        {
+            List<Byte> dg = new List<byte>();
+            dg.Add(this.Stx);
+            dg.AddRange(this.Head.GetHead());
+            dg.AddRange(this.Body.GetBody());
+            dg.Add(this.Etx);
+
+            return dg.ToArray();
+        }
     }
 
     /// <summary>
@@ -80,6 +96,34 @@ namespace AirHome
         /// 消息体CRC校验
         /// </summary>
         public UInt16 Crc { get; set; }
+
+        /// <summary>
+        /// 获取消息头字节数组
+        /// </summary>
+        /// <returns></returns>
+        internal Byte[] GetHead()
+        {
+            List<Byte> mh = new List<byte>();
+            mh.Add((Byte)(this.Length >> 8));
+            mh.Add((Byte)(this.Length));
+
+            mh.Add((Byte)(this.Type));
+
+            for (int i = 24; i >= 0; i -= 8)
+            {
+                mh.Add((Byte)(this.SeqNumber >> i));
+            }
+
+            for (int j = 0; j < 7; j++)
+            {
+                mh.Add(0X00);
+            }
+
+            mh.Add((Byte)(this.Crc >> 8));
+            mh.Add((Byte)(this.Crc));
+
+            return mh.ToArray();
+        }
     }
 
     /// <summary>
@@ -103,6 +147,29 @@ namespace AirHome
         ///     <para>长度可变</para>
         /// </summary>
         public List<Parameter> PmtList { get; set; }
+
+        /// <summary>
+        /// 获取消息体字节数组
+        /// </summary>
+        /// <returns></returns>
+        internal Byte[] GetBody()
+        {
+            List<Byte> mb = new List<byte>();
+            mb.Add((Byte)((UInt16)(this.MsgId) >> 8));
+            mb.Add((Byte)(this.MsgId));
+
+            for (int i = 56; i >= 0; i -= 8)
+            {
+                mb.Add((Byte)(this.DevId >> i));
+            }
+
+            foreach (var pmt in this.PmtList)
+            {
+                mb.AddRange(pmt.GetParameter());
+            }
+
+            return mb.ToArray();
+        }
     }
 
     /// <summary>
@@ -134,6 +201,20 @@ namespace AirHome
                 return 0X00;
             }
             private set { }
+        }
+
+        /// <summary>
+        /// 获取参数字节数组
+        /// </summary>
+        /// <returns></returns>
+        internal Byte[] GetParameter()
+        {
+            List<Byte> pmt = new List<byte>();
+            pmt.Add((Byte)(this.Type));
+            pmt.AddRange(Encoding.UTF8.GetBytes(this.Value));
+            pmt.Add(this.End);
+
+            return pmt.ToArray();
         }
     }
 
