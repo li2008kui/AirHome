@@ -10,7 +10,7 @@ namespace AirHome
         /// <summary>
         /// 更新期间发生的异常
         /// </summary>
-        private Exception Exception { get; private set; }
+        private Exception Exception { get; set; }
 
         /// <summary>
         /// 默认构造方法
