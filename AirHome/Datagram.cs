@@ -19,7 +19,7 @@ namespace AirHome
             {
                 return 0X02;
             }
-            private set;
+            private set { }
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace AirHome
             {
                 return 0X03;
             }
-            private set;
+            private set { }
         }
     }
 
@@ -133,7 +133,7 @@ namespace AirHome
             {
                 return 0X00;
             }
-            private set;
+            private set { }
         }
     }
 
