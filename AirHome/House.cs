@@ -184,9 +184,9 @@ namespace AirHome
         /// <param name="e">事件参数</param>
         private void OnAssignDeviceToRoom(UpdateEventArgs e)
         {
-            if (this.RemoveDeviceCompleted != null)
+            if (this.AssignDeviceToRoomCompleted != null)
             {
-                this.RemoveDeviceCompleted(this, e);
+                this.AssignDeviceToRoomCompleted(this, e);
             }
         }
 
