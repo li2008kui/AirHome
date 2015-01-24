@@ -130,6 +130,47 @@ namespace AirHome
         public UInt16 Crc { get; set; }
 
         /// <summary>
+        /// 通过“消息类型”初始化消息头对象实例
+        /// </summary>
+        /// <param name="type">
+        /// 消息类型
+        ///     <para>Byte类型，长度为1个字节</para>
+        /// </param>
+        public MessageHead(MessageType type)
+            : this()
+        {
+            Type = type;
+        }
+
+        /// <summary>
+        /// 通过“消息体长度”、“消息类型”、“消息序号”和“消息体CRC校验”初始化消息头对象实例
+        /// </summary>
+        /// <param name="length">
+        /// 消息体长度
+        ///     <para>UInt16类型，长度为2个字节</para>
+        /// </param>
+        /// <param name="type">
+        /// 消息类型
+        ///     <para>Byte类型，长度为1个字节</para>
+        /// </param>
+        /// <param name="seqNumber">
+        /// 消息序号
+        ///     <para>UInt32类型，长度为4个字节</para>
+        /// </param>
+        /// <param name="crc">
+        /// 消息体CRC校验
+        ///     <para>UInt16类型，长度为2个字节</para>
+        /// </param>
+        public MessageHead(UInt16 length, MessageType type, UInt32 seqNumber, UInt16 crc)
+            : this()
+        {
+            Length = length;
+            Type = type;
+            SeqNumber = seqNumber;
+            Crc = crc;
+        }
+
+        /// <summary>
         /// 获取消息头字节数组
         /// </summary>
         /// <returns></returns>
