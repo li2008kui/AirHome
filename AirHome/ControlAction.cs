@@ -11,28 +11,28 @@ namespace AirHome
         /// <summary>
         /// 开关行为
         /// </summary>
-        /// <param name="devId">设备ID</param>
+        /// <param name="seqNumber">
+        /// 消息序号
+        ///     <para>UInt32类型，长度为4个字节</para>
+        /// </param>
+        /// <param name="devId">
+        /// 消息ID
+        ///     <para>UInt16类型，长度为2个字节</para>
+        /// </param>
         /// <param name="parameters">参数列表</param>
         /// <returns></returns>
-        public Byte[] Switch(UInt64 devId, params Parameter[] parameters)
+        public Byte[] Switch(UInt32 seqNumber, UInt64 devId, params Parameter[] parameters)
         {
-            Datagram dg = new Datagram();
-
-            MessageBody mb = new MessageBody();
-            mb.MsgId = MessageId.Switch;
-            mb.DevId = devId;
-            mb.PmtList = parameters.ToList();
-
-            MessageHead mh = new MessageHead();
-            mh.Length = (UInt16)(mb.GetBody().Length);
-            mh.Type = MessageType.ServerToDevice;
-            mh.SeqNumber = 0X00000000;
-            mh.Reserved = 0X00000000000000;
-            mh.Crc = Crc.GetCrc(mb.GetBody());
-
-            dg.Head = mh;
-            dg.Body = mb;
-            return dg.GetDatagram();
+            MessageBody mb = new MessageBody(
+                MessageId.Switch,
+                devId,
+                parameters.ToList());
+            MessageHead mh = new MessageHead(
+                (UInt16)(mb.GetBody().Length),
+                MessageType.ServerToDevice,
+                seqNumber,
+                Crc.GetCrc(mb.GetBody()));
+            return new Datagram(mh, mb).GetDatagram();
         }
     }
 }
