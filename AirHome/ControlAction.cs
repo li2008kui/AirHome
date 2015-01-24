@@ -10,11 +10,12 @@ namespace AirHome
     public class ControlAction : Action
     {
         /// <summary>
-        /// 开关行为
+        /// 对设备进行开关操作
+        ///     <para>如继电器开关或将设备亮度调到0%</para>
         /// </summary>
         /// <param name="devId">
-        /// 消息ID
-        ///     <para>UInt16类型，长度为2个字节</para>
+        /// 设备ID
+        ///     <para>UInt64类型，长度为8个字节</para>
         /// </param>
         /// <param name="status">
         /// 开关状态
@@ -38,11 +39,12 @@ namespace AirHome
         }
 
         /// <summary>
-        /// 调光行为
+        /// 对设备进行调光操作
+        ///     <para>若调光范围为1%~100%，需要转换为0X01~0XFF</para>
         /// </summary>
         /// <param name="devId">
-        /// 消息ID
-        ///     <para>UInt16类型，长度为2个字节</para>
+        /// 设备ID
+        ///     <para>UInt64类型，长度为8个字节</para>
         /// </param>
         /// <param name="level">
         /// 亮度等级
@@ -63,6 +65,31 @@ namespace AirHome
             pmtList.Add(new Parameter(ParameterType.Brightness, byteList));
 
             return GetDatagram(MessageId.Brightness, devId, pmtList);
+        }
+
+        /// <summary>
+        /// 对设备进行色温调节操作
+        ///     <para>参数值为冷色温分量</para>
+        ///     <para>色温与亮度的关系：冷色温+暖色温=当前亮度</para>
+        /// </summary>
+        /// <param name="devId">
+        /// 设备ID
+        ///     <para>UInt64类型，长度为8个字节</para>
+        /// </param>
+        /// <param name="cool">
+        /// 冷色温分量
+        ///     <para>范围：0X01~0XFF</para>
+        /// </param>
+        /// <returns></returns>
+        public static Byte[] Toning(UInt64 devId, Byte cool)
+        {
+            List<Byte> byteList = new List<Byte>();
+            byteList.Add(cool);
+
+            List<Parameter> pmtList = new List<Parameter>();
+            pmtList.Add(new Parameter(ParameterType.ColorTemperature, byteList));
+
+            return GetDatagram(MessageId.ColorTemperature, devId, pmtList);
         }
 
         /// <summary>
