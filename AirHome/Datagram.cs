@@ -119,9 +119,9 @@ namespace AirHome
 
         /// <summary>
         /// 预留字段
-        ///     <para>UInt64类型，长度为7字节</para>
+        ///     <para>UInt32类型，长度为3字节</para>
         /// </summary>
-        public UInt64 Reserved { get; set; }
+        public UInt32 Reserved { get; set; }
 
         /// <summary>
         /// 消息体CRC校验
@@ -146,7 +146,7 @@ namespace AirHome
                 mh.Add((Byte)(this.SeqNumber >> i));
             }
 
-            for (int j = 0; j < 7; j++)
+            for (int j = 0; j < 3; j++)
             {
                 mh.Add(0X00);
             }
