@@ -39,7 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Action.cs" />
     <Compile Include="Circuit.cs" />
+    <Compile Include="ControlAction.cs" />
     <Compile Include="Datagram.cs" />
     <Compile Include="DataPoint.cs" />
     <Compile Include="Device.cs" />
