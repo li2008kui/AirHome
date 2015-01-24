@@ -278,7 +278,7 @@ namespace AirHome
         /// 参数值
         ///     <para>Byte类型列表，长度可变</para>
         /// </summary>
-        public List<Byte> Value { get; set; }
+        public List<Byte> Values { get; set; }
 
         /// <summary>
         /// 参数结束符
@@ -295,6 +295,24 @@ namespace AirHome
         }
 
         /// <summary>
+        /// 初始化参数对象实例
+        /// </summary>
+        /// <param name="type">
+        /// 参数类型
+        ///     <para>Byte类型，长度为1个字节</para>
+        /// </param>
+        /// <param name="values">
+        /// 参数值
+        ///     <para>Byte类型列表，长度可变</para>
+        /// </param>
+        public Parameter(ParameterType type, List<Byte> values)
+            : this()
+        {
+            this.Type = type;
+            this.Values = values;
+        }
+
+        /// <summary>
         /// 获取参数字节数组
         /// </summary>
         /// <returns></returns>
@@ -303,9 +321,9 @@ namespace AirHome
             List<Byte> pmt = new List<byte>();
             pmt.Add((Byte)(this.Type));
 
-            if (this.Value != null && this.Value.Count > 0)
+            if (this.Values != null && this.Values.Count > 0)
             {
-                pmt.AddRange(this.Value);
+                pmt.AddRange(this.Values);
             }
             else
             {
@@ -313,7 +331,6 @@ namespace AirHome
             }
 
             pmt.Add(this.End);
-
             return pmt.ToArray();
         }
     }
