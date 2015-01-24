@@ -211,6 +211,77 @@ namespace AirHome
         public List<Parameter> PmtList { get; set; }
 
         /// <summary>
+        /// 通过“消息ID”初始化消息体对象实例
+        ///     <para>默认设备ID为0X0000000000000000，即广播到所有设备</para>
+        /// </summary>
+        /// <param name="msgId">
+        /// 消息ID
+        ///     <para>UInt16类型，长度为2个字节</para>
+        /// </param>
+        public MessageBody(MessageId msgId)
+            : this()
+        {
+            MsgId = msgId;
+            DevId = 0X0000000000000000;
+        }
+
+        /// <summary>
+        /// 通过“设备ID”初始化消息体对象实例
+        ///     <para>默认消息ID为0X0000，即包含多个功能</para>
+        /// </summary>
+        /// <param name="devId">
+        /// 设备ID
+        ///     <para>UInt64类型，长度为2个字节</para>
+        /// </param>
+        public MessageBody(UInt64 devId)
+            : this()
+        {
+            MsgId = MessageId.Multifunction;
+            DevId = devId;
+        }
+
+        /// <summary>
+        /// 通过“消息ID”和“设备ID”初始化消息体对象实例
+        /// </summary>
+        /// <param name="msgId">
+        /// 消息ID
+        ///     <para>UInt16类型，长度为2个字节</para>
+        /// </param>
+        /// <param name="devId">
+        /// 设备ID
+        ///     <para>UInt64类型，长度为2个字节</para>
+        /// </param>
+        public MessageBody(MessageId msgId, UInt64 devId)
+            : this()
+        {
+            MsgId = msgId;
+            DevId = devId;
+        }
+
+        /// <summary>
+        /// 通过“消息ID”、“设备ID”和“参数列表”初始化消息体对象实例
+        /// </summary>
+        /// <param name="msgId">
+        /// 消息ID
+        ///     <para>UInt16类型，长度为2个字节</para>
+        /// </param>
+        /// <param name="devId">
+        /// 设备ID
+        ///     <para>UInt64类型，长度为2个字节</para>
+        /// </param>
+        /// <param name="pmtList">
+        /// 参数列表
+        ///     <para>长度可变</para>
+        /// </param>
+        public MessageBody(MessageId msgId, UInt64 devId, List<Parameter> pmtList)
+            : this()
+        {
+            MsgId = msgId;
+            DevId = devId;
+            PmtList = pmtList;
+        }
+
+        /// <summary>
         /// 获取消息体字节数组
         /// </summary>
         /// <returns></returns>
@@ -295,7 +366,7 @@ namespace AirHome
         }
 
         /// <summary>
-        /// 初始化参数对象实例
+        /// 通过“参数类型”和“参数值字节列表”初始化参数对象实例
         /// </summary>
         /// <param name="type">
         /// 参数类型
