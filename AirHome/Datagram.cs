@@ -567,9 +567,9 @@ namespace AirHome
         ColorTemperature = 0X1002,
 
         /// <summary>
-        /// 调节RGB
+        /// 调节红绿蓝白（RGBW）
         /// </summary>
-        AdjustRgb = 0X1003
+        AdjustRgbw = 0X1003
     }
 
     /// <summary>
@@ -643,9 +643,9 @@ namespace AirHome
         ColorTemperature = 0X12,
 
         /// <summary>
-        /// RGB
+        /// 红绿蓝白（RGBW）
         /// </summary>
-        Rgb = 0X13,
+        Rgbw = 0X13,
 
         /// <summary>
         /// 响应码

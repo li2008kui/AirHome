@@ -70,7 +70,6 @@ namespace AirHome
         /// <summary>
         /// 对设备进行色温调节操作
         ///     <para>参数值为冷色温分量</para>
-        ///     <para>色温与亮度的关系：冷色温+暖色温=当前亮度</para>
         /// </summary>
         /// <param name="devId">
         /// 设备ID
@@ -79,6 +78,7 @@ namespace AirHome
         /// <param name="cool">
         /// 冷色温分量
         ///     <para>范围：0X01~0XFF</para>
+        ///     <para>色温与亮度的关系：冷色温+暖色温=当前亮度</para>
         /// </param>
         /// <returns></returns>
         public static Byte[] Toning(UInt64 devId, Byte cool)
@@ -90,6 +90,37 @@ namespace AirHome
             pmtList.Add(new Parameter(ParameterType.ColorTemperature, byteList));
 
             return GetDatagram(MessageId.ColorTemperature, devId, pmtList);
+        }
+
+        /// <summary>
+        /// 对设备进行RGB调节操作
+        ///     <para>参数值为红（R）、绿（G）、蓝（B）和白（W）的分量</para>
+        /// </summary>
+        /// <param name="devId">
+        /// 设备ID
+        ///     <para>UInt64类型，长度为8个字节</para>
+        /// </param>
+        /// <param name="rgbw">
+        /// 红绿蓝三基色和白色的分量
+        ///     <para>第1个字节表示红（R）的分量</para>
+        ///     <para>第2个字节表示绿（G）的分量</para>
+        ///     <para>第3个字节表示蓝（B）的分量</para>
+        ///     <para>第4个字节表示白（W）的分量</para>
+        /// </param>
+        /// <returns></returns>
+        public static Byte[] Rgbw(UInt64 devId, UInt32 rgbw)
+        {
+            List<Byte> byteList = new List<Byte>();
+
+            for (int i = 24; i >= 0; i -= 8)
+            {
+                byteList.Add((Byte)(rgbw >> i));
+            }
+
+            List<Parameter> pmtList = new List<Parameter>();
+            pmtList.Add(new Parameter(ParameterType.Rgbw, byteList));
+
+            return GetDatagram(MessageId.AdjustRgbw, devId, pmtList);
         }
 
         /// <summary>
