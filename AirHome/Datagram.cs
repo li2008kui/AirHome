@@ -276,9 +276,9 @@ namespace AirHome
 
         /// <summary>
         /// 参数值
-        ///     <para>长度可变，十六进制表示</para>
+        ///     <para>Byte类型列表，长度可变</para>
         /// </summary>
-        public String Value { get; set; }
+        public List<Byte> Value { get; set; }
 
         /// <summary>
         /// 参数结束符
@@ -302,7 +302,7 @@ namespace AirHome
         {
             List<Byte> pmt = new List<byte>();
             pmt.Add((Byte)(this.Type));
-            pmt.AddRange(Encoding.UTF8.GetBytes(this.Value));
+            pmt.AddRange(this.Value);
             pmt.Add(this.End);
 
             return pmt.ToArray();
