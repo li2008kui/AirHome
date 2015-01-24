@@ -25,7 +25,7 @@ namespace AirHome
 
         /// <summary>
         /// 消息头
-        ///     <para>长度为16字节</para>
+        ///     <para>长度为12字节</para>
         /// </summary>
         public MessageHead Head { get; set; }
 
@@ -47,6 +47,23 @@ namespace AirHome
                 return 0X03;
             }
             private set { }
+        }
+
+        /// <summary>
+        /// 通过消息头和消息体初始化报文对象实例
+        /// </summary>
+        /// <param name="head">
+        /// 消息头
+        ///     <para>长度为12字节</para>
+        /// </param>
+        /// <param name="body">
+        /// 消息体
+        ///     <para>长度可变</para>
+        /// </param>
+        public Datagram(MessageHead head, MessageBody body)
+        {
+            Head = head;
+            Body = body;
         }
 
         /// <summary>
@@ -140,6 +157,31 @@ namespace AirHome
             : this()
         {
             Type = type;
+        }
+
+        /// <summary>
+        /// 通过“消息体长度”、“消息序号”和“消息体CRC校验”初始化消息头对象实例
+        ///     <para>默认消息类型为服务器到设备</para>
+        /// </summary>
+        /// <param name="length">
+        /// 消息体长度
+        ///     <para>UInt16类型，长度为2个字节</para>
+        /// </param>
+        /// <param name="seqNumber">
+        /// 消息序号
+        ///     <para>UInt32类型，长度为4个字节</para>
+        /// </param>
+        /// <param name="crc">
+        /// 消息体CRC校验
+        ///     <para>UInt16类型，长度为2个字节</para>
+        /// </param>
+        public MessageHead(UInt16 length, UInt32 seqNumber, UInt16 crc)
+            : this()
+        {
+            Length = length;
+            Type = MessageType.ServerToDevice;
+            SeqNumber = seqNumber;
+            Crc = crc;
         }
 
         /// <summary>
