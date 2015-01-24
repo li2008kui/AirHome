@@ -25,7 +25,13 @@ namespace AirHome
 
             MessageHead mh = new MessageHead();
             mh.Length = (UInt16)(mb.GetBody().Length);
+            mh.Type = MessageType.ServerToDevice;
+            mh.SeqNumber = 0X00000000;
+            mh.Reserved = 0X00000000000000;
+            mh.Crc = Crc.GetCrc(mb.GetBody());
 
+            dg.Head = mh;
+            dg.Body = mb;
             return dg.GetDatagram();
         }
     }
