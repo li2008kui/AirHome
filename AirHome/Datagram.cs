@@ -101,28 +101,31 @@ namespace AirHome
     {
         /// <summary>
         /// 消息体长度
+        ///     <para>UInt16类型，长度为2个字节</para>
         /// </summary>
         public UInt16 Length { get; set; }
 
         /// <summary>
         /// 消息类型
-        ///     <para>长度为1个字节</para>
+        ///     <para>Byte类型，长度为1个字节</para>
         /// </summary>
         public MessageType Type { get; set; }
 
         /// <summary>
         /// 消息序号
+        ///     <para>UInt32类型，长度为4个字节</para>
         /// </summary>
         public UInt32 SeqNumber { get; set; }
 
         /// <summary>
         /// 预留字段
-        ///     <para>长度为7字节</para>
+        ///     <para>UInt64类型，长度为7字节</para>
         /// </summary>
         public UInt64 Reserved { get; set; }
 
         /// <summary>
         /// 消息体CRC校验
+        ///     <para>UInt16类型，长度为2个字节</para>
         /// </summary>
         public UInt16 Crc { get; set; }
 
@@ -191,12 +194,13 @@ namespace AirHome
     {
         /// <summary>
         /// 消息ID
-        ///     <para>长度为2个字节</para>
+        ///     <para>UInt16类型，长度为2个字节</para>
         /// </summary>
         public MessageId MsgId { get; set; }
 
         /// <summary>
         /// 设备ID
+        ///     <para>UInt64类型，长度为2个字节</para>
         /// </summary>
         public UInt64 DevId { get; set; }
 
@@ -266,7 +270,7 @@ namespace AirHome
     {
         /// <summary>
         /// 参数类型
-        ///     <para>长度为1个字节</para>
+        ///     <para>Byte类型，长度为1个字节</para>
         /// </summary>
         public ParameterType Type { get; set; }
 
@@ -294,7 +298,7 @@ namespace AirHome
         /// 获取参数字节数组
         /// </summary>
         /// <returns></returns>
-        internal Byte[] GetParameter()
+        public Byte[] GetParameter()
         {
             List<Byte> pmt = new List<byte>();
             pmt.Add((Byte)(this.Type));
