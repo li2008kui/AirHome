@@ -47,7 +47,6 @@
     <Compile Include="DataPoint.cs" />
     <Compile Include="Device.cs" />
     <Compile Include="Error.cs" />
-    <Compile Include="Function.cs" />
     <Compile Include="Home.cs" />
     <Compile Include="House.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
