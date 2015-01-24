@@ -302,7 +302,16 @@ namespace AirHome
         {
             List<Byte> pmt = new List<byte>();
             pmt.Add((Byte)(this.Type));
-            pmt.AddRange(this.Value);
+
+            if (this.Value != null && this.Value.Count > 0)
+            {
+                pmt.AddRange(this.Value);
+            }
+            else
+            {
+                pmt.Add(0X00);
+            }
+
             pmt.Add(this.End);
 
             return pmt.ToArray();
