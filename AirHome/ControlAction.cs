@@ -28,22 +28,64 @@ namespace AirHome
                 throw new FormatException("开关状态参数错误！0X00表示关闭，0X01表示打开。");
             }
 
-            List<Byte> bl = new List<Byte>();
-            bl.Add(status);
+            List<Byte> byteList = new List<Byte>();
+            byteList.Add(status);
 
-            List<Parameter> pl = new List<Parameter>();
-            pl.Add(new Parameter(ParameterType.Switch, bl));
+            List<Parameter> pmtList = new List<Parameter>();
+            pmtList.Add(new Parameter(ParameterType.Switch, byteList));
 
+            return GetDatagram(MessageId.Switch, devId, pmtList);
+        }
+
+        /// <summary>
+        /// 调光行为
+        /// </summary>
+        /// <param name="devId">
+        /// 消息ID
+        ///     <para>UInt16类型，长度为2个字节</para>
+        /// </param>
+        /// <param name="level">
+        /// 亮度等级
+        ///     <para>范围：0X01~0XFF</para>
+        /// </param>
+        /// <returns></returns>
+        public static Byte[] Dimming(UInt64 devId, Byte level)
+        {
+            if (level == 0X00)
+            {
+                level = 0X01;
+            }
+
+            List<Byte> byteList = new List<Byte>();
+            byteList.Add(level);
+
+            List<Parameter> pmtList = new List<Parameter>();
+            pmtList.Add(new Parameter(ParameterType.Brightness, byteList));
+
+            return GetDatagram(MessageId.Brightness, devId, pmtList);
+        }
+
+        /// <summary>
+        /// 获取消息报文字节数组
+        /// </summary>
+        /// <param name="msgId">消息ID</param>
+        /// <param name="devId">设备ID</param>
+        /// <param name="pmtList">参数列表</param>
+        /// <returns></returns>
+        private static byte[] GetDatagram(MessageId msgId, UInt64 devId, List<Parameter> pmtList)
+        {
             MessageBody mb = new MessageBody(
-                MessageId.Switch,
+                msgId,
                 devId,
-                pl);
+                pmtList);
+
+            Byte[] msgBody = mb.GetBody();
 
             MessageHead mh = new MessageHead(
-                (UInt16)(mb.GetBody().Length),
+                (UInt16)(msgBody.Length),
                 MessageType.ServerToDevice,
                 Counter.Instance.SeqNumber++,
-                Crc.GetCrc(mb.GetBody()));
+                Crc.GetCrc(msgBody));
 
             return new Datagram(mh, mb).GetDatagram();
         }
