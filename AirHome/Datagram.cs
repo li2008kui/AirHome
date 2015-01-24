@@ -284,7 +284,7 @@ namespace AirHome
 
         /// <summary>
         /// 设备ID
-        ///     <para>UInt64类型，长度为2个字节</para>
+        ///     <para>UInt64类型，长度为8个字节</para>
         /// </summary>
         public UInt64 DevId { get; set; }
 
