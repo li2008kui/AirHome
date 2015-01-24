@@ -61,6 +61,7 @@ namespace AirHome
         ///     <para>长度可变</para>
         /// </param>
         public Datagram(MessageHead head, MessageBody body)
+            : this()
         {
             Head = head;
             Body = body;
