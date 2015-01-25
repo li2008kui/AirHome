@@ -165,7 +165,7 @@ namespace AirHome
         }
 
         /// <summary>
-        /// 对设备进行RGBW调节操作
+        /// 对设备进行RGB调节操作
         ///     <para>参数值为一种 ARGB 颜色（alpha、红色、绿色、蓝色）</para>
         /// </summary>
         /// <param name="devId">
@@ -186,6 +186,43 @@ namespace AirHome
             pmtList.Add(new Parameter(ParameterType.Rgbw, byteList));
 
             return GetDatagram(MessageId.AdjustRgbw, devId, pmtList);
+        }
+
+        /// <summary>
+        /// 对设备进行RGB调节操作
+        ///     <para>参数值为BMP图片</para>
+        /// </summary>
+        /// <param name="devId">
+        /// 设备ID
+        ///     <para>UInt64类型，长度为8个字节</para>
+        /// </param>
+        /// <param name="bitmap">BMP图片对象</param>
+        /// <returns></returns>
+        public static List<Byte[]> Rgbw(UInt64 devId, Bitmap bitmap)
+        {
+            Color color;
+            List<Byte> byteList;
+            List<Parameter> pmtList;
+            List<Byte[]> byteArrayList = new List<byte[]>();
+
+            for (int x = 0; x < bitmap.Width; x++)
+            {
+                for (int y = 0; y < bitmap.Height; y++)
+                {
+                    color = bitmap.GetPixel(x, y);
+                    byteList = new List<Byte>();
+                    byteList.Add(color.R);
+                    byteList.Add(color.G);
+                    byteList.Add(color.B);
+                    byteList.Add(color.A);
+
+                    pmtList = new List<Parameter>();
+                    pmtList.Add(new Parameter(ParameterType.Rgbw, byteList));
+                    byteArrayList.Add(GetDatagram(MessageId.AdjustRgbw, devId, pmtList));
+                }
+            }
+
+            return byteArrayList;
         }
 
         /// <summary>
