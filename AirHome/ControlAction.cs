@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 
 namespace AirHome
@@ -94,7 +95,7 @@ namespace AirHome
 
         /// <summary>
         /// 对设备进行RGBW调节操作
-        ///     <para>参数值为红色（R）、绿色（G）、蓝色（B）和白色（W）的分量组合</para>
+        ///     <para>参数值为红色、绿色、蓝色和白色的分量组合</para>
         /// </summary>
         /// <param name="devId">
         /// 设备ID
@@ -125,7 +126,7 @@ namespace AirHome
 
         /// <summary>
         /// 对设备进行RGBW调节操作
-        ///     <para>参数值为红色（R）、绿色（G）、蓝色（B）和白色（W）的分量</para>
+        ///     <para>参数值为红色、绿色、蓝色和白色的分量</para>
         /// </summary>
         /// <param name="devId">
         /// 设备ID
@@ -156,6 +157,30 @@ namespace AirHome
             byteList.Add(green);
             byteList.Add(blue);
             byteList.Add(white);
+
+            List<Parameter> pmtList = new List<Parameter>();
+            pmtList.Add(new Parameter(ParameterType.Rgbw, byteList));
+
+            return GetDatagram(MessageId.AdjustRgbw, devId, pmtList);
+        }
+
+        /// <summary>
+        /// 对设备进行RGBW调节操作
+        ///     <para>参数值为一种 ARGB 颜色（alpha、红色、绿色、蓝色）</para>
+        /// </summary>
+        /// <param name="devId">
+        /// 设备ID
+        ///     <para>UInt64类型，长度为8个字节</para>
+        /// </param>
+        /// <param name="color">一种 ARGB 颜色（alpha、红色、绿色、蓝色）</param>
+        /// <returns></returns>
+        public static Byte[] Rgbw(UInt64 devId, Color color)
+        {
+            List<Byte> byteList = new List<Byte>();
+            byteList.Add(color.R);
+            byteList.Add(color.G);
+            byteList.Add(color.B);
+            byteList.Add(color.A);
 
             List<Parameter> pmtList = new List<Parameter>();
             pmtList.Add(new Parameter(ParameterType.Rgbw, byteList));
