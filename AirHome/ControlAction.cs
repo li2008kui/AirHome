@@ -27,7 +27,7 @@ namespace ThisCoder.AirHome
         ///     <para>取值范围：0X01~0XFF；若为0X00，则表示所有回路，默认值为0X00</para>
         /// </param>
         /// <returns></returns>
-        public static Byte[] Switch(UInt64 devId, Byte status, Byte circuitNo = 0X00)
+        public Byte[] Switch(UInt64 devId, Byte status, Byte circuitNo = 0X00)
         {
             if (status != 0X00 && status != 0X01)
             {
@@ -60,7 +60,7 @@ namespace ThisCoder.AirHome
         ///     <para>取值范围：0X01~0XFF</para>
         /// </param>
         /// <returns></returns>
-        public static Byte[] Dimming(UInt64 devId, Byte level)
+        public Byte[] Dimming(UInt64 devId, Byte level)
         {
             if (level == 0X00)
             {
@@ -90,7 +90,7 @@ namespace ThisCoder.AirHome
         ///     <para>色温与亮度的关系：冷色温+暖色温=当前亮度</para>
         /// </param>
         /// <returns></returns>
-        public static Byte[] Toning(UInt64 devId, Byte cool)
+        public Byte[] Toning(UInt64 devId, Byte cool)
         {
             List<Byte> byteList = new List<Byte>();
             byteList.Add(cool);
@@ -117,7 +117,7 @@ namespace ThisCoder.AirHome
         ///     <para>第4个字节表示白色（W）的分量。取值范围：0X00~0XFF</para>
         /// </param>
         /// <returns></returns>
-        public static Byte[] Rgbw(UInt64 devId, UInt32 rgbw)
+        public Byte[] Rgbw(UInt64 devId, UInt32 rgbw)
         {
             List<Byte> byteList = new List<Byte>();
 
@@ -158,7 +158,7 @@ namespace ThisCoder.AirHome
         ///     <para>如果没有白光，默认为0X00</para>
         /// </param>
         /// <returns></returns>
-        public static Byte[] Rgbw(UInt64 devId, Byte red, Byte green, Byte blue, Byte white = 0X00)
+        public Byte[] Rgbw(UInt64 devId, Byte red, Byte green, Byte blue, Byte white = 0X00)
         {
             List<Byte> byteList = new List<Byte>();
             byteList.Add(red);
@@ -182,7 +182,7 @@ namespace ThisCoder.AirHome
         /// </param>
         /// <param name="color">一种 ARGB 颜色（alpha、红色、绿色、蓝色）</param>
         /// <returns></returns>
-        public static Byte[] Rgbw(UInt64 devId, Color color)
+        public Byte[] Rgbw(UInt64 devId, Color color)
         {
             List<Byte> byteList = new List<Byte>();
             byteList.Add(color.R);
@@ -206,7 +206,7 @@ namespace ThisCoder.AirHome
         /// </param>
         /// <param name="bitmap">BMP图片对象</param>
         /// <returns></returns>
-        public static List<Byte[]> Rgbw(UInt64 devId, Bitmap bitmap)
+        public List<Byte[]> Rgbw(UInt64 devId, Bitmap bitmap)
         {
             Color color;
             List<Byte> byteList;

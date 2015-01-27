@@ -13,7 +13,7 @@ namespace ThisCoder.AirHome
         ///     <para>广播UID地址：0X0000000000000000</para>
         /// </summary>
         /// <returns></returns>
-        public static Byte[] Search()
+        public Byte[] Search()
         {
             List<Byte> byteList = new List<Byte>();
             byteList.Add(0X00);
@@ -36,7 +36,7 @@ namespace ThisCoder.AirHome
         ///     <para>取值范围：0X01~0XFF；若为0X00，则表示所有回路，默认值为0X00</para>
         /// </param>
         /// <returns></returns>
-        public static Byte[] Locate(UInt64 devId, Byte circuitNo = 0X00)
+        public Byte[] Locate(UInt64 devId, Byte circuitNo = 0X00)
         {
             List<Byte> byteList = new List<Byte>();
             byteList.Add(circuitNo);
