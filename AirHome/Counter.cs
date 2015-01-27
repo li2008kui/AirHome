@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AirHome
+namespace ThisCoder.AirHome
 {
     /// <summary>
     /// 消息序号计数器类

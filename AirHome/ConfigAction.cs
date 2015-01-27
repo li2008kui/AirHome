@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AirHome
+namespace ThisCoder.AirHome
 {
     /// <summary>
     /// 配置行为类

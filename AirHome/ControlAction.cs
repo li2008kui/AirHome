@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 
-namespace AirHome
+namespace ThisCoder.AirHome
 {
     /// <summary>
     /// 控制行为类

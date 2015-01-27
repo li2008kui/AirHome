@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AirHome
+namespace ThisCoder.AirHome
 {
     /// <summary>
     /// 更新事件参数

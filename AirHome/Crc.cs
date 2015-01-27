@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AirHome
+namespace ThisCoder.AirHome
 {
     /// <summary>
     /// CRC校验类

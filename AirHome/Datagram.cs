@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AirHome
+namespace ThisCoder.AirHome
 {
     /// <summary>
     /// 报文结构体

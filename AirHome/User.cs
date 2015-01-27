@@ -1,4 +1,4 @@
-﻿namespace AirHome
+﻿namespace ThisCoder.AirHome
 {
     /// <summary>
     /// 用户类
