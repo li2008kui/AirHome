@@ -11,6 +11,21 @@ namespace ThisCoder.AirHome
     public class ControlAction : Action
     {
         /// <summary>
+        /// 初始化控制动作行为类。
+        ///     <para>设备ID默认值为0X0000000000000000。</para>
+        /// </summary>
+        public ControlAction() : base() { }
+
+        /// <summary>
+        /// 通过设备ID初始化控制动作行为类
+        /// </summary>
+        /// <param name="devId">
+        /// 设备ID
+        ///     <para>UInt64类型，长度为8个字节</para>
+        /// </param>
+        public ControlAction(UInt64 devId) : base(devId) { }
+
+        /// <summary>
         /// 对设备进行开关操作
         ///     <para>如继电器开关或将设备亮度调到0%</para>
         /// </summary>

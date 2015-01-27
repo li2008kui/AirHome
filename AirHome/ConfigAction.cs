@@ -9,6 +9,21 @@ namespace ThisCoder.AirHome
     public class ConfigAction : Action
     {
         /// <summary>
+        /// 初始化配置动作行为类。
+        ///     <para>设备ID默认值为0X0000000000000000。</para>
+        /// </summary>
+        public ConfigAction() : base() { }
+
+        /// <summary>
+        /// 通过设备ID初始化配置动作行为类
+        /// </summary>
+        /// <param name="devId">
+        /// 设备ID
+        ///     <para>UInt64类型，长度为8个字节</para>
+        /// </param>
+        public ConfigAction(UInt64 devId) : base(devId) { }
+
+        /// <summary>
         /// 搜索设备
         ///     <para>广播UID地址：0X0000000000000000</para>
         /// </summary>
