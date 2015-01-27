@@ -9,6 +9,33 @@ namespace ThisCoder.AirHome
     public class Action
     {
         /// <summary>
+        /// 设备ID
+        ///     <para>UInt64类型，长度为8个字节</para>
+        /// </summary>
+        public UInt64 DevId { get; set; }
+
+        /// <summary>
+        /// 初始化动作行为类。
+        ///     <para>设备ID默认值为0X0000000000000000。</para>
+        /// </summary>
+        public Action()
+        {
+            DevId = 0X0000000000000000;
+        }
+
+        /// <summary>
+        /// 通过设备ID初始化动作行为类
+        /// </summary>
+        /// <param name="devId">
+        /// 设备ID
+        ///     <para>UInt64类型，长度为8个字节</para>
+        /// </param>
+        public Action(UInt64 devId)
+        {
+            DevId = devId;
+        }
+
+        /// <summary>
         /// 获取消息报文字节数组
         /// </summary>
         /// <param name="msgId">
@@ -21,7 +48,7 @@ namespace ThisCoder.AirHome
         /// </param>
         /// <param name="pmtList">参数列表</param>
         /// <returns></returns>
-        protected static byte[] GetDatagram(MessageId msgId, UInt64 devId, List<Parameter> pmtList)
+        protected byte[] GetDatagram(MessageId msgId, UInt64 devId, List<Parameter> pmtList)
         {
             MessageBody mb = new MessageBody(
                 msgId,
