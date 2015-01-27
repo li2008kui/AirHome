@@ -40,15 +40,11 @@ namespace ThisCoder.AirHome
                 throw new FormatException("开关状态参数错误！0X00表示关闭，0X01表示打开。");
             }
 
-            List<Byte> byteList1 = new List<Byte>();
-            byteList1.Add(CircuitNo);
-
-            List<Byte> byteList2 = new List<Byte>();
-            byteList2.Add(status);
+            List<Byte> byteList = new List<Byte>();
+            byteList.Add(status);
 
             List<Parameter> pmtList = new List<Parameter>();
-            pmtList.Add(new Parameter(ParameterType.CircuitNo, byteList1));
-            pmtList.Add(new Parameter(ParameterType.Switch, byteList2));
+            pmtList.Add(new Parameter(ParameterType.Switch, byteList));
 
             return GetDatagram(MessageId.Switch, pmtList);
         }
