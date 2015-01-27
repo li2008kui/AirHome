@@ -75,11 +75,54 @@ namespace AirHome
         {
             List<Byte> dg = new List<byte>();
             dg.Add(this.Stx);
-            dg.AddRange(this.Head.GetHead());
-            dg.AddRange(this.Body.GetBody());
+
+            Byte[] head = this.Head.GetHead();
+            Byte[] body = this.Body.GetBody();
+
+            dg.AddRange(Escaping(head));
+            dg.AddRange(Escaping(body));
+
             dg.Add(this.Etx);
 
             return dg.ToArray();
+        }
+
+        /// <summary>
+        /// 转义特殊字符
+        ///     <para>STX转义为ESC和0XE7，即02->1BE7</para>
+        ///     <para>ETX转义为ESC和0XE8，即03->1BE8</para>
+        ///     <para>ESC转义为ESC和0X00，即1B->1B00</para>
+        /// </summary>
+        /// <param name="byteArray">字节数组</param>
+        /// <returns></returns>
+        private static Byte[] Escaping(Byte[] byteArray)
+        {
+            List<Byte> byteList = new List<byte>();
+
+            foreach (var item in byteArray)
+            {
+                if (item == 0X02)
+                {
+                    byteList.Add(0X1B);
+                    byteList.Add(0XE7);
+                }
+                else if (item == 0X03)
+                {
+                    byteList.Add(0X1B);
+                    byteList.Add(0XE8);
+                }
+                else if (item == 0X1B)
+                {
+                    byteList.Add(0X1B);
+                    byteList.Add(0X00);
+                }
+                else
+                {
+                    byteList.Add(item);
+                }
+            }
+
+            return byteList.ToArray();
         }
 
         /// <summary>
