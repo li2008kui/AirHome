@@ -16,13 +16,14 @@ namespace ThisCoder.AirHome
 
         /// <summary>
         /// 回路（通道）编号
-        ///     <para>取值范围：0X01~0XFF；若为0X00，则表示所有回路，默认值为0X00</para>
+        ///     <para>取值范围：0X01~0XFF；若为0X00，则表示所有回路</para>
         /// </summary>
         public Byte CircuitNo { get; set; }
 
         /// <summary>
         /// 通过设备ID和回路编号初始化动作行为类。
         ///     <para>设备ID默认值为0X0000000000000000。</para>
+        ///     <para>回路编号默认值为0X00。</para>
         /// </summary>
         /// <param name="devId">
         /// 设备ID
