@@ -33,12 +33,8 @@ namespace ThisCoder.AirHome
         /// 开关状态
         ///     <para>0X00表示关闭，0X01表示打开</para>
         /// </param>
-        /// <param name="circuitNo">
-        /// 回路（通道）编号
-        ///     <para>取值范围：0X01~0XFF；若为0X00，则表示所有回路，默认值为0X00</para>
-        /// </param>
         /// <returns></returns>
-        public Byte[] Switch(Byte status, Byte circuitNo = 0X00)
+        public Byte[] Switch(Byte status)
         {
             if (status != 0X00 && status != 0X01)
             {
@@ -46,7 +42,7 @@ namespace ThisCoder.AirHome
             }
 
             List<Byte> byteList1 = new List<Byte>();
-            byteList1.Add(circuitNo);
+            byteList1.Add(CircuitNo);
 
             List<Byte> byteList2 = new List<Byte>();
             byteList2.Add(status);
