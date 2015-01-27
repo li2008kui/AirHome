@@ -47,7 +47,7 @@ namespace ThisCoder.AirHome
         ///     <para>取值范围：0X01~0XFF；若为0X00，则表示所有回路，默认值为0X00</para>
         /// </param>
         /// <returns></returns>
-        public Byte[] Locate(UInt64 devId, Byte circuitNo = 0X00)
+        public Byte[] Locate(Byte circuitNo = 0X00)
         {
             List<Byte> byteList = new List<Byte>();
             byteList.Add(circuitNo);
