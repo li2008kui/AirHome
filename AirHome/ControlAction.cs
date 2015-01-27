@@ -29,10 +29,6 @@ namespace ThisCoder.AirHome
         /// 对设备进行开关操作
         ///     <para>如继电器开关或将设备亮度调到0%</para>
         /// </summary>
-        /// <param name="devId">
-        /// 设备ID
-        ///     <para>UInt64类型，长度为8个字节</para>
-        /// </param>
         /// <param name="status">
         /// 开关状态
         ///     <para>0X00表示关闭，0X01表示打开</para>
@@ -59,17 +55,13 @@ namespace ThisCoder.AirHome
             pmtList.Add(new Parameter(ParameterType.CircuitNo, byteList1));
             pmtList.Add(new Parameter(ParameterType.Switch, byteList2));
 
-            return GetDatagram(MessageId.Switch, devId, pmtList);
+            return GetDatagram(MessageId.Switch, pmtList);
         }
 
         /// <summary>
         /// 对设备进行调光操作
         ///     <para>若调光范围为1%~100%，需要转换为0X01~0XFF</para>
         /// </summary>
-        /// <param name="devId">
-        /// 设备ID
-        ///     <para>UInt64类型，长度为8个字节</para>
-        /// </param>
         /// <param name="level">
         /// 亮度等级
         ///     <para>取值范围：0X01~0XFF</para>
@@ -88,17 +80,13 @@ namespace ThisCoder.AirHome
             List<Parameter> pmtList = new List<Parameter>();
             pmtList.Add(new Parameter(ParameterType.Brightness, byteList));
 
-            return GetDatagram(MessageId.Brightness, devId, pmtList);
+            return GetDatagram(MessageId.Brightness, pmtList);
         }
 
         /// <summary>
         /// 对设备进行色温调节操作
         ///     <para>参数值为冷色温分量</para>
         /// </summary>
-        /// <param name="devId">
-        /// 设备ID
-        ///     <para>UInt64类型，长度为8个字节</para>
-        /// </param>
         /// <param name="cool">
         /// 冷色温分量
         ///     <para>取值范围：0X00~0XFF</para>
@@ -113,17 +101,13 @@ namespace ThisCoder.AirHome
             List<Parameter> pmtList = new List<Parameter>();
             pmtList.Add(new Parameter(ParameterType.ColorTemperature, byteList));
 
-            return GetDatagram(MessageId.ColorTemperature, devId, pmtList);
+            return GetDatagram(MessageId.ColorTemperature, pmtList);
         }
 
         /// <summary>
         /// 对设备进行RGBW调节操作
         ///     <para>参数值为红色、绿色、蓝色和白色的分量组合</para>
         /// </summary>
-        /// <param name="devId">
-        /// 设备ID
-        ///     <para>UInt64类型，长度为8个字节</para>
-        /// </param>
         /// <param name="rgbw">
         /// 红绿蓝三基色和白色的分量
         ///     <para>第1个字节表示红色（R）的分量。取值范围：0X00~0XFF</para>
@@ -144,17 +128,13 @@ namespace ThisCoder.AirHome
             List<Parameter> pmtList = new List<Parameter>();
             pmtList.Add(new Parameter(ParameterType.Rgbw, byteList));
 
-            return GetDatagram(MessageId.AdjustRgbw, devId, pmtList);
+            return GetDatagram(MessageId.AdjustRgbw, pmtList);
         }
 
         /// <summary>
         /// 对设备进行RGBW调节操作
         ///     <para>参数值为红色、绿色、蓝色和白色的分量</para>
         /// </summary>
-        /// <param name="devId">
-        /// 设备ID
-        ///     <para>UInt64类型，长度为8个字节</para>
-        /// </param>
         /// <param name="red">
         /// 红色（R）的分量
         ///     <para>取值范围：0X00~0XFF</para>
@@ -184,17 +164,13 @@ namespace ThisCoder.AirHome
             List<Parameter> pmtList = new List<Parameter>();
             pmtList.Add(new Parameter(ParameterType.Rgbw, byteList));
 
-            return GetDatagram(MessageId.AdjustRgbw, devId, pmtList);
+            return GetDatagram(MessageId.AdjustRgbw, pmtList);
         }
 
         /// <summary>
         /// 对设备进行RGB调节操作
         ///     <para>参数值为一种 ARGB 颜色（alpha、红色、绿色、蓝色）</para>
         /// </summary>
-        /// <param name="devId">
-        /// 设备ID
-        ///     <para>UInt64类型，长度为8个字节</para>
-        /// </param>
         /// <param name="color">一种 ARGB 颜色（alpha、红色、绿色、蓝色）</param>
         /// <returns></returns>
         public Byte[] Rgbw(UInt64 devId, Color color)
@@ -208,17 +184,13 @@ namespace ThisCoder.AirHome
             List<Parameter> pmtList = new List<Parameter>();
             pmtList.Add(new Parameter(ParameterType.Rgbw, byteList));
 
-            return GetDatagram(MessageId.AdjustRgbw, devId, pmtList);
+            return GetDatagram(MessageId.AdjustRgbw, pmtList);
         }
 
         /// <summary>
         /// 对设备进行RGB调节操作
         ///     <para>参数值为BMP图片</para>
         /// </summary>
-        /// <param name="devId">
-        /// 设备ID
-        ///     <para>UInt64类型，长度为8个字节</para>
-        /// </param>
         /// <param name="bitmap">BMP图片对象</param>
         /// <returns></returns>
         public List<Byte[]> Rgbw(UInt64 devId, Bitmap bitmap)
@@ -241,7 +213,7 @@ namespace ThisCoder.AirHome
 
                     pmtList = new List<Parameter>();
                     pmtList.Add(new Parameter(ParameterType.Rgbw, byteList));
-                    byteArrayList.Add(GetDatagram(MessageId.AdjustRgbw, devId, pmtList));
+                    byteArrayList.Add(GetDatagram(MessageId.AdjustRgbw, pmtList));
                 }
             }
 

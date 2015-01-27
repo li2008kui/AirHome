@@ -42,17 +42,13 @@ namespace ThisCoder.AirHome
         /// 消息ID
         ///     <para>UInt16类型，长度为2个字节</para>
         /// </param>
-        /// <param name="devId">
-        /// 设备ID
-        ///     <para>UInt64类型，长度为8个字节</para>
-        /// </param>
         /// <param name="pmtList">参数列表</param>
         /// <returns></returns>
-        protected byte[] GetDatagram(MessageId msgId, UInt64 devId, List<Parameter> pmtList)
+        protected byte[] GetDatagram(MessageId msgId, List<Parameter> pmtList)
         {
             MessageBody mb = new MessageBody(
                 msgId,
-                devId,
+                DevId,
                 pmtList);
 
             Byte[] msgBody = mb.GetBody();
