@@ -11,19 +11,18 @@ namespace ThisCoder.AirHome
     public class ControlAction : Action
     {
         /// <summary>
-        /// 初始化控制动作行为类。
+        /// 通过设备ID和回路编号初始化控制动作行为类。
         ///     <para>设备ID默认值为0X0000000000000000。</para>
-        /// </summary>
-        public ControlAction() : base() { }
-
-        /// <summary>
-        /// 通过设备ID初始化控制动作行为类
         /// </summary>
         /// <param name="devId">
         /// 设备ID
         ///     <para>UInt64类型，长度为8个字节</para>
         /// </param>
-        public ControlAction(UInt64 devId) : base(devId) { }
+        /// <param name="circuitNo">
+        /// 回路（通道）编号
+        ///     <para>取值范围：0X01~0XFF；若为0X00，则表示所有回路，默认值为0X00</para>
+        /// </param>
+        public ControlAction(UInt64 devId = 0X0000000000000000, Byte circuitNo = 0X00) : base(devId, circuitNo) { }
 
         /// <summary>
         /// 对设备进行开关操作
