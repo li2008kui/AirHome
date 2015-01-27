@@ -11,8 +11,14 @@ namespace AirHome
         /// <summary>
         /// 获取消息报文字节数组
         /// </summary>
-        /// <param name="msgId">消息ID</param>
-        /// <param name="devId">设备ID</param>
+        /// <param name="msgId">
+        /// 消息ID
+        ///     <para>UInt16类型，长度为2个字节</para>
+        /// </param>
+        /// <param name="devId">
+        /// 设备ID
+        ///     <para>UInt64类型，长度为8个字节</para>
+        /// </param>
         /// <param name="pmtList">参数列表</param>
         /// <returns></returns>
         protected static byte[] GetDatagram(MessageId msgId, UInt64 devId, List<Parameter> pmtList)
