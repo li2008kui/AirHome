@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace AirHome
 {
+    /// <summary>
+    /// 区域类
+    /// </summary>
     public class Zone
     {
         /// <summary>
