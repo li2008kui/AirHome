@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 
 namespace ThisCoder.AirHome
@@ -30,6 +31,12 @@ namespace ThisCoder.AirHome
         public UInt64 MacAddress { get; set; }
 
         /// <summary>
+        /// 设备分区
+        ///     <para>键为分区编号，值为分区名称</para>
+        /// </summary>
+        public KeyValuePair<UInt32, string> Partition { get; set; }
+
+        /// <summary>
         /// 设备IP地址
         /// </summary>
         public IPAddress IPAddress { get; set; }
@@ -45,6 +52,7 @@ namespace ThisCoder.AirHome
         {
             DevId = devId;
             Name = devId.ToString();
+            Partition = new KeyValuePair<uint, string>(0X00000000, "all");
         }
     }
 }
