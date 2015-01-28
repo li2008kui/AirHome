@@ -50,5 +50,19 @@ namespace ThisCoder.AirHome
 
             return GetDatagram(MessageId.LocateDevice, pmtList);
         }
+
+        /// <summary>
+        /// 设置设备名称
+        /// </summary>
+        /// <param name="name">设备名称</param>
+        /// <returns></returns>
+        public Byte[] DeviceName(string name)
+        {
+            List<Parameter> pmtList = new List<Parameter>();
+            pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
+            pmtList.Add(new Parameter(ParameterType.DeviceName, name));
+
+            return GetDatagram(MessageId.SettingName, pmtList);
+        }
     }
 }
