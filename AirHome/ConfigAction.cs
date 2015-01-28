@@ -45,11 +45,8 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] Locate()
         {
-            List<Byte> byteList = new List<Byte>();
-            byteList.Add(CircuitNo);
-
             List<Parameter> pmtList = new List<Parameter>();
-            pmtList.Add(new Parameter(ParameterType.CircuitNo, byteList));
+            pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
 
             return GetDatagram(MessageId.LocateDevice, pmtList);
         }

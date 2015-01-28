@@ -40,11 +40,9 @@ namespace ThisCoder.AirHome
                 throw new FormatException("开关状态参数错误！0X00表示关闭，0X01表示打开。");
             }
 
-            List<Byte> byteList = new List<Byte>();
-            byteList.Add(status);
-
             List<Parameter> pmtList = new List<Parameter>();
-            pmtList.Add(new Parameter(ParameterType.Switch, byteList));
+            pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
+            pmtList.Add(new Parameter(ParameterType.Switch, status));
 
             return GetDatagram(MessageId.Switch, pmtList);
         }
@@ -65,11 +63,9 @@ namespace ThisCoder.AirHome
                 level = 0X01;
             }
 
-            List<Byte> byteList = new List<Byte>();
-            byteList.Add(level);
-
             List<Parameter> pmtList = new List<Parameter>();
-            pmtList.Add(new Parameter(ParameterType.Brightness, byteList));
+            pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
+            pmtList.Add(new Parameter(ParameterType.Brightness, level));
 
             return GetDatagram(MessageId.Brightness, pmtList);
         }
@@ -86,11 +82,9 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] Toning(Byte cool)
         {
-            List<Byte> byteList = new List<Byte>();
-            byteList.Add(cool);
-
             List<Parameter> pmtList = new List<Parameter>();
-            pmtList.Add(new Parameter(ParameterType.ColorTemperature, byteList));
+            pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
+            pmtList.Add(new Parameter(ParameterType.ColorTemperature, cool));
 
             return GetDatagram(MessageId.ColorTemperature, pmtList);
         }
@@ -117,6 +111,7 @@ namespace ThisCoder.AirHome
             }
 
             List<Parameter> pmtList = new List<Parameter>();
+            pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
             pmtList.Add(new Parameter(ParameterType.Rgbw, byteList));
 
             return GetDatagram(MessageId.AdjustRgbw, pmtList);
@@ -153,6 +148,7 @@ namespace ThisCoder.AirHome
             byteList.Add(white);
 
             List<Parameter> pmtList = new List<Parameter>();
+            pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
             pmtList.Add(new Parameter(ParameterType.Rgbw, byteList));
 
             return GetDatagram(MessageId.AdjustRgbw, pmtList);
@@ -173,6 +169,7 @@ namespace ThisCoder.AirHome
             byteList.Add(color.A);
 
             List<Parameter> pmtList = new List<Parameter>();
+            pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
             pmtList.Add(new Parameter(ParameterType.Rgbw, byteList));
 
             return GetDatagram(MessageId.AdjustRgbw, pmtList);
@@ -203,6 +200,7 @@ namespace ThisCoder.AirHome
                     byteList.Add(color.A);
 
                     pmtList = new List<Parameter>();
+                    pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
                     pmtList.Add(new Parameter(ParameterType.Rgbw, byteList));
                     byteArrayList.Add(GetDatagram(MessageId.AdjustRgbw, pmtList));
                 }
