@@ -52,20 +52,11 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         protected Byte[] GetDatagram(MessageId msgId, List<Parameter> pmtList)
         {
-            // 将回路编号添加到字节列表
-            List<Byte> byteList = new List<Byte>();
-            byteList.Add(CircuitNo);
-
-            // 重新组织参数列表
-            List<Parameter> tempPmtList = new List<Parameter>();
-            tempPmtList.Add(new Parameter(ParameterType.CircuitNo, byteList));
-            tempPmtList.AddRange(pmtList);
-
             // 获取消息体对象
             MessageBody mb = new MessageBody(
                 msgId,
                 DevId,
-                tempPmtList);
+                pmtList);
 
             // 获取消息体字节数组
             Byte[] msgBody = mb.GetBody();
