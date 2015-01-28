@@ -473,10 +473,10 @@ namespace ThisCoder.AirHome
         public ParameterType Type { get; set; }
 
         /// <summary>
-        /// 参数值
+        /// 参数值字节列表
         ///     <para>Byte类型列表，长度可变</para>
         /// </summary>
-        public List<Byte> Values { get; set; }
+        public List<Byte> Value { get; set; }
 
         /// <summary>
         /// 参数结束符
@@ -499,15 +499,15 @@ namespace ThisCoder.AirHome
         /// 参数类型
         ///     <para>Byte类型，长度为1个字节</para>
         /// </param>
-        /// <param name="values">
-        /// 参数值
+        /// <param name="value">
+        /// 参数值字节列表
         ///     <para>Byte类型列表，长度可变</para>
         /// </param>
-        public Parameter(ParameterType type, List<Byte> values)
+        public Parameter(ParameterType type, List<Byte> value)
             : this()
         {
-            this.Type = type;
-            this.Values = values;
+            Type = type;
+            Value = value;
         }
 
         /// <summary>
@@ -519,9 +519,9 @@ namespace ThisCoder.AirHome
             List<Byte> pmt = new List<byte>();
             pmt.Add((Byte)(this.Type));
 
-            if (this.Values != null && this.Values.Count > 0)
+            if (this.Value != null && this.Value.Count > 0)
             {
-                pmt.AddRange(this.Values);
+                pmt.AddRange(this.Value);
             }
             else
             {
