@@ -42,15 +42,11 @@ namespace ThisCoder.AirHome
         /// <summary>
         /// 定位设备
         /// </summary>
-        /// <param name="circuitNo">
-        /// 回路（通道）编号
-        ///     <para>取值范围：0X01~0XFF；若为0X00，则表示所有回路，默认值为0X00</para>
-        /// </param>
         /// <returns></returns>
-        public Byte[] Locate(Byte circuitNo = 0X00)
+        public Byte[] Locate()
         {
             List<Byte> byteList = new List<Byte>();
-            byteList.Add(circuitNo);
+            byteList.Add(CircuitNo);
 
             List<Parameter> pmtList = new List<Parameter>();
             pmtList.Add(new Parameter(ParameterType.CircuitNo, byteList));
