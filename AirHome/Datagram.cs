@@ -499,12 +499,30 @@ namespace ThisCoder.AirHome
         /// 参数类型
         ///     <para>Byte类型，长度为1个字节</para>
         /// </param>
-        /// <param name="byteValue">参数值</param>
+        /// <param name="byteValue">Byte类型的参数值</param>
         public Parameter(ParameterType type, Byte byteValue)
             : this()
         {
             List<Byte> byteList = new List<byte>();
             byteList.Add(byteValue);
+
+            Type = type;
+            Value = byteList;
+        }
+
+        /// <summary>
+        /// 通过“参数类型”和字节数组类型的“参数值”初始化参数对象实例
+        /// </summary>
+        /// <param name="type">
+        /// 参数类型
+        ///     <para>Byte类型，长度为1个字节</para>
+        /// </param>
+        /// <param name="byteArrayValue">字节数组类型的参数值</param>
+        public Parameter(ParameterType type, Byte[] byteArrayValue)
+            : this()
+        {
+            List<Byte> byteList = new List<byte>();
+            byteList.AddRange(byteArrayValue);
 
             Type = type;
             Value = byteList;
@@ -517,7 +535,7 @@ namespace ThisCoder.AirHome
         /// 参数类型
         ///     <para>Byte类型，长度为1个字节</para>
         /// </param>
-        /// <param name="stringValue">参数值</param>
+        /// <param name="stringValue">字符串类型的参数值</param>
         public Parameter(ParameterType type, string stringValue)
             : this()
         {
