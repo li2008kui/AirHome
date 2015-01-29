@@ -182,5 +182,16 @@ namespace ThisCoder.AirHome
             pmtList.Add(parameter);
             return GetDatagram(msgId, pmtList);
         }
+
+        /// <summary>
+        /// 通过“消息ID”和“参数结构体对象列表”执行操作
+        /// </summary>
+        /// <param name="msgId">消息ID的枚举值</param>
+        /// <param name="pmtList">参数结构体对象列表</param>
+        /// <returns></returns>
+        public Byte[] Operate(MessageId msgId, List<Parameter> pmtList)
+        {
+            return GetDatagram(msgId, pmtList);
+        }
     }
 }
