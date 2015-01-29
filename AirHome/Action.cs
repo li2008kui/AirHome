@@ -193,5 +193,23 @@ namespace ThisCoder.AirHome
         {
             return GetDatagram(msgId, pmtList);
         }
+
+        /// <summary>
+        /// 通过“消息ID”和“键值对参数列表”执行操作
+        /// </summary>
+        /// <param name="msgId">消息ID的枚举值</param>
+        /// <param name="pmtKeyValueList">键值对参数列表</param>
+        /// <returns></returns>
+        public Byte[] Operate(MessageId msgId, List<KeyValuePair<ParameterType, List<Byte>>> pmtKeyValueList)
+        {
+            List<Parameter> pmtList = new List<Parameter>();
+
+            foreach (var item in pmtKeyValueList)
+            {
+                pmtList.Add(new Parameter(item.Key, item.Value));
+            }
+
+            return GetDatagram(msgId, pmtList);
+        }
     }
 }
