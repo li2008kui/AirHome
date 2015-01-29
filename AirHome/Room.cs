@@ -9,6 +9,11 @@ namespace ThisCoder.AirHome
     public class Room
     {
         /// <summary>
+        /// 房间编号
+        /// </summary>
+        public Byte Number { get; private set; }
+
+        /// <summary>
         /// 房间名称
         /// </summary>
         public string Name { get; private set; }
@@ -23,6 +28,7 @@ namespace ThisCoder.AirHome
         /// </summary>
         public Room()
         {
+            Number = 0X00;
             Name = "all";//代表所有房间的特殊房间
             devices = new List<Device>();
         }
@@ -30,9 +36,11 @@ namespace ThisCoder.AirHome
         /// <summary>
         /// 初始化房间
         /// </summary>
+        /// <param name="number">房间编号</param>
         /// <param name="name">房间名称</param>
-        public Room(string name)
+        public Room(Byte number, string name)
         {
+            Number = number;
             Name = name;
             devices = new List<Device>();
         }

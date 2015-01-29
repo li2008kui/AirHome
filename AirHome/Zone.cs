@@ -9,6 +9,11 @@ namespace ThisCoder.AirHome
     public class Zone
     {
         /// <summary>
+        /// 区域编号
+        /// </summary>
+        public Byte Number { get; private set; }
+
+        /// <summary>
         /// 区域名称
         /// </summary>
         public string Name { get; private set; }
@@ -23,6 +28,7 @@ namespace ThisCoder.AirHome
         /// </summary>
         public Zone()
         {
+            Number = 0X00;
             Name = "all";//代表所有区域的特殊区域
             rooms = new List<Room>();
         }
@@ -30,9 +36,11 @@ namespace ThisCoder.AirHome
         /// <summary>
         /// 初始化区域
         /// </summary>
+        /// <param name="number">区域编号</param>
         /// <param name="name">区域名称</param>
-        public Zone(string name)
+        public Zone(Byte number, string name)
         {
+            Number = number;
             Name = name;
             rooms = new List<Room>();
         }

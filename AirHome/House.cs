@@ -9,9 +9,15 @@ namespace ThisCoder.AirHome
     public partial class House
     {
         /// <summary>
+        /// 住所编号
+        /// </summary>
+        public Byte Number { get; private set; }
+
+        /// <summary>
         /// 住所名称
         /// </summary>
         public string Name { get; private set; }
+
         /// <summary>
         /// 是否是主要住所
         /// </summary>
@@ -24,6 +30,7 @@ namespace ThisCoder.AirHome
         /// </summary>
         public House()
         {
+            Number = 0X00;
             IsPrimary = true;
             devices = new List<Device>();
             users = new List<User>();
@@ -34,11 +41,13 @@ namespace ThisCoder.AirHome
         /// <summary>
         /// 初始化住所
         /// </summary>
+        /// <param name="number">住所编号</param>
         /// <param name="name">住所名称</param>
         ///     <para>默认为主要住所</para>
         /// <param name="isPrimary">是否是主要住所</param>
-        public House(string name, bool isPrimary = true)
+        public House(Byte number, string name, bool isPrimary = true)
         {
+            Number = number;
             Name = name;
             IsPrimary = isPrimary;
             devices = new List<Device>();
@@ -460,12 +469,13 @@ namespace ThisCoder.AirHome
         /// <summary>
         /// 添加房间
         /// </summary>
+        /// <param name="number">房间编号</param>
         /// <param name="name">房间名称</param>
-        public void AddRoom(string name)
+        public void AddRoom(Byte number, string name)
         {
             if (!string.IsNullOrEmpty(name) && "all" != name.Trim())
             {
-                Room room = new Room(name.Trim());
+                Room room = new Room(number, name.Trim());
                 this.AddRoom(room);
                 return;
             }
@@ -639,12 +649,13 @@ namespace ThisCoder.AirHome
         /// <summary>
         /// 添加区域
         /// </summary>
+        /// <param name="number">区域编号</param>
         /// <param name="name">区域名称</param>
-        public void AddZone(string name)
+        public void AddZone(Byte number, string name)
         {
             if (!string.IsNullOrEmpty(name) && "all" != name.Trim())
             {
-                Zone zone = new Zone(name.Trim());
+                Zone zone = new Zone(number, name.Trim());
                 this.AddZone(zone);
                 return;
             }
