@@ -81,7 +81,7 @@ namespace ThisCoder.AirHome
         ///     <para>默认为空字符</para>
         /// </param>
         /// <returns></returns>
-        private Byte[] GetByteArray(string hexString, string separator = "")
+        protected Byte[] GetByteArray(string hexString, string separator = "")
         {
             List<Byte> byteList = new List<Byte>();
 
