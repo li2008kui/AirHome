@@ -52,6 +52,26 @@ namespace ThisCoder.AirHome
         }
 
         /// <summary>
+        /// 设备分区
+        /// </summary>
+        /// <param name="partitionNo">分区编号</param>
+        /// <returns></returns>
+        public Byte[] Partition(UInt32 partitionNo)
+        {
+            List<Byte> byteList = new List<byte>();
+            byteList.Add(0X00);
+            byteList.Add((Byte)(partitionNo >> 16));
+            byteList.Add((Byte)(partitionNo >> 8));
+            byteList.Add((Byte)partitionNo);
+
+            List<Parameter> pmtList = new List<Parameter>();
+            pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
+            pmtList.Add(new Parameter(ParameterType.PartitionNo, byteList));
+
+            return GetDatagram(MessageId.LocateDevice, pmtList);
+        }
+
+        /// <summary>
         /// 设置设备名称
         /// </summary>
         /// <param name="name">设备名称</param>
