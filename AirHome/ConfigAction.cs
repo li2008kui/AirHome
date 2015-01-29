@@ -98,5 +98,22 @@ namespace ThisCoder.AirHome
 
             return GetDatagram(MessageId.SettingName, pmtList);
         }
+
+        /// <summary>
+        /// 设置定时任务时间
+        /// </summary>
+        /// <param name="dateTime">日期时间对象</param>
+        /// <returns></returns>
+        public Byte[] DateTime(DateTime dateTime)
+        {
+            UInt32 second = (UInt32)dateTime.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+            string hexString = second.ToString("X2").PadLeft(4, '0');
+
+            List<Parameter> pmtList = new List<Parameter>();
+            pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
+            pmtList.Add(new Parameter(ParameterType.DateTime, GetByteArray(hexString)));
+
+            return GetDatagram(MessageId.SettingName, pmtList);
+        }
     }
 }
