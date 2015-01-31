@@ -68,7 +68,7 @@ namespace ThisCoder.AirHome
             pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
             pmtList.Add(new Parameter(ParameterType.PartitionNo, byteList));
 
-            return GetDatagram(MessageId.LocateDevice, pmtList);
+            return GetDatagram(MessageId.DevicePartition, pmtList);
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace ThisCoder.AirHome
             pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
             pmtList.Add(new Parameter(ParameterType.DeviceDescription, description));
 
-            return GetDatagram(MessageId.SettingName, pmtList);
+            return GetDatagram(MessageId.SettingDescription, pmtList);
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace ThisCoder.AirHome
         /// </summary>
         /// <param name="dateTime">日期时间对象</param>
         /// <returns></returns>
-        public Byte[] DateTime(DateTime dateTime)
+        public Byte[] TimedTask(DateTime dateTime)
         {
             UInt32 second = (UInt32)dateTime.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
             string hexString = second.ToString("X2").PadLeft(4, '0');
@@ -113,7 +113,24 @@ namespace ThisCoder.AirHome
             pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
             pmtList.Add(new Parameter(ParameterType.DateTime, GetByteArray(hexString)));
 
-            return GetDatagram(MessageId.SettingName, pmtList);
+            return GetDatagram(MessageId.TimedTask, pmtList);
+        }
+
+        /// <summary>
+        /// 同步时间到设备中
+        /// </summary>
+        /// <param name="dateTime">日期时间对象</param>
+        /// <returns></returns>
+        public Byte[] SyncTime(DateTime dateTime)
+        {
+            UInt32 second = (UInt32)dateTime.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+            string hexString = second.ToString("X2").PadLeft(4, '0');
+
+            List<Parameter> pmtList = new List<Parameter>();
+            pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
+            pmtList.Add(new Parameter(ParameterType.DateTime, GetByteArray(hexString)));
+
+            return GetDatagram(MessageId.SyncTime, pmtList);
         }
     }
 }
