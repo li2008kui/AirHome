@@ -690,6 +690,11 @@ namespace ThisCoder.AirHome
         /// </summary>
         SmartLink = 0X00E4,
         #endregion
+
+        /// <summary>
+        /// 恢复出厂设备
+        /// </summary>
+        Reset = 0X00FF,
         #endregion
 
         #region 控制功能

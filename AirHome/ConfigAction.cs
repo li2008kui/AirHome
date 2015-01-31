@@ -173,5 +173,15 @@ namespace ThisCoder.AirHome
         {
             return GetDatagram(MessageId.SmartLink, new Parameter(ParameterType.None, 0X00));
         }
+
+        /// <summary>
+        /// 恢复出厂设备
+        ///     <para>该功能会清除所有数据，请慎用</para>
+        /// </summary>
+        /// <returns></returns>
+        public Byte[] Reset()
+        {
+            return GetDatagram(MessageId.Reset, new Parameter(ParameterType.None, 0X00));
+        }
     }
 }
