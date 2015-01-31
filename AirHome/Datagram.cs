@@ -664,31 +664,31 @@ namespace ThisCoder.AirHome
         /// WPS功能
         ///     <para>路由器中WPS是由Wi-Fi联盟所推出的全新Wi-Fi安全防护设定(Wi-Fi Protected Setup)标准</para>
         /// </summary>
-        Wps = 0X00E0,
+        Wps = 0X00F0,
 
         /// <summary>
         /// EasyLink功能
         ///     <para>上海庆科开发的WiFi模块快速组网的功能</para>
         /// </summary>
-        EasyLink = 0X00E1,
+        EasyLink = 0X00F1,
 
         /// <summary>
         /// AirKiss功能
         ///     <para>微信硬件团队开发的让WiFi模块快速组网的协议</para>
         /// </summary>
-        AirKiss = 0X00E2,
+        AirKiss = 0X00F2,
 
         /// <summary>
         /// AirLink功能
         ///     <para>机智云配置设备上线的 Air Link 一键配置功能</para>
         /// </summary>
-        AirLink = 0X00E3,
+        AirLink = 0X00F3,
 
         /// <summary>
         /// SmartLink功能
         ///     <para>海尔配置设备上线的一键互联技术</para>
         /// </summary>
-        SmartLink = 0X00E4,
+        SmartLink = 0X00F4,
         #endregion
 
         /// <summary>
