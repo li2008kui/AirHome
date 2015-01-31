@@ -30,7 +30,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] Search()
         {
-            return GetDatagram(MessageId.SearchDevice, new Parameter(ParameterType.None, 0X00));
+            return GetDatagram(MessageId.ConfigSearchDevice, new Parameter(ParameterType.None, 0X00));
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] Locate()
         {
-            return GetDatagram(MessageId.LocateDevice, new Parameter(ParameterType.CircuitNo, CircuitNo));
+            return GetDatagram(MessageId.ConfigLocateDevice, new Parameter(ParameterType.CircuitNo, CircuitNo));
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace ThisCoder.AirHome
             pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
             pmtList.Add(new Parameter(ParameterType.PartitionNo, byteList));
 
-            return GetDatagram(MessageId.DevicePartition, pmtList);
+            return GetDatagram(MessageId.ConfigDevicePartition, pmtList);
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace ThisCoder.AirHome
             pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
             pmtList.Add(new Parameter(ParameterType.DeviceName, name));
 
-            return GetDatagram(MessageId.SettingName, pmtList);
+            return GetDatagram(MessageId.ConfigSettingName, pmtList);
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace ThisCoder.AirHome
             pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
             pmtList.Add(new Parameter(ParameterType.DeviceDescription, description));
 
-            return GetDatagram(MessageId.SettingDescription, pmtList);
+            return GetDatagram(MessageId.ConfigSettingDescription, pmtList);
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace ThisCoder.AirHome
             pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
             pmtList.Add(new Parameter(ParameterType.DateTime, GetByteArray(hexString)));
 
-            return GetDatagram(MessageId.TimedTask, pmtList);
+            return GetDatagram(MessageId.ConfigTimedTask, pmtList);
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace ThisCoder.AirHome
             pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
             pmtList.Add(new Parameter(ParameterType.DateTime, GetByteArray(hexString)));
 
-            return GetDatagram(MessageId.SyncTime, pmtList);
+            return GetDatagram(MessageId.ConfigSyncTime, pmtList);
         }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] Wps()
         {
-            return GetDatagram(MessageId.Wps, new Parameter(ParameterType.None, 0X00));
+            return GetDatagram(MessageId.ConfigWps, new Parameter(ParameterType.None, 0X00));
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] EasyLink()
         {
-            return GetDatagram(MessageId.EasyLink, new Parameter(ParameterType.None, 0X00));
+            return GetDatagram(MessageId.ConfigEasyLink, new Parameter(ParameterType.None, 0X00));
         }
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] AirKiss()
         {
-            return GetDatagram(MessageId.AirKiss, new Parameter(ParameterType.None, 0X00));
+            return GetDatagram(MessageId.ConfigAirKiss, new Parameter(ParameterType.None, 0X00));
         }
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] AirLink()
         {
-            return GetDatagram(MessageId.AirLink, new Parameter(ParameterType.None, 0X00));
+            return GetDatagram(MessageId.ConfigAirLink, new Parameter(ParameterType.None, 0X00));
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] SmartLink()
         {
-            return GetDatagram(MessageId.SmartLink, new Parameter(ParameterType.None, 0X00));
+            return GetDatagram(MessageId.ConfigSmartLink, new Parameter(ParameterType.None, 0X00));
         }
 
         /// <summary>
@@ -181,7 +181,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] Reset()
         {
-            return GetDatagram(MessageId.Reset, new Parameter(ParameterType.None, 0X00));
+            return GetDatagram(MessageId.ConfigReset, new Parameter(ParameterType.None, 0X00));
         }
     }
 }

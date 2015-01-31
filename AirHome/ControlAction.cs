@@ -44,7 +44,7 @@ namespace ThisCoder.AirHome
             pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
             pmtList.Add(new Parameter(ParameterType.Switch, status));
 
-            return GetDatagram(MessageId.Switch, pmtList);
+            return GetDatagram(MessageId.ControlSwitch, pmtList);
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace ThisCoder.AirHome
             pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
             pmtList.Add(new Parameter(ParameterType.Brightness, level));
 
-            return GetDatagram(MessageId.Brightness, pmtList);
+            return GetDatagram(MessageId.ControlBrightness, pmtList);
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace ThisCoder.AirHome
             pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
             pmtList.Add(new Parameter(ParameterType.ColorTemperature, cool));
 
-            return GetDatagram(MessageId.ColorTemperature, pmtList);
+            return GetDatagram(MessageId.ControlColorTemperature, pmtList);
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace ThisCoder.AirHome
             pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
             pmtList.Add(new Parameter(ParameterType.Rgbw, byteList));
 
-            return GetDatagram(MessageId.AdjustRgbw, pmtList);
+            return GetDatagram(MessageId.ControlAdjustRgbw, pmtList);
         }
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace ThisCoder.AirHome
             pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
             pmtList.Add(new Parameter(ParameterType.Rgbw, byteList));
 
-            return GetDatagram(MessageId.AdjustRgbw, pmtList);
+            return GetDatagram(MessageId.ControlAdjustRgbw, pmtList);
         }
 
         /// <summary>
@@ -172,7 +172,7 @@ namespace ThisCoder.AirHome
             pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
             pmtList.Add(new Parameter(ParameterType.Rgbw, byteList));
 
-            return GetDatagram(MessageId.AdjustRgbw, pmtList);
+            return GetDatagram(MessageId.ControlAdjustRgbw, pmtList);
         }
 
         /// <summary>
@@ -202,7 +202,7 @@ namespace ThisCoder.AirHome
                     pmtList = new List<Parameter>();
                     pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
                     pmtList.Add(new Parameter(ParameterType.Rgbw, byteList));
-                    byteArrayList.Add(GetDatagram(MessageId.AdjustRgbw, pmtList));
+                    byteArrayList.Add(GetDatagram(MessageId.ControlAdjustRgbw, pmtList));
                 }
             }
 

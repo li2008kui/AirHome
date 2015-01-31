@@ -627,148 +627,148 @@ namespace ThisCoder.AirHome
         /// <summary>
         /// 搜索设备
         /// </summary>
-        SearchDevice = 0X0001,
+        ConfigSearchDevice = 0X0001,
 
         /// <summary>
         /// 定位设备
         /// </summary>
-        LocateDevice = 0X0002,
+        ConfigLocateDevice = 0X0002,
 
         /// <summary>
         /// 设备分区
         /// </summary>
-        DevicePartition = 0X0003,
+        ConfigDevicePartition = 0X0003,
 
         /// <summary>
         /// 设置名称
         /// </summary>
-        SettingName = 0X0004,
+        ConfigSettingName = 0X0004,
 
         /// <summary>
         /// 设置描述
         /// </summary>
-        SettingDescription = 0X0005,
+        ConfigSettingDescription = 0X0005,
 
         /// <summary>
         /// 设置定时任务时间
         /// </summary>
-        TimedTask = 0X0006,
+        ConfigTimedTask = 0X0006,
 
         /// <summary>
         /// 同步时间到设备中
         /// </summary>
-        SyncTime = 0X0007,
+        ConfigSyncTime = 0X0007,
 
         #region WiFi模块一键配置功能
         /// <summary>
         /// WPS功能
         ///     <para>路由器中WPS是由Wi-Fi联盟所推出的全新Wi-Fi安全防护设定(Wi-Fi Protected Setup)标准</para>
         /// </summary>
-        Wps = 0X00F0,
+        ConfigWps = 0X00F0,
 
         /// <summary>
         /// EasyLink功能
         ///     <para>上海庆科开发的WiFi模块快速组网的功能</para>
         /// </summary>
-        EasyLink = 0X00F1,
+        ConfigEasyLink = 0X00F1,
 
         /// <summary>
         /// AirKiss功能
         ///     <para>微信硬件团队开发的让WiFi模块快速组网的协议</para>
         /// </summary>
-        AirKiss = 0X00F2,
+        ConfigAirKiss = 0X00F2,
 
         /// <summary>
         /// AirLink功能
         ///     <para>机智云配置设备上线的 Air Link 一键配置功能</para>
         /// </summary>
-        AirLink = 0X00F3,
+        ConfigAirLink = 0X00F3,
 
         /// <summary>
         /// SmartLink功能
         ///     <para>海尔配置设备上线的一键互联技术</para>
         /// </summary>
-        SmartLink = 0X00F4,
+        ConfigSmartLink = 0X00F4,
         #endregion
 
         /// <summary>
         /// 恢复出厂设备
         /// </summary>
-        Reset = 0X00FF,
+        ConfigReset = 0X00FF,
         #endregion
 
         #region 控制功能
         /// <summary>
         /// 打开或关闭设备
         /// </summary>
-        Switch = 0X1000,
+        ControlSwitch = 0X1000,
 
         /// <summary>
         /// 调节亮度
         /// </summary>
-        Brightness = 0X1001,
+        ControlBrightness = 0X1001,
 
         /// <summary>
         /// 调节色温
         /// </summary>
-        ColorTemperature = 0X1002,
+        ControlColorTemperature = 0X1002,
 
         /// <summary>
         /// 调节红绿蓝白（RGBW）
         /// </summary>
-        AdjustRgbw = 0X1003,
+        ControlAdjustRgbw = 0X1003,
         #endregion
 
         #region 数据采集
         /// <summary>
         /// 获取打关状态
         /// </summary>
-        SSwitch = 0X2000,
+        StateSwitch = 0X2000,
 
         /// <summary>
         /// 获取亮度等级
         /// </summary>
-        SBrightness = 0X2001,
+        StateBrightness = 0X2001,
 
         /// <summary>
         /// 获取色温数据
         /// </summary>
-        SColorTemperature = 0X2002,
+        StateColorTemperature = 0X2002,
 
         /// <summary>
         /// 获取红绿蓝白（RGBW）颜色数据
         /// </summary>
-        SRgbw = 0X2003,
+        StateRgbw = 0X2003,
 
         /// <summary>
         /// 获取设备分区编号
         /// </summary>
-        SPartition = 0X2004,
+        StatePartition = 0X2004,
 
         /// <summary>
         /// 获取设备名称
         /// </summary>
-        SName = 0X2005,
+        StateName = 0X2005,
 
         /// <summary>
         /// 获取设备描述
         /// </summary>
-        SDescription = 0X2006,
+        StateDescription = 0X2006,
 
         /// <summary>
         /// 获取通信类型
         /// </summary>
-        SCommunicationType = 0X20F0,
+        StateCommunicationType = 0X20F0,
 
         /// <summary>
         /// 获取设备IP地址
         /// </summary>
-        SIpAddress = 0X20F1,
+        StateIpAddress = 0X20F1,
 
         /// <summary>
         /// 获取设备MAC地址
         /// </summary>
-        SMacAddress = 0X20F2
+        StateMacAddress = 0X20F2
         #endregion
     }
 
