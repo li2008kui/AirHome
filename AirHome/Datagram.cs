@@ -716,11 +716,59 @@ namespace ThisCoder.AirHome
         /// <summary>
         /// 调节红绿蓝白（RGBW）
         /// </summary>
-        AdjustRgbw = 0X1003
+        AdjustRgbw = 0X1003,
         #endregion
 
         #region 数据采集
+        /// <summary>
+        /// 获取打关状态
+        /// </summary>
+        SSwitch = 0X2000,
 
+        /// <summary>
+        /// 获取亮度等级
+        /// </summary>
+        SBrightness = 0X2001,
+
+        /// <summary>
+        /// 获取色温数据
+        /// </summary>
+        SColorTemperature = 0X2002,
+
+        /// <summary>
+        /// 获取红绿蓝白（RGBW）颜色数据
+        /// </summary>
+        SRgbw = 0X2003,
+
+        /// <summary>
+        /// 获取设备分区编号
+        /// </summary>
+        SPartition = 0X2004,
+
+        /// <summary>
+        /// 获取设备名称
+        /// </summary>
+        SName = 0X2005,
+
+        /// <summary>
+        /// 获取设备描述
+        /// </summary>
+        SDescription = 0X2006,
+
+        /// <summary>
+        /// 获取通信类型
+        /// </summary>
+        SCommunicationType = 0X20F0,
+
+        /// <summary>
+        /// 获取设备IP地址
+        /// </summary>
+        SIpAddress = 0X20F1,
+
+        /// <summary>
+        /// 获取设备MAC地址
+        /// </summary>
+        SMacAddress = 0X20F2
         #endregion
     }
 
