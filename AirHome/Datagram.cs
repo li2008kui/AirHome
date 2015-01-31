@@ -618,6 +618,7 @@ namespace ThisCoder.AirHome
     /// </summary>
     public enum MessageId
     {
+        #region 配置功能
         /// <summary>
         /// 包含多个功能
         /// </summary>
@@ -649,6 +650,50 @@ namespace ThisCoder.AirHome
         SettingDescription = 0X0005,
 
         /// <summary>
+        /// 设置定时任务时间
+        /// </summary>
+        TimedTask = 0X0006,
+
+        /// <summary>
+        /// 同步时间到设备中
+        /// </summary>
+        SyncTime = 0X0007,
+
+        #region WiFi模块一键配置功能
+        /// <summary>
+        /// WPS功能
+        ///     <para>路由器中WPS是由Wi-Fi联盟所推出的全新Wi-Fi安全防护设定(Wi-Fi Protected Setup)标准</para>
+        /// </summary>
+        Wps = 0X00E0,
+
+        /// <summary>
+        /// EasyLink功能
+        ///     <para>上海庆科开发的WiFi模块快速组网的功能</para>
+        /// </summary>
+        EasyLink = 0X00E1,
+
+        /// <summary>
+        /// AirKiss功能
+        ///     <para>微信硬件团队开发的让WiFi模块快速组网的协议</para>
+        /// </summary>
+        AirKiss = 0X00E2,
+
+        /// <summary>
+        /// AirLink功能
+        ///     <para>机智云配置设备上线的 Air Link 一键配置功能</para>
+        /// </summary>
+        AirLink = 0X00E3,
+
+        /// <summary>
+        /// SmartLink功能
+        ///     <para>海尔配置设备上线的一键互联技术</para>
+        /// </summary>
+        SmartLink = 0X00E4,
+        #endregion
+        #endregion
+
+        #region 控制功能
+        /// <summary>
         /// 打开或关闭设备
         /// </summary>
         Switch = 0X1000,
@@ -667,6 +712,11 @@ namespace ThisCoder.AirHome
         /// 调节红绿蓝白（RGBW）
         /// </summary>
         AdjustRgbw = 0X1003
+        #endregion
+
+        #region 数据采集
+
+        #endregion
     }
 
     /// <summary>
