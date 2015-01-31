@@ -8,7 +8,7 @@ namespace ThisCoder.AirHome
     /// <summary>
     /// 动作行为基类
     /// </summary>
-    public class Action
+    public class AirAction
     {
         /// <summary>
         /// 设备ID
@@ -35,7 +35,7 @@ namespace ThisCoder.AirHome
         /// 回路（通道）编号
         ///     <para>取值范围：0X01~0XFF；若为0X00，则表示所有回路，默认值为0X00</para>
         /// </param>
-        public Action(UInt64 devId = 0X0000000000000000, Byte circuitNo = 0X00)
+        public AirAction(UInt64 devId = 0X0000000000000000, Byte circuitNo = 0X00)
         {
             DevId = devId;
             CircuitNo = circuitNo;

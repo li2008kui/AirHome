@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Action.cs" />
+    <Compile Include="AirAction.cs" />
     <Compile Include="ConfigAction.cs" />
     <Compile Include="Counter.cs" />
     <Compile Include="ControlAction.cs" />
@@ -55,6 +55,7 @@
     <Compile Include="House.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Room.cs" />
+    <Compile Include="StateAction.cs" />
     <Compile Include="UpdateArgs.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Zone.cs" />

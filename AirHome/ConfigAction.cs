@@ -6,7 +6,7 @@ namespace ThisCoder.AirHome
     /// <summary>
     /// 配置行为类
     /// </summary>
-    public class ConfigAction : Action
+    public class ConfigAction : AirAction
     {
         /// <summary>
         /// 通过设备ID和回路编号初始化配置动作行为类。

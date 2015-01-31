@@ -7,7 +7,7 @@ namespace ThisCoder.AirHome
     /// <summary>
     /// 控制行为类
     /// </summary>
-    public class ControlAction : Action
+    public class ControlAction : AirAction
     {
         /// <summary>
         /// 通过设备ID和回路编号初始化控制动作行为类。
