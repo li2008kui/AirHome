@@ -30,13 +30,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] Search()
         {
-            List<Byte> byteList = new List<Byte>();
-            byteList.Add(0X00);
-
-            List<Parameter> pmtList = new List<Parameter>();
-            pmtList.Add(new Parameter(ParameterType.None, byteList));
-
-            return GetDatagram(MessageId.SearchDevice, pmtList);
+            return GetDatagram(MessageId.SearchDevice, new Parameter(ParameterType.None, 0X00));
         }
 
         /// <summary>
@@ -45,10 +39,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] Locate()
         {
-            List<Parameter> pmtList = new List<Parameter>();
-            pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
-
-            return GetDatagram(MessageId.LocateDevice, pmtList);
+            return GetDatagram(MessageId.LocateDevice, new Parameter(ParameterType.CircuitNo, CircuitNo));
         }
 
         /// <summary>
