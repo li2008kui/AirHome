@@ -42,7 +42,7 @@ namespace ThisCoder.AirHome
         }
 
         /// <summary>
-        /// 获取消息报文字节数组
+        /// 通过“消息ID”和“参数列表”获取消息报文字节数组
         /// </summary>
         /// <param name="msgId">
         /// 消息ID
@@ -70,6 +70,22 @@ namespace ThisCoder.AirHome
 
             // 返回消息报文字节数组
             return new Datagram(mh, mb).GetDatagram();
+        }
+
+        /// <summary>
+        /// 通过“消息ID”和“参数结构体对象”获取消息报文字节数组
+        /// </summary>
+        /// <param name="msgId">
+        /// 消息ID
+        ///     <para>UInt16类型，长度为2个字节</para>
+        /// </param>
+        /// <param name="parameter">参数结构体对象</param>
+        /// <returns></returns>
+        protected Byte[] GetDatagram(MessageId msgId, Parameter parameter)
+        {
+            List<Parameter> pmtList = new List<Parameter>();
+            pmtList.Add(parameter);
+            return GetDatagram(msgId, pmtList);
         }
 
         /// <summary>
