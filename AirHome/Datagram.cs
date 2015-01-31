@@ -721,7 +721,7 @@ namespace ThisCoder.AirHome
 
         #region 数据采集
         /// <summary>
-        /// 获取打关状态
+        /// 获取开关状态
         /// </summary>
         StateSwitch = 0X2000,
 
