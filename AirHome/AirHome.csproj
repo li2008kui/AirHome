@@ -50,6 +50,7 @@
     <Compile Include="Datagram.cs" />
     <Compile Include="DataPoint.cs" />
     <Compile Include="Device.cs" />
+    <Compile Include="Enumeration.cs" />
     <Compile Include="Error.cs" />
     <Compile Include="Home.cs" />
     <Compile Include="House.cs" />
