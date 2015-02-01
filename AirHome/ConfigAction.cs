@@ -97,14 +97,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] TimedTask(DateTime dateTime)
         {
-            UInt32 second = (UInt32)dateTime.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
-            string hexString = second.ToString("X2").PadLeft(4, '0');
-
-            return GetDatagram(MessageId.ConfigTimedTask,
-                new List<Parameter>{
-                    new Parameter(ParameterType.CircuitNo, CircuitNo),
-                    new Parameter(ParameterType.DateTime, GetByteArray(hexString))
-                });
+            return GetDateTimeArray(MessageId.ConfigTimedTask, dateTime);
         }
 
         /// <summary>
@@ -114,14 +107,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] SyncTime(DateTime dateTime)
         {
-            UInt32 second = (UInt32)dateTime.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
-            string hexString = second.ToString("X2").PadLeft(4, '0');
-
-            return GetDatagram(MessageId.ConfigSyncTime,
-                new List<Parameter>{
-                    new Parameter(ParameterType.CircuitNo, CircuitNo),
-                    new Parameter(ParameterType.DateTime, GetByteArray(hexString))
-                });
+            return GetDateTimeArray(MessageId.ConfigSyncTime, dateTime);
         }
 
         /// <summary>
@@ -182,6 +168,24 @@ namespace ThisCoder.AirHome
         public Byte[] Reset()
         {
             return GetDatagram(MessageId.ConfigReset, new Parameter(ParameterType.None, 0X00));
+        }
+
+        /// <summary>
+        /// 获取与时间相关的配置动作行为的字节数组
+        /// </summary>
+        /// <param name="messageId">消息ID的枚举值</param>
+        /// <param name="dateTime">日期时间对象</param>
+        /// <returns></returns>
+        private Byte[] GetDateTimeArray(MessageId messageId, DateTime dateTime)
+        {
+            UInt32 second = (UInt32)dateTime.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+            string hexString = second.ToString("X2").PadLeft(4, '0');
+
+            return GetDatagram(messageId,
+                new List<Parameter>{
+                    new Parameter(ParameterType.CircuitNo, CircuitNo),
+                    new Parameter(ParameterType.DateTime, GetByteArray(hexString))
+                });
         }
     }
 }

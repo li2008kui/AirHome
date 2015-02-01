@@ -34,8 +34,9 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] Operate(MessageId msgId, ParameterType pmtType, List<Byte> pmtValueByteList)
         {
-            Parameter parameter = new Parameter(pmtType, pmtValueByteList);
-            return Operate(msgId, parameter);
+            return Operate(msgId,
+                new Parameter(pmtType, pmtValueByteList)
+            );
         }
 
         /// <summary>
@@ -47,11 +48,13 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] Operate(MessageId msgId, ParameterType pmtType, Byte pmtValueByte)
         {
-            List<Byte> byteList = new List<Byte>();
-            byteList.Add(pmtValueByte);
-
-            Parameter parameter = new Parameter(pmtType, byteList);
-            return Operate(msgId, parameter);
+            return Operate(msgId,
+                new Parameter(pmtType,
+                    new List<Byte> {
+                        pmtValueByte
+                    }
+                )
+            );
         }
 
         /// <summary>
@@ -68,11 +71,10 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] Operate(MessageId msgId, ParameterType pmtType, string pmtValueString, bool isHex = false, string separator = "")
         {
-            Byte[] byteList = isHex ? GetByteArray(pmtValueString, separator) : Encoding.UTF8.GetBytes(pmtValueString);
-            List<Byte> pmtByteListValue = new List<byte>();
-            pmtByteListValue.AddRange(byteList);
-
-            return Operate(msgId, pmtType, pmtByteListValue);
+            Byte[] byteArray = isHex ?
+                GetByteArray(pmtValueString, separator) :
+                Encoding.UTF8.GetBytes(pmtValueString);
+            return Operate(msgId, pmtType, GetByteList(byteArray));
         }
 
         /// <summary>
@@ -83,9 +85,11 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] Operate(MessageId msgId, Parameter parameter)
         {
-            List<Parameter> pmtList = new List<Parameter>();
-            pmtList.Add(parameter);
-            return GetDatagram(msgId, pmtList);
+            return GetDatagram(msgId,
+                new List<Parameter> {
+                    parameter
+                }
+            );
         }
 
         /// <summary>

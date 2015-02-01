@@ -139,5 +139,17 @@ namespace ThisCoder.AirHome
 
             return byteList.ToArray();
         }
+
+        /// <summary>
+        /// 通过字节数组获取字节列表
+        /// </summary>
+        /// <param name="byteArray">字节数组</param>
+        /// <returns></returns>
+        protected List<Byte> GetByteList(Byte[] byteArray)
+        {
+            List<Byte> byteList = new List<byte>();
+            byteList.AddRange(byteArray);
+            return byteList;
+        }
     }
 }

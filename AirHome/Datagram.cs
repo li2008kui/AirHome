@@ -73,8 +73,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] GetDatagram()
         {
-            List<Byte> dg = new List<byte>();
-            dg.Add(this.Stx);
+            List<Byte> dg = new List<byte> { this.Stx };
 
             Byte[] head = this.Head.GetHead();
             Byte[] body = this.Body.GetBody();
@@ -414,9 +413,10 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] GetBody()
         {
-            List<Byte> mb = new List<byte>();
-            mb.Add((Byte)((UInt16)(this.MsgId) >> 8));
-            mb.Add((Byte)(this.MsgId));
+            List<Byte> mb = new List<byte>{
+                (Byte)((UInt16)(this.MsgId) >> 8),
+                (Byte)(this.MsgId)
+            };
 
             for (int i = 56; i >= 0; i -= 8)
             {
@@ -503,11 +503,8 @@ namespace ThisCoder.AirHome
         public Parameter(ParameterType type, Byte byteValue)
             : this()
         {
-            List<Byte> byteList = new List<byte>();
-            byteList.Add(byteValue);
-
             Type = type;
-            Value = byteList;
+            Value = new List<byte> { byteValue };
         }
 
         /// <summary>
@@ -521,11 +518,8 @@ namespace ThisCoder.AirHome
         public Parameter(ParameterType type, Byte[] byteArrayValue)
             : this()
         {
-            List<Byte> byteList = new List<byte>();
-            byteList.AddRange(byteArrayValue);
-
             Type = type;
-            Value = byteList;
+            Value = GetByteList(byteArrayValue);
         }
 
         /// <summary>
@@ -539,11 +533,8 @@ namespace ThisCoder.AirHome
         public Parameter(ParameterType type, string stringValue)
             : this()
         {
-            List<Byte> byteList = new List<byte>();
-            byteList.AddRange(Encoding.UTF8.GetBytes(stringValue));
-
             Type = type;
-            Value = byteList;
+            Value = GetByteList(Encoding.UTF8.GetBytes(stringValue));
         }
 
         /// <summary>
@@ -570,8 +561,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] GetParameter()
         {
-            List<Byte> pmt = new List<byte>();
-            pmt.Add((Byte)(this.Type));
+            List<Byte> pmt = new List<byte> { (Byte)(this.Type) };
 
             if (this.Value != null && this.Value.Count > 0)
             {
@@ -584,6 +574,18 @@ namespace ThisCoder.AirHome
 
             pmt.Add(this.End);
             return pmt.ToArray();
+        }
+
+        /// <summary>
+        /// 通过字节数组获取字节列表
+        /// </summary>
+        /// <param name="byteArray">字节数组</param>
+        /// <returns></returns>
+        private List<Byte> GetByteList(Byte[] byteArray)
+        {
+            List<Byte> byteList = new List<byte>();
+            byteList.AddRange(byteArray);
+            return byteList;
         }
     }
 
