@@ -28,7 +28,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] SwitchState()
         {
-            return GetDatagram(MessageId.StateSwitch, new Parameter(ParameterType.None, 0X00));
+            return GetDatagram(MessageId.StateSwitch, new Parameter(ParameterType.CircuitNo, CircuitNo));
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] BrightnessState()
         {
-            return GetDatagram(MessageId.StateBrightness, new Parameter(ParameterType.None, 0X00));
+            return GetDatagram(MessageId.StateBrightness, new Parameter(ParameterType.CircuitNo, CircuitNo));
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] ColorTemperatureState()
         {
-            return GetDatagram(MessageId.StateColorTemperature, new Parameter(ParameterType.None, 0X00));
+            return GetDatagram(MessageId.StateColorTemperature, new Parameter(ParameterType.CircuitNo, CircuitNo));
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] RgbwState()
         {
-            return GetDatagram(MessageId.StateRgbw, new Parameter(ParameterType.None, 0X00));
+            return GetDatagram(MessageId.StateRgbw, new Parameter(ParameterType.CircuitNo, CircuitNo));
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] PartitionState()
         {
-            return GetDatagram(MessageId.StatePartition, new Parameter(ParameterType.None, 0X00));
+            return GetDatagram(MessageId.StatePartition, new Parameter(ParameterType.CircuitNo, CircuitNo));
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] DeviceName()
         {
-            return GetDatagram(MessageId.StateName, new Parameter(ParameterType.None, 0X00));
+            return GetDatagram(MessageId.StateName, new Parameter(ParameterType.CircuitNo, CircuitNo));
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] DeviceDescription()
         {
-            return GetDatagram(MessageId.StateDescription, new Parameter(ParameterType.None, 0X00));
+            return GetDatagram(MessageId.StateDescription, new Parameter(ParameterType.CircuitNo, CircuitNo));
         }
 
         /// <summary>
