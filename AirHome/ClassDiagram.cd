@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ThisCoder.AirHome.AirAction">
+    <Position X="3.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAABAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>AirAction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ThisCoder.AirHome.ConfigAction">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAgAAAAAgBAAAAAAAEIAAAAAAQAAAAAAIEEQgAAg=</HashCode>
+      <FileName>ConfigAction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ThisCoder.AirHome.ControlAction">
+    <Position X="5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAEAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>ControlAction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ThisCoder.AirHome.Counter" Collapsed="true">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAQAAAABAAAAA=</HashCode>
+      <FileName>Counter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ThisCoder.AirHome.Crc" Collapsed="true">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Crc.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ThisCoder.AirHome.DataPoint" Collapsed="true">
+    <Position X="13.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataPoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ThisCoder.AirHome.Device" Collapsed="true">
+    <Position X="15" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAgAACAAAAAAAQAAAAAQAAAAAAAAAACAAA=</HashCode>
+      <FileName>Device.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ThisCoder.AirHome.Home" Collapsed="true">
+    <Position X="9.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Home.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ThisCoder.AirHome.House" Collapsed="true">
+    <Position X="11.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>7UESAQAABCAAAIKAQEIAkQQAAIgCgFggAAAAEAAAAAQ=</HashCode>
+      <FileName>House.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ThisCoder.AirHome.OperateAction">
+    <Position X="7.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>OperateAction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ThisCoder.AirHome.Room" Collapsed="true">
+    <Position X="13.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gEAAAAAAAAAAAAAAAEAAAAQAAAAAAEAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Room.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ThisCoder.AirHome.StateAction">
+    <Position X="2.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>StateAction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ThisCoder.AirHome.UpdateEventArgs" Collapsed="true">
+    <Position X="15" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>UpdateArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ThisCoder.AirHome.User" Collapsed="true">
+    <Position X="9.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ThisCoder.AirHome.Zone" Collapsed="true">
+    <Position X="11.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gEAAAAAAAAAAAACAAEIAEAQAAIACAAAAAAAAEAAAAAQ=</HashCode>
+      <FileName>Zone.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="ThisCoder.AirHome.Datagram" Collapsed="true">
+    <Position X="9.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAEAAABAAAAICAACAAAAAACAAAAEAA=</HashCode>
+      <FileName>Datagram.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="ThisCoder.AirHome.MessageHead" Collapsed="true">
+    <Position X="13.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAEAABAAABAAAAAAAACAQACAIAAAAA=</HashCode>
+      <FileName>Datagram.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="ThisCoder.AirHome.MessageBody" Collapsed="true">
+    <Position X="11.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAECBAAAAAAAAAEAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Datagram.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="ThisCoder.AirHome.Parameter" Collapsed="true">
+    <Position X="15" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAgAAAAAAA=</HashCode>
+      <FileName>Datagram.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="ThisCoder.AirHome.MessageType" Collapsed="true">
+    <Position X="15" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAgAACAAAAAAE=</HashCode>
+      <FileName>Datagram.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ThisCoder.AirHome.MessageId" Collapsed="true">
+    <Position X="13.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QqAAoACAAAgAEFAAAAgABAUAAIAACABAAAaAgAEARQE=</HashCode>
+      <FileName>Datagram.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ThisCoder.AirHome.ParameterType" Collapsed="true">
+    <Position X="9.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgBBEAAIAAIAAAAAAAAAAAAAEAAQAAQEIAAEEAIA=</HashCode>
+      <FileName>Datagram.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ThisCoder.AirHome.DeviceFunction" Collapsed="true">
+    <Position X="9.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAABAAAAAQAIAAAAAAQJEAAAAAAAAAAAAAAQAAIg=</HashCode>
+      <FileName>Datagram.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ThisCoder.AirHome.ResponseCode" Collapsed="true">
+    <Position X="11.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAEEAAAAAAAAAQgAQAAACABA=</HashCode>
+      <FileName>Datagram.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ThisCoder.AirHome.Error" Collapsed="true">
+    <Position X="11.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Error.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="微软雅黑" Size="9" />
+</ClassDiagram>
