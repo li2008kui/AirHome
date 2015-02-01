@@ -590,7 +590,7 @@ namespace ThisCoder.AirHome
     /// <summary>
     /// 消息类型枚举
     /// </summary>
-    public enum MessageType
+    public enum MessageType : byte
     {
         /// <summary>
         /// 服务器到设备
@@ -616,7 +616,7 @@ namespace ThisCoder.AirHome
     /// <summary>
     /// 消息ID枚举
     /// </summary>
-    public enum MessageId
+    public enum MessageId : ushort
     {
         #region 配置功能
         /// <summary>
@@ -775,7 +775,7 @@ namespace ThisCoder.AirHome
     /// <summary>
     /// 参数类型枚举
     /// </summary>
-    public enum ParameterType
+    public enum ParameterType : byte
     {
         /// <summary>
         /// 无参数
@@ -856,7 +856,7 @@ namespace ThisCoder.AirHome
     /// <summary>
     /// 设备功能枚举
     /// </summary>
-    public enum DeviceFunction
+    public enum DeviceFunction : byte
     {
         /// <summary>
         /// 定时功能
@@ -917,7 +917,7 @@ namespace ThisCoder.AirHome
     /// <summary>
     /// 响应码
     /// </summary>
-    public enum ResponseCode
+    public enum ResponseCode : byte
     {
         /// <summary>
         /// 成功
