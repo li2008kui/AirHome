@@ -49,17 +49,17 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] Partition(UInt32 partitionNo)
         {
-            List<Byte> byteList = new List<byte>();
-            byteList.Add(0X00);
-            byteList.Add((Byte)(partitionNo >> 16));
-            byteList.Add((Byte)(partitionNo >> 8));
-            byteList.Add((Byte)partitionNo);
-
-            List<Parameter> pmtList = new List<Parameter>();
-            pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
-            pmtList.Add(new Parameter(ParameterType.PartitionNo, byteList));
-
-            return GetDatagram(MessageId.ConfigDevicePartition, pmtList);
+            return GetDatagram(MessageId.ConfigDevicePartition,
+                new List<Parameter>{
+                    new Parameter(ParameterType.CircuitNo, CircuitNo),
+                    new Parameter(ParameterType.PartitionNo,
+                        new List<byte>{
+                            0X00,
+                            (Byte)(partitionNo >> 16),
+                            (Byte)(partitionNo >> 8),
+                            (Byte)partitionNo
+                        })
+                });
         }
 
         /// <summary>
@@ -69,11 +69,11 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] DeviceName(string name)
         {
-            List<Parameter> pmtList = new List<Parameter>();
-            pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
-            pmtList.Add(new Parameter(ParameterType.DeviceName, name));
-
-            return GetDatagram(MessageId.ConfigSettingName, pmtList);
+            return GetDatagram(MessageId.ConfigSettingName,
+                new List<Parameter>{
+                    new Parameter(ParameterType.CircuitNo, CircuitNo),
+                    new Parameter(ParameterType.DeviceName, name)
+                });
         }
 
         /// <summary>
@@ -83,11 +83,11 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] Description(string description)
         {
-            List<Parameter> pmtList = new List<Parameter>();
-            pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
-            pmtList.Add(new Parameter(ParameterType.DeviceDescription, description));
-
-            return GetDatagram(MessageId.ConfigSettingDescription, pmtList);
+            return GetDatagram(MessageId.ConfigSettingDescription,
+                new List<Parameter>{
+                    new Parameter(ParameterType.CircuitNo, CircuitNo),
+                    new Parameter(ParameterType.DeviceDescription, description)
+                });
         }
 
         /// <summary>
@@ -100,11 +100,11 @@ namespace ThisCoder.AirHome
             UInt32 second = (UInt32)dateTime.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
             string hexString = second.ToString("X2").PadLeft(4, '0');
 
-            List<Parameter> pmtList = new List<Parameter>();
-            pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
-            pmtList.Add(new Parameter(ParameterType.DateTime, GetByteArray(hexString)));
-
-            return GetDatagram(MessageId.ConfigTimedTask, pmtList);
+            return GetDatagram(MessageId.ConfigTimedTask,
+                new List<Parameter>{
+                    new Parameter(ParameterType.CircuitNo, CircuitNo),
+                    new Parameter(ParameterType.DateTime, GetByteArray(hexString))
+                });
         }
 
         /// <summary>
@@ -117,11 +117,11 @@ namespace ThisCoder.AirHome
             UInt32 second = (UInt32)dateTime.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
             string hexString = second.ToString("X2").PadLeft(4, '0');
 
-            List<Parameter> pmtList = new List<Parameter>();
-            pmtList.Add(new Parameter(ParameterType.CircuitNo, CircuitNo));
-            pmtList.Add(new Parameter(ParameterType.DateTime, GetByteArray(hexString)));
-
-            return GetDatagram(MessageId.ConfigSyncTime, pmtList);
+            return GetDatagram(MessageId.ConfigSyncTime,
+                new List<Parameter>{
+                    new Parameter(ParameterType.CircuitNo, CircuitNo),
+                    new Parameter(ParameterType.DateTime, GetByteArray(hexString))
+                });
         }
 
         /// <summary>
