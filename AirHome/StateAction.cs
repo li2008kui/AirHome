@@ -11,7 +11,7 @@ namespace ThisCoder.AirHome
     public class StateAction : AirAction
     {
         /// <summary>
-        /// 通过设备ID和回路编号初始化控制动作行为类。
+        /// 通过设备ID和回路编号初始化数据采集行为类。
         ///     <para>设备ID默认值为0X0000000000000000。</para>
         ///     <para>回路编号默认值为0X00。</para>
         /// </summary>
