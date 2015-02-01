@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ThisCoder.AirHome
 {
@@ -32,6 +29,87 @@ namespace ThisCoder.AirHome
         public Byte[] SwitchState()
         {
             return GetDatagram(MessageId.StateSwitch, new Parameter(ParameterType.None, 0X00));
+        }
+
+        /// <summary>
+        /// 获取亮度等级
+        /// </summary>
+        /// <returns></returns>
+        public Byte[] BrightnessState()
+        {
+            return GetDatagram(MessageId.StateBrightness, new Parameter(ParameterType.None, 0X00));
+        }
+
+        /// <summary>
+        /// 获取色温数据
+        /// </summary>
+        /// <returns></returns>
+        public Byte[] ColorTemperatureState()
+        {
+            return GetDatagram(MessageId.StateColorTemperature, new Parameter(ParameterType.None, 0X00));
+        }
+
+        /// <summary>
+        /// 获取红绿蓝白（RGBW）颜色数据
+        /// </summary>
+        /// <returns></returns>
+        public Byte[] RgbwState()
+        {
+            return GetDatagram(MessageId.StateRgbw, new Parameter(ParameterType.None, 0X00));
+        }
+
+        /// <summary>
+        /// 获取设备分区编号
+        /// </summary>
+        /// <returns></returns>
+        public Byte[] PartitionState()
+        {
+            return GetDatagram(MessageId.StatePartition, new Parameter(ParameterType.None, 0X00));
+        }
+
+        /// <summary>
+        /// 获取设备名称
+        /// </summary>
+        /// <returns></returns>
+        public Byte[] DeviceName()
+        {
+            return GetDatagram(MessageId.StateName, new Parameter(ParameterType.None, 0X00));
+        }
+
+        /// <summary>
+        /// 获取设备描述
+        /// </summary>
+        /// <returns></returns>
+        public Byte[] DeviceDescription()
+        {
+            return GetDatagram(MessageId.StateDescription, new Parameter(ParameterType.None, 0X00));
+        }
+
+        /// <summary>
+        /// 获取通信类型
+        /// </summary>
+        /// <returns></returns>
+        public Byte[] CommunicationType()
+        {
+            return GetDatagram(MessageId.StateCommunicationType, new Parameter(ParameterType.None, 0X00));
+        }
+
+        /// <summary>
+        /// 获取设备IP地址
+        /// </summary>
+        /// <returns></returns>
+        public Byte[] IpAddress()
+        {
+            return GetDatagram(MessageId.StateIpAddress, new Parameter(ParameterType.None, 0X00));
+        }
+
+        /// <summary>
+        /// 获取设备MAC地址
+        /// </summary>
+        /// <returns></returns>
+        public Byte[] MacAddress()
+        {
+            return GetDatagram(MessageId.StateMacAddress, new Parameter(ParameterType.None, 0X00));
         }
     }
 }
