@@ -255,7 +255,7 @@ namespace ThisCoder.AirHome
         }
 
         /// <summary>
-        /// 
+        /// 获取消息报文字节数组列表
         /// </summary>
         /// <param name="dataArray">消息报文字节数组</param>
         /// <param name="index">数组索引</param>
