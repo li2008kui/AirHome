@@ -423,7 +423,7 @@ namespace ThisCoder.AirHome
                 mb.Add((Byte)(this.DevId >> i));
             }
 
-            foreach (var pmt in this.PmtList)
+            foreach (var pmt in this.PmtList ?? new List<Parameter>())
             {
                 mb.AddRange(pmt.GetParameter());
             }
