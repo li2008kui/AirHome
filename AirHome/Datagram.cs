@@ -93,6 +93,11 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public static List<Datagram> GetDatagramList(Byte[] dataArray)
         {
+            if (dataArray.Length < 22)
+            {
+                throw new AirException("命令格式错误。", ResponseCode.CommandFormatError);
+            }
+
             List<Byte[]> byteArrayList = new List<byte[]>();
             List<Byte[]> newByteArrayList = new List<byte[]>();
 
@@ -107,10 +112,21 @@ namespace ThisCoder.AirHome
             foreach (var item in newByteArrayList)
             {
                 mh.Length = (UInt16)((item[0] << 8) + item[1]);
+
+                if (!Enum.IsDefined(typeof(MessageType), item[2]))
+                {
+                    throw new AirException("不支持该类型的命令。", ResponseCode.NonsupportType);
+                }
+
                 mh.Type = (MessageType)item[2];
                 mh.SeqNumber = (UInt32)((item[3] << 24) + (item[4] << 16) + (item[5] << 8) + item[6]);
                 mh.Reserved = (UInt32)((item[7] << 16) + (item[8] << 8) + item[9]);
                 mh.Crc = (UInt16)((item[10] << 8) + item[11]);
+
+                if (!Enum.IsDefined(typeof(MessageId), (UInt16)((item[12] << 8) + item[13])))
+                {
+                    throw new AirException("不支持该操作。", ResponseCode.NonsupportOperation);
+                }
 
                 mb.MsgId = (MessageId)((item[12] << 8) + item[13]);
                 mb.DevId = ((UInt64)item[14] << 56) + ((UInt64)item[15] << 48) + ((UInt64)item[16] << 40) + ((UInt64)item[17] << 32)
@@ -118,7 +134,20 @@ namespace ThisCoder.AirHome
 
                 List<Parameter> pmtList = new List<Parameter>();
                 GetParameterList(item, 22, ref pmtList);
-                mb.PmtList = pmtList;
+
+                if (pmtList.Count > 0)
+                {
+                    mb.PmtList = pmtList;
+
+                    if (Crc.GetCrc(mb.GetBody()) != mh.Crc)
+                    {
+                        throw new AirException("消息体CRC校验错误。", ResponseCode.CrcCheckError);
+                    }
+                }
+                else
+                {
+                    throw new AirException("参数格式错误。", ResponseCode.ParameterFormatError);
+                }
 
                 d.Head = mh;
                 d.Body = mb;
@@ -247,10 +276,6 @@ namespace ThisCoder.AirHome
                     GetParameterList(byteArray, i + 1, ref pmtList);
                     break;
                 }
-                else
-                {
-                    continue;
-                }
             }
         }
 
@@ -287,10 +312,6 @@ namespace ThisCoder.AirHome
                 else if (isStx)
                 {
                     byteList.Add(dataArray[i]);
-                }
-                else
-                {
-                    continue;
                 }
             }
         }

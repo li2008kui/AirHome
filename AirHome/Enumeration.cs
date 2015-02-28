@@ -338,34 +338,39 @@
         Succeed = 0X00,
 
         /// <summary>
-        /// 命令解析错误
+        /// 命令格式错误
         /// </summary>
-        AnalysisError = 0X01,
+        CommandFormatError = 0X01,
 
         /// <summary>
         /// 消息体CRC校验错误
         /// </summary>
-        CrcError = 0X02,
+        CrcCheckError = 0X02,
 
         /// <summary>
-        /// 不支持该命令
+        /// 不支持该类型的命令
         /// </summary>
-        Nonsupport = 0X03,
+        NonsupportType = 0X03,
+
+        /// <summary>
+        /// 不支持该操作
+        /// </summary>
+        NonsupportOperation = 0X04,
 
         /// <summary>
         /// 命令无法执行
         /// </summary>
-        NotExecuted = 0X04,
+        NotExecuted = 0X05,
 
         /// <summary>
         /// 参数个数错误
         /// </summary>
-        ParameterCountError = 0X05,
+        ParameterCountError = 0X06,
 
         /// <summary>
         /// 参数格式错误
         /// </summary>
-        ParameterFormatError = 0X06,
+        ParameterFormatError = 0X07,
 
         /// <summary>
         /// 未知错误
