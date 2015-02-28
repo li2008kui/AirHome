@@ -151,5 +151,29 @@ namespace ThisCoder.AirHome
             byteList.AddRange(byteArray);
             return byteList;
         }
+
+        /// <summary>
+        /// 报文处理委托
+        /// </summary>
+        /// <param name="sender">动作行为类</param>
+        /// <param name="e">报文事件参数</param>
+        public delegate void DatagramProcessHandler(object sender, DatagramEventArgs e);
+
+        /// <summary>
+        /// 报文处理事件
+        /// </summary>
+        public event DatagramProcessHandler DatagramProcess;
+
+        /// <summary>
+        /// 触发报文的处理事件
+        /// </summary>
+        /// <param name="e">报文事件参数</param>
+        public virtual void OnDatagramProcess(DatagramEventArgs e)
+        {
+            if (this.DatagramProcess != null)
+            {
+                this.DatagramProcess(this, e);
+            }
+        }
     }
 }

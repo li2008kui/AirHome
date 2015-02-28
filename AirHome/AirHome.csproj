@@ -48,6 +48,7 @@
     <Compile Include="ControlAction.cs" />
     <Compile Include="Crc.cs" />
     <Compile Include="Datagram.cs" />
+    <Compile Include="DatagramEventArgs.cs" />
     <Compile Include="DataPoint.cs" />
     <Compile Include="Device.cs" />
     <Compile Include="Enumeration.cs" />
