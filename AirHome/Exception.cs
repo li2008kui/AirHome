@@ -12,13 +12,13 @@ namespace ThisCoder.AirHome
         /// <summary>
         /// 异常代码。
         /// </summary>
-        public Byte Code { get; private set; }
+        public ResponseCode Code { get; private set; }
 
         /// <summary>
         /// 初始化 AirException 类的新实例。
         /// </summary>
         /// <param name="code">异常代码。</param>
-        public AirException(Byte code = 0X00)
+        public AirException(ResponseCode code = ResponseCode.Succeed)
             : base()
         {
             Code = code;
@@ -29,7 +29,7 @@ namespace ThisCoder.AirHome
         /// </summary>
         /// <param name="message">解释异常原因的错误信息。</param>
         /// <param name="code">异常代码。</param>
-        public AirException(string message, Byte code = 0X00)
+        public AirException(string message, ResponseCode code = ResponseCode.Succeed)
             : base(message)
         {
             Code = code;
@@ -42,7 +42,7 @@ namespace ThisCoder.AirHome
         /// <param name="info">保存序列化对象数据的对象。</param>
         /// <param name="context">有关源或目标的上下文信息。</param>
         /// <param name="code">异常代码。</param>
-        public AirException(SerializationInfo info, StreamingContext context, Byte code = 0X00)
+        public AirException(SerializationInfo info, StreamingContext context, ResponseCode code = ResponseCode.Succeed)
             : base(info, context)
         {
             Code = code;
@@ -56,7 +56,7 @@ namespace ThisCoder.AirHome
         /// <param name="message">解释异常原因的错误信息。</param>
         /// <param name="innerException">导致当前异常的异常。如果 innerException 参数不为空引用，则在处理内部异常的 catch 块中引发当前异常。</param>
         /// <param name="code">异常代码。</param>
-        public AirException(string message, Exception innerException, Byte code = 0X00)
+        public AirException(string message, Exception innerException, ResponseCode code = ResponseCode.Succeed)
             : base(message, innerException)
         {
             Code = code;

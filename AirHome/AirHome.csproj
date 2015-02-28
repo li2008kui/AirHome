@@ -52,7 +52,7 @@
     <Compile Include="DataPoint.cs" />
     <Compile Include="Device.cs" />
     <Compile Include="Enumeration.cs" />
-    <Compile Include="Error.cs" />
+    <Compile Include="Exception.cs" />
     <Compile Include="Home.cs" />
     <Compile Include="House.cs" />
     <Compile Include="OperateAction.cs" />
