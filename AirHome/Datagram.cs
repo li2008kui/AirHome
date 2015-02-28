@@ -87,12 +87,54 @@ namespace ThisCoder.AirHome
         }
 
         /// <summary>
+        /// 获取消息报文对象列表
+        /// </summary>
+        /// <param name="dataArray">消息报文字节数组</param>
+        /// <returns></returns>
+        public static List<Datagram> GetDatagramList(Byte[] dataArray)
+        {
+            List<Byte[]> byteArrayList = new List<byte[]>();
+            List<Byte[]> newByteArrayList = new List<byte[]>();
+
+            GetByteArrayList(dataArray, 0, ref byteArrayList);
+            Descaping(byteArrayList, ref newByteArrayList);
+
+            MessageHead mh = new MessageHead();
+            MessageBody mb = new MessageBody();
+            Datagram d = new Datagram();
+            List<Datagram> datagramList = new List<Datagram>();
+
+            foreach (var item in newByteArrayList)
+            {
+                mh.Length = (UInt16)((item[0] << 8) + item[1]);
+                mh.Type = (MessageType)item[2];
+                mh.SeqNumber = (UInt32)((item[3] << 24) + (item[4] << 16) + (item[5] << 8) + item[6]);
+                mh.Reserved = (UInt32)((item[7] << 16) + (item[8] << 8) + item[9]);
+                mh.Crc = (UInt16)((item[10] << 8) + item[11]);
+
+                mb.MsgId = (MessageId)((item[12] << 8) + item[13]);
+                mb.DevId = ((UInt64)item[14] << 56) + ((UInt64)item[15] << 48) + ((UInt64)item[16] << 40) + ((UInt64)item[17] << 32)
+                    + ((UInt64)item[18] << 24) + ((UInt64)item[19] << 16) + ((UInt64)item[20] << 8) + item[21];
+
+                List<Parameter> pmtList = new List<Parameter>();
+                GetParameterList(item, 22, ref pmtList);
+                mb.PmtList = pmtList;
+
+                d.Head = mh;
+                d.Body = mb;
+                datagramList.Add(d);
+            }
+
+            return datagramList;
+        }
+
+        /// <summary>
         /// 转义特殊字符
         ///     <para>STX转义为ESC和0XE7，即02->1BE7</para>
         ///     <para>ETX转义为ESC和0XE8，即03->1BE8</para>
         ///     <para>ESC转义为ESC和0X00，即1B->1B00</para>
         /// </summary>
-        /// <param name="byteArray">字节数组</param>
+        /// <param name="byteArray">消息报文字节数组</param>
         /// <returns></returns>
         private static Byte[] Escaping(Byte[] byteArray)
         {
@@ -122,6 +164,135 @@ namespace ThisCoder.AirHome
             }
 
             return byteList.ToArray();
+        }
+
+        /// <summary>
+        /// 去除转义特殊字符
+        /// </summary>
+        /// <param name="byteArrayList">原消息报文字节数组列表</param>
+        /// <param name="newByteArrayList">新消息报文字节数组列表</param>
+        private static void Descaping(List<Byte[]> byteArrayList, ref List<Byte[]> newByteArrayList)
+        {
+            List<Byte> byteList;
+
+            foreach (var item in byteArrayList)
+            {
+                byteList = new List<Byte>();
+
+                for (int i = 0; i < item.Length; i++)
+                {
+                    if (item[i] == 0X1B)
+                    {
+                        if (i + 1 < item.Length)
+                        {
+                            switch (item[i + 1])
+                            {
+                                case 0XE7:
+                                    byteList.Add(0X02);
+                                    break;
+                                case 0XE8:
+                                    byteList.Add(0X03);
+                                    break;
+                                case 0X00:
+                                    byteList.Add(0X1B);
+                                    break;
+                                default:
+                                    byteList.Add(item[i + 1]);
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            break;
+                        }
+
+                        i++;
+                    }
+                    else
+                    {
+                        byteList.Add(item[i]);
+                    }
+                }
+
+                newByteArrayList.Add(byteList.ToArray());
+            }
+        }
+
+        /// <summary>
+        /// 获取参数对象列表
+        /// </summary>
+        /// <param name="byteArray">消息报文字节数组</param>
+        /// <param name="index">数组索引</param>
+        /// <param name="pmtList">参数对象列表</param>
+        private static void GetParameterList(Byte[] byteArray, int index, ref List<Parameter> pmtList)
+        {
+            Parameter parameter;
+            List<Byte> byteList = new List<Byte>();
+
+            for (int i = index; i < byteArray.Length; i++)
+            {
+                if (byteArray[i] == 0X00)
+                {
+                    parameter = new Parameter();
+                    parameter.Type = (ParameterType)byteArray[index];
+
+                    for (int j = index + 1; j < i; j++)
+                    {
+                        byteList.Add(byteArray[j]);
+                    }
+
+                    parameter.Value = byteList;
+                    pmtList.Add(parameter);
+
+                    GetParameterList(byteArray, i + 1, ref pmtList);
+                    break;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dataArray">消息报文字节数组</param>
+        /// <param name="index">数组索引</param>
+        /// <param name="byteArrayList">消息报文字节数组列表</param>
+        private static void GetByteArrayList(Byte[] dataArray, int index, ref List<Byte[]> byteArrayList)
+        {
+            bool isStx = false;
+            List<Byte> byteList = new List<Byte>();
+
+            for (int i = index; i < dataArray.Length; i++)
+            {
+                if (dataArray[i] == 0X02)
+                {
+                    byteList = new List<Byte>();
+                    isStx = true;
+                }
+                else if (dataArray[i] == 0X03)
+                {
+                    isStx = false;
+
+                    if (byteList.Count > 0)
+                    {
+                        byteArrayList.Add(byteList.ToArray());
+                    }
+
+                    GetByteArrayList(dataArray, i + 1, ref byteArrayList);
+                    break;
+                }
+                else if (isStx)
+                {
+                    byteList.Add(dataArray[i]);
+                }
+                else
+                {
+                    continue;
+                }
+            }
         }
 
         /// <summary>
