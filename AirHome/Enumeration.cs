@@ -72,6 +72,17 @@
         /// </summary>
         ConfigSyncTime = 0X0007,
 
+        /// <summary>
+        /// 心跳包
+        ///     <para>该指令由设备主动定时发送给上位机。</para>
+        /// </summary>
+        HeartbeatPacket = 0X00E0,
+
+        /// <summary>
+        /// 设置心跳包间隔时间
+        /// </summary>
+        HeartbeatTimeInterval = 0X00E1,
+
         #region WiFi模块一键配置功能
         /// <summary>
         /// WPS功能
@@ -259,6 +270,11 @@
         /// 红绿蓝白（RGBW）
         /// </summary>
         Rgbw = 0X13,
+
+        /// <summary>
+        /// 时间间隔
+        /// </summary>
+        TimeInterval = 0XE0,
 
         /// <summary>
         /// 响应码
