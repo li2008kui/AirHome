@@ -83,6 +83,16 @@
         /// </summary>
         HeartbeatTimeInterval = 0X00E1,
 
+        /// <summary>
+        /// 设置消息超时时间
+        /// </summary>
+        MessageTimeout = 0X00E2,
+
+        /// <summary>
+        /// 设置消息重发次数
+        /// </summary>
+        MessageRepeatCount = 0X00E3,
+
         #region WiFi模块一键配置功能
         /// <summary>
         /// WPS功能
@@ -275,6 +285,12 @@
         /// 时间间隔
         /// </summary>
         TimeInterval = 0XE0,
+
+        /// <summary>
+        /// 次数
+        ///     <para>一个字节的标量数值。</para>
+        /// </summary>
+        Count = 0XE1,
 
         /// <summary>
         /// 响应码
