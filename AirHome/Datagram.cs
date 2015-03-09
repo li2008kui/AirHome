@@ -109,31 +109,31 @@ namespace ThisCoder.AirHome
             Datagram d = new Datagram();
             List<Datagram> datagramList = new List<Datagram>();
 
-            foreach (var item in newByteArrayList)
+            foreach (var byteArray in newByteArrayList)
             {
-                mh.Length = (UInt16)((item[0] << 8) + item[1]);
+                mh.Length = (UInt16)((byteArray[0] << 8) + byteArray[1]);
 
-                if (!Enum.IsDefined(typeof(MessageType), item[2]))
+                if (!Enum.IsDefined(typeof(MessageType), byteArray[2]))
                 {
                     throw new AirException("不支持该类型的命令。", ResponseCode.NonsupportType);
                 }
 
-                mh.Type = (MessageType)item[2];
-                mh.SeqNumber = (UInt32)((item[3] << 24) + (item[4] << 16) + (item[5] << 8) + item[6]);
-                mh.Reserved = (UInt32)((item[7] << 16) + (item[8] << 8) + item[9]);
-                mh.Crc = (UInt16)((item[10] << 8) + item[11]);
+                mh.Type = (MessageType)byteArray[2];
+                mh.SeqNumber = (UInt32)((byteArray[3] << 24) + (byteArray[4] << 16) + (byteArray[5] << 8) + byteArray[6]);
+                mh.Reserved = (UInt32)((byteArray[7] << 16) + (byteArray[8] << 8) + byteArray[9]);
+                mh.Crc = (UInt16)((byteArray[10] << 8) + byteArray[11]);
 
-                if (!Enum.IsDefined(typeof(MessageId), (UInt16)((item[12] << 8) + item[13])))
+                if (!Enum.IsDefined(typeof(MessageId), (UInt16)((byteArray[12] << 8) + byteArray[13])))
                 {
                     throw new AirException("不支持该操作。", ResponseCode.NonsupportOperation);
                 }
 
-                mb.MsgId = (MessageId)((item[12] << 8) + item[13]);
-                mb.DevId = ((UInt64)item[14] << 56) + ((UInt64)item[15] << 48) + ((UInt64)item[16] << 40) + ((UInt64)item[17] << 32)
-                    + ((UInt64)item[18] << 24) + ((UInt64)item[19] << 16) + ((UInt64)item[20] << 8) + item[21];
+                mb.MsgId = (MessageId)((byteArray[12] << 8) + byteArray[13]);
+                mb.DevId = ((UInt64)byteArray[14] << 56) + ((UInt64)byteArray[15] << 48) + ((UInt64)byteArray[16] << 40) + ((UInt64)byteArray[17] << 32)
+                    + ((UInt64)byteArray[18] << 24) + ((UInt64)byteArray[19] << 16) + ((UInt64)byteArray[20] << 8) + byteArray[21];
 
                 List<Parameter> pmtList = new List<Parameter>();
-                GetParameterList(item, 22, ref pmtList);
+                GetParameterList(byteArray, 22, ref pmtList);
 
                 if (pmtList.Count > 0)
                 {
@@ -255,32 +255,29 @@ namespace ThisCoder.AirHome
         /// <param name="pmtList">参数对象列表</param>
         private static void GetParameterList(Byte[] byteArray, int index, ref List<Parameter> pmtList)
         {
-            Parameter parameter;
-            List<Byte> byteList = new List<Byte>();
-
-            for (int i = index; i < byteArray.Length; i++)
+            if (byteArray.Length > index + 2)
             {
-                if (byteArray[i] == 0X00)
+                Parameter parameter = new Parameter(); ;
+                List<Byte> byteList = new List<Byte>();
+
+                parameter.Length = byteArray[index];
+                parameter.Type = (ParameterType)byteArray[index + 1];
+
+                for (int j = index + 2; j < index + parameter.Length + 2; j++)
                 {
-                    parameter = new Parameter();
-                    parameter.Type = (ParameterType)byteArray[index];
-
-                    for (int j = index + 1; j < i; j++)
-                    {
-                        byteList.Add(byteArray[j]);
-                    }
-
-                    parameter.Value = byteList;
-                    pmtList.Add(parameter);
-
-                    GetParameterList(byteArray, i + 1, ref pmtList);
-                    break;
+                    byteList.Add(byteArray[j]);
                 }
+
+                parameter.Value = byteList;
+                pmtList.Add(parameter);
+
+                GetParameterList(byteArray, index + parameter.Length + 2, ref pmtList);
             }
         }
 
         /// <summary>
         /// 获取消息报文字节数组列表
+        ///     <para>此列表中的消息报文字节数组不包含起止符。</para>
         /// </summary>
         /// <param name="dataArray">消息报文字节数组</param>
         /// <param name="index">数组索引</param>
@@ -659,6 +656,12 @@ namespace ThisCoder.AirHome
     public struct Parameter
     {
         /// <summary>
+        /// 参数值长度
+        ///     <para>Byte类型，长度为1个字节</para>
+        /// </summary>
+        public Byte Length { get; set; }
+
+        /// <summary>
         /// 参数类型
         ///     <para>Byte类型，长度为1个字节</para>
         /// </summary>
@@ -671,20 +674,6 @@ namespace ThisCoder.AirHome
         public List<Byte> Value { get; set; }
 
         /// <summary>
-        /// 参数结束符
-        ///     <para>只读属性</para>
-        ///     <para>值为0X00</para>
-        /// </summary>
-        public Byte End
-        {
-            get
-            {
-                return 0X00;
-            }
-            private set { }
-        }
-
-        /// <summary>
         /// 通过“参数类型”和字节类型的“参数值”初始化参数对象实例
         /// </summary>
         /// <param name="type">
@@ -695,6 +684,7 @@ namespace ThisCoder.AirHome
         public Parameter(ParameterType type, Byte byteValue)
             : this()
         {
+            Length = 0X01;
             Type = type;
             Value = new List<byte> { byteValue };
         }
@@ -710,8 +700,9 @@ namespace ThisCoder.AirHome
         public Parameter(ParameterType type, Byte[] byteArrayValue)
             : this()
         {
+            Length = (Byte)byteArrayValue.Length;
             Type = type;
-            Value = GetByteList(byteArrayValue);
+            Value = new List<byte>(byteArrayValue);
         }
 
         /// <summary>
@@ -725,8 +716,11 @@ namespace ThisCoder.AirHome
         public Parameter(ParameterType type, string stringValue)
             : this()
         {
+            List<Byte> byteValueList = new List<byte>(Encoding.UTF8.GetBytes(stringValue));
+
+            Length = (Byte)byteValueList.Count;
             Type = type;
-            Value = GetByteList(Encoding.UTF8.GetBytes(stringValue));
+            Value = byteValueList;
         }
 
         /// <summary>
@@ -743,6 +737,7 @@ namespace ThisCoder.AirHome
         public Parameter(ParameterType type, List<Byte> byteValueList)
             : this()
         {
+            Length = (Byte)byteValueList.Count;
             Type = type;
             Value = byteValueList;
         }
@@ -753,7 +748,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] GetParameter()
         {
-            List<Byte> pmt = new List<byte> { (Byte)(this.Type) };
+            List<Byte> pmt = new List<byte> { this.Length, (Byte)(this.Type) };
 
             if (this.Value != null && this.Value.Count > 0)
             {
@@ -764,20 +759,7 @@ namespace ThisCoder.AirHome
                 pmt.Add(0X00);
             }
 
-            pmt.Add(this.End);
             return pmt.ToArray();
-        }
-
-        /// <summary>
-        /// 通过字节数组获取字节列表
-        /// </summary>
-        /// <param name="byteArray">字节数组</param>
-        /// <returns></returns>
-        private List<Byte> GetByteList(Byte[] byteArray)
-        {
-            List<Byte> byteList = new List<byte>();
-            byteList.AddRange(byteArray);
-            return byteList;
         }
     }
 }
