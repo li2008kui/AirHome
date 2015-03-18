@@ -261,9 +261,9 @@ namespace ThisCoder.AirHome
                 List<Byte> byteList = new List<Byte>();
 
                 parameter.Length = byteArray[index];
-                parameter.Type = (ParameterType)byteArray[index + 1];
+                parameter.Type = (ParameterType)byteArray[index + 2];
 
-                for (int j = index + 2; j < index + parameter.Length + 2; j++)
+                for (int j = index + 3; j < index + parameter.Length + 3; j++)
                 {
                     byteList.Add(byteArray[j]);
                 }
@@ -271,7 +271,7 @@ namespace ThisCoder.AirHome
                 parameter.Value = byteList;
                 pmtList.Add(parameter);
 
-                GetParameterList(byteArray, index + parameter.Length + 2, ref pmtList);
+                GetParameterList(byteArray, index + parameter.Length + 3, ref pmtList);
             }
         }
 
