@@ -748,7 +748,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] GetParameter()
         {
-            List<Byte> pmt = new List<byte> { this.Length, (Byte)(this.Type) };
+            List<Byte> pmt = new List<byte> { this.Length, (Byte)((UInt16)(this.Type) >> 8), (Byte)(this.Type) };
 
             if (this.Value != null && this.Value.Count > 0)
             {

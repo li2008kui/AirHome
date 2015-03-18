@@ -30,7 +30,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] Search()
         {
-            return GetDatagram(MessageId.ConfigSearchDevice, new Parameter(ParameterType.None, 0X00));
+            return GetDatagram(MessageId.StateSearchDevice, new Parameter(ParameterType.None, 0X00));
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] Locate()
         {
-            return GetDatagram(MessageId.ConfigLocateDevice, new Parameter(ParameterType.CircuitNo, CircuitNo));
+            return GetDatagram(MessageId.ControlLocateDevice, new Parameter(ParameterType.CircuitNo, CircuitNo));
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] Partition(UInt32 partitionNo)
         {
-            return GetDatagram(MessageId.ConfigDevicePartition,
+            return GetDatagram(MessageId.ConfigPartition,
                 new List<Parameter>{
                     new Parameter(ParameterType.CircuitNo, CircuitNo),
                     new Parameter(ParameterType.PartitionNo,
@@ -69,7 +69,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] DeviceName(string name)
         {
-            return GetDatagram(MessageId.ConfigSettingName,
+            return GetDatagram(MessageId.ConfigName,
                 new List<Parameter>{
                     new Parameter(ParameterType.CircuitNo, CircuitNo),
                     new Parameter(ParameterType.DeviceName, name)
@@ -83,7 +83,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] Description(string description)
         {
-            return GetDatagram(MessageId.ConfigSettingDescription,
+            return GetDatagram(MessageId.ConfigDescription,
                 new List<Parameter>{
                     new Parameter(ParameterType.CircuitNo, CircuitNo),
                     new Parameter(ParameterType.DeviceDescription, description)
@@ -108,56 +108,6 @@ namespace ThisCoder.AirHome
         public Byte[] SyncTime(DateTime dateTime)
         {
             return GetDateTimeArray(MessageId.ConfigSyncTime, dateTime);
-        }
-
-        /// <summary>
-        /// 启用设备的WPS模式
-        ///     <para>路由器中WPS是由Wi-Fi联盟所推出的全新Wi-Fi安全防护设定(Wi-Fi Protected Setup)标准</para>
-        /// </summary>
-        /// <returns></returns>
-        public Byte[] Wps()
-        {
-            return GetDatagram(MessageId.ConfigWps, new Parameter(ParameterType.None, 0X00));
-        }
-
-        /// <summary>
-        /// 启用设备的EasyLink模式
-        ///     <para>上海庆科开发的WiFi模块快速组网的功能</para>
-        /// </summary>
-        /// <returns></returns>
-        public Byte[] EasyLink()
-        {
-            return GetDatagram(MessageId.ConfigEasyLink, new Parameter(ParameterType.None, 0X00));
-        }
-
-        /// <summary>
-        /// 启用设备的AirKiss模式
-        ///     <para>微信硬件团队开发的让WiFi模块快速组网的协议</para>
-        /// </summary>
-        /// <returns></returns>
-        public Byte[] AirKiss()
-        {
-            return GetDatagram(MessageId.ConfigAirKiss, new Parameter(ParameterType.None, 0X00));
-        }
-
-        /// <summary>
-        /// 启用设备的AirLink模式
-        ///     <para>机智云配置设备上线的 Air Link 一键配置功能</para>
-        /// </summary>
-        /// <returns></returns>
-        public Byte[] AirLink()
-        {
-            return GetDatagram(MessageId.ConfigAirLink, new Parameter(ParameterType.None, 0X00));
-        }
-
-        /// <summary>
-        /// 启用设备的SmartLink模式
-        ///     <para>海尔配置设备上线的一键互联技术</para>
-        /// </summary>
-        /// <returns></returns>
-        public Byte[] SmartLink()
-        {
-            return GetDatagram(MessageId.ConfigSmartLink, new Parameter(ParameterType.None, 0X00));
         }
 
         /// <summary>

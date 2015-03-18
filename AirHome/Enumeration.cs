@@ -38,92 +38,184 @@
         Multifunction = 0X0000,
 
         /// <summary>
-        /// 搜索设备
+        /// 设备或回路分区
         /// </summary>
-        ConfigSearchDevice = 0X0001,
+        ConfigPartition = 0X0001,
 
         /// <summary>
-        /// 定位设备
+        /// 设置或回路名称
         /// </summary>
-        ConfigLocateDevice = 0X0002,
+        ConfigName = 0X0002,
 
         /// <summary>
-        /// 设备分区
+        /// 设置或回路描述
         /// </summary>
-        ConfigDevicePartition = 0X0003,
+        ConfigDescription = 0X0003,
 
         /// <summary>
-        /// 设置名称
+        /// 设置设备的时区
         /// </summary>
-        ConfigSettingName = 0X0004,
-
-        /// <summary>
-        /// 设置描述
-        /// </summary>
-        ConfigSettingDescription = 0X0005,
-
-        /// <summary>
-        /// 设置定时任务时间
-        /// </summary>
-        ConfigTimedTask = 0X0006,
+        ConfigTimezone = 0X0004,
 
         /// <summary>
         /// 同步时间到设备中
         /// </summary>
-        ConfigSyncTime = 0X0007,
+        ConfigSyncTime = 0X0005,
 
         /// <summary>
-        /// 心跳包
-        ///     <para>该指令由设备主动定时发送给上位机。</para>
+        /// 设置设备或回路定时任务时段
         /// </summary>
-        HeartbeatPacket = 0X00E0,
+        ConfigTimedTask = 0X0006,
+
+        /// <summary>
+        /// 设置串口波特率
+        /// </summary>
+        ConfigSerialBaud = 0X00B0,
+
+        /// <summary>
+        /// 设置串口数据位
+        /// </summary>
+        ConfigSerialDataBit = 0X00B1,
+
+        /// <summary>
+        /// 设置串口停止位
+        /// </summary>
+        ConfigSerialStopBit = 0X00B2,
+
+        /// <summary>
+        /// 设置串口校验位
+        /// </summary>
+        ConfigSerialCheckBit = 0X00B3,
+
+        /// <summary>
+        /// 设置WiFi模块的运行模式
+        /// </summary>
+        ConfigWifiRunMode = 0X00C0,
+
+        /// <summary>
+        /// 设置WiFi无线网络名称SSID
+        /// </summary>
+        ConfigSsidName = 0X00C1,
+
+        /// <summary>
+        /// 设置模块的WiFi密码
+        /// </summary>
+        ConfigWifiPassword = 0X00C2,
+
+        /// <summary>
+        /// 设置模块的IP地址
+        /// </summary>
+        ConfigIpAddress = 0X00C3,
+
+        /// <summary>
+        /// 设置模块的网关地址
+        /// </summary>
+        ConfigGatewayAddress = 0X00C4,
+
+        /// <summary>
+        /// 设置模块的子网掩码
+        /// </summary>
+        ConfigSubnetMask = 0X00C5,
+
+        /// <summary>
+        /// 设置模块的DNS地址
+        /// </summary>
+        ConfigDnsAddress = 0X00C6,
+
+        /// <summary>
+        /// 设置模块的DHCP功能
+        /// </summary>
+        ConfigDhcpFunction = 0X00C7,
+
+        /// <summary>
+        /// 设置DHCP地址池起始地址
+        /// </summary>
+        ConfigDhcpBeginAddress = 0X00C8,
+
+        /// <summary>
+        /// 设置DHCP地址池结束地址
+        /// </summary>
+        ConfigDhcpEndAddress = 0X00C9,
+
+        /// <summary>
+        /// 设置模块的MAC地址
+        /// </summary>
+        ConfigMacAddress = 0X00CA,
+
+        /// <summary>
+        /// 设置模块使用的网络协议
+        /// </summary>
+        ConfigNetworkProtocol = 0X00CB,
+
+        /// <summary>
+        /// 设置TCP连接使用的端口
+        /// </summary>
+        ConfigTcpPort = 0X00CC,
+
+        /// <summary>
+        /// 设置UDP连接使用的端口
+        /// </summary>
+        ConfigUdpPort = 0X00CD,
+
+        /// <summary>
+        /// 设置HTTP服务器使用的端口
+        /// </summary>
+        ConfigHttpPort = 0X00CE,
+
+        /// <summary>
+        /// 设置访问服务器的IP地址
+        /// </summary>
+        ConfigServerIpAddress = 0X00D0,
+
+        /// <summary>
+        /// 设置访问服务器的域名
+        /// </summary>
+        ConfigServerDomainName = 0X00D1,
+
+        /// <summary>
+        /// 设置访问服务器的端口
+        /// </summary>
+        ConfigServerPort = 0X00D2,
+
+        /// <summary>
+        /// 设置访问服务器的用户名
+        /// </summary>
+        ConfigServerUserName = 0X00D3,
+
+        /// <summary>
+        /// 设置访问服务器的密码
+        /// </summary>
+        ConfigServerPassword = 0X00D4,
+
+        /// <summary>
+        /// 设置事件上报等待时间
+        /// </summary>
+        ConfigEventReportWaitTime = 0X00E0,
+
+        /// <summary>
+        /// 设置事件上报重发次数
+        /// </summary>
+        ConfigEventReportRepeatCount = 0X00E1,
+
+        /// <summary>
+        /// 发送心跳包
+        /// </summary>
+        ConfigHeartbeatPacket = 0X00E2,
 
         /// <summary>
         /// 设置心跳包间隔时间
         /// </summary>
-        HeartbeatTimeInterval = 0X00E1,
+        ConfigHeartbeatTntervalTime = 0X00E3,
 
         /// <summary>
-        /// 设置消息超时时间
+        /// 设置心跳包等待时间
         /// </summary>
-        MessageTimeout = 0X00E2,
+        ConfigHeartbeatWaitTime = 0X00E4,
 
         /// <summary>
-        /// 设置消息重发次数
+        /// 设置心跳包重发次数
         /// </summary>
-        MessageRepeatCount = 0X00E3,
-
-        #region WiFi模块一键配置功能
-        /// <summary>
-        /// WPS功能
-        ///     <para>路由器中WPS是由Wi-Fi联盟所推出的全新Wi-Fi安全防护设定(Wi-Fi Protected Setup)标准</para>
-        /// </summary>
-        ConfigWps = 0X00F0,
-
-        /// <summary>
-        /// EasyLink功能
-        ///     <para>上海庆科开发的WiFi模块快速组网的功能</para>
-        /// </summary>
-        ConfigEasyLink = 0X00F1,
-
-        /// <summary>
-        /// AirKiss功能
-        ///     <para>微信硬件团队开发的让WiFi模块快速组网的协议</para>
-        /// </summary>
-        ConfigAirKiss = 0X00F2,
-
-        /// <summary>
-        /// AirLink功能
-        ///     <para>机智云配置设备上线的 Air Link 一键配置功能</para>
-        /// </summary>
-        ConfigAirLink = 0X00F3,
-
-        /// <summary>
-        /// SmartLink功能
-        ///     <para>海尔配置设备上线的一键互联技术</para>
-        /// </summary>
-        ConfigSmartLink = 0X00F4,
-        #endregion
+        ConfigHeartbeatRepeatCount = 0X00E5,
 
         /// <summary>
         /// 恢复出厂设备
@@ -133,169 +225,373 @@
 
         #region 控制功能
         /// <summary>
+        /// 定位设备或回路
+        /// </summary>
+        ControlLocateDevice = 0X1000,
+
+        /// <summary>
         /// 打开或关闭设备
         /// </summary>
-        ControlSwitch = 0X1000,
+        ControlSwitch = 0X1001,
 
         /// <summary>
         /// 调节亮度
         /// </summary>
-        ControlBrightness = 0X1001,
+        ControlBrightness = 0X1002,
 
         /// <summary>
         /// 调节色温
         /// </summary>
-        ControlColorTemperature = 0X1002,
+        ControlColorTemperature = 0X1003,
 
         /// <summary>
         /// 调节红绿蓝白（RGBW）
         /// </summary>
-        ControlAdjustRgbw = 0X1003,
+        ControlAdjustRgbw = 0X1004,
         #endregion
 
         #region 数据采集
         /// <summary>
-        /// 获取开关状态
+        /// 搜索设备及回路
         /// </summary>
-        StateSwitch = 0X2000,
+        StateSearchDevice = 0X2000,
 
         /// <summary>
-        /// 获取亮度等级
+        /// 获取设备或回路的开关状态
         /// </summary>
-        StateBrightness = 0X2001,
+        StateSwitch = 0X2001,
 
         /// <summary>
-        /// 获取色温数据
+        /// 获取设备或回路的亮度等级
         /// </summary>
-        StateColorTemperature = 0X2002,
+        StateBrightness = 0X2002,
 
         /// <summary>
-        /// 获取红绿蓝白（RGBW）颜色数据
+        /// 获取设备或回路的色温数据
         /// </summary>
-        StateRgbw = 0X2003,
+        StateColorTemperature = 0X2003,
 
         /// <summary>
-        /// 获取设备分区编号
+        /// 获取设备或回路的红绿蓝白（RGBW）颜色数据
         /// </summary>
-        StatePartition = 0X2004,
+        StateRgbw = 0X2004,
 
         /// <summary>
-        /// 获取设备名称
+        /// 获取设备或回路的分区
         /// </summary>
-        StateName = 0X2005,
+        StatePartition = 0X2005,
 
         /// <summary>
-        /// 获取设备描述
+        /// 获取设备或回路的名称
         /// </summary>
-        StateDescription = 0X2006,
+        StateName = 0X2006,
+
+        /// <summary>
+        /// 获取设备或回路的描述
+        /// </summary>
+        StateDescription = 0X2007,
 
         /// <summary>
         /// 获取通信类型
         /// </summary>
-        StateCommunicationType = 0X20F0,
+        StateCommunicationType = 0X20C0,
 
         /// <summary>
-        /// 获取设备IP地址
+        /// 获取WiFi模块的运行模式
         /// </summary>
-        StateIpAddress = 0X20F1,
+        StateWifiRunMode = 0X20C1,
 
         /// <summary>
-        /// 获取设备MAC地址
+        /// 获取设备的无线网络名称SSID和信号强度
         /// </summary>
-        StateMacAddress = 0X20F2
+        StateSsidAndPower = 0X20C2,
+
+        /// <summary>
+        /// 获取设备附近的无线网络名称SSID和信号强度
+        /// </summary>
+        StateNearbySsidAndPower = 0X20C3,
+
+        /// <summary>
+        /// 获取设备的IP地址
+        /// </summary>
+        StateIpAddress = 0X20C4,
+
+        /// <summary>
+        /// 获取设备的网关地址
+        /// </summary>
+        StateGatewayAddress = 0x20C5,
+
+        /// <summary>
+        /// 获取设备的子网掩码
+        /// </summary>
+        StateSubnetMas = 0X20C6,
+
+        /// <summary>
+        /// 获取设备的DNS地址
+        /// </summary>
+        StateDnsAddress = 0X20C7,
+
+        /// <summary>
+        /// 获取设备的MAC地址
+        /// </summary>
+        StateMacAddress = 0X20C8,
+        #endregion
+
+        #region 主动请求
+        /// <summary>
+        /// 登录到服务器
+        /// </summary>
+        RequestLoginServer = 0X3000,
+
+        /// <summary>
+        /// 发送心跳包到服务器
+        /// </summary>
+        RequestSendheartbeat = 0X3001,
+        #endregion
+
+        #region 事件上报
+
+        #endregion
+
+        #region 其他功能
+        /// <summary>
+        /// 数据点功能
+        /// </summary>
+        DataPointFunction = 0XE000
         #endregion
     }
 
     /// <summary>
     /// 参数类型枚举
     /// </summary>
-    public enum ParameterType : byte
+    public enum ParameterType : ushort
     {
         /// <summary>
         /// 无参数
         /// </summary>
-        None = 0X00,
+        None = 0X0000,
 
         /// <summary>
         /// 回路数量
         /// </summary>
-        CircuitCount = 0X01,
+        CircuitCount = 0X0001,
 
         /// <summary>
         /// 回路编号
         /// </summary>
-        CircuitNo = 0X02,
+        CircuitNo = 0X0002,
 
         /// <summary>
         /// 分区编号
         /// </summary>
-        PartitionNo = 0X03,
+        PartitionNo = 0X0003,
 
         /// <summary>
-        /// 设备功能
+        /// 设备或回路功能
         /// </summary>
-        DeviceFunction = 0X04,
+        DeviceFunction = 0X0004,
 
         /// <summary>
-        /// 设备名称
+        /// 设备或回路名称
         /// </summary>
-        DeviceName = 0X05,
+        DeviceName = 0X0005,
 
         /// <summary>
-        /// 描述信息
+        /// 描述或回路信息
         /// </summary>
-        DeviceDescription = 0X06,
+        DeviceDescription = 0X0006,
+
+        /// <summary>
+        /// 时区
+        /// </summary>
+        Timezone = 0X0007,
 
         /// <summary>
         /// 日期时间
         /// </summary>
-        DateTime = 0X07,
+        DateTime = 0X0008,
 
         /// <summary>
-        /// SSID
+        /// 日期时间
+        ///     <para>表示格林威治标准时间（GMT）1970年1月1日0时0分0秒到当前时间所间隔的秒数。</para>
         /// </summary>
-        Ssid = 0X08,
+        DateTime2 = 0X0009,
 
         /// <summary>
-        /// WiFi密码
+        /// 间隔时间，单位秒
         /// </summary>
-        WifiPassword = 0X09,
-
-        /// <summary>
-        /// 开关
-        /// </summary>
-        Switch = 0X10,
-
-        /// <summary>
-        /// 亮度
-        /// </summary>
-        Brightness = 0X11,
-
-        /// <summary>
-        /// 色温
-        /// </summary>
-        ColorTemperature = 0X12,
-
-        /// <summary>
-        /// 红绿蓝白（RGBW）
-        /// </summary>
-        Rgbw = 0X13,
-
-        /// <summary>
-        /// 时间间隔
-        /// </summary>
-        TimeInterval = 0XE0,
+        TntervalTime = 0X000A,
 
         /// <summary>
         /// 次数
         ///     <para>一个字节的标量数值。</para>
         /// </summary>
-        Count = 0XE1,
+        Count = 0X000B,
+
+        /// <summary>
+        /// 串口波特率
+        /// </summary>
+        SerialBaud = 0X00B0,
+
+        /// <summary>
+        /// 串口数据位
+        /// </summary>
+        SerialDataBit = 0X00B1,
+
+        /// <summary>
+        /// 串口停止位
+        /// </summary>
+        SerialStopBit = 0X00B2,
+
+        /// <summary>
+        /// 串口校验位
+        /// </summary>
+        SerialCheckBit = 0X00B3,
+
+        /// <summary>
+        /// WiFi模块的运行模式
+        /// </summary>
+        WifiRunMode = 0X00C0,
+
+        /// <summary>
+        /// WiFi无线网络名称SSID
+        /// </summary>
+        SsidName = 0X00C1,
+
+        /// <summary>
+        /// 模块的WiFi密码
+        /// </summary>
+        WifiPassword = 0X00C2,
+
+        /// <summary>
+        /// WiFi加密方式
+        /// </summary>
+        SecurityMode = 0X00C3,
+
+        /// <summary>
+        /// WiFi信号强度
+        /// </summary>
+        SignalPower = 0X00C4,
+
+        /// <summary>
+        /// 模块的IP地址
+        /// </summary>
+        IpAddress = 0X00C5,
+
+        /// <summary>
+        /// 模块的网关地址
+        /// </summary>
+        GatewayAddress = 0X00C6,
+
+        /// <summary>
+        /// 模块的子网掩码
+        /// </summary>
+        SubnetMask = 0X00C7,
+
+        /// <summary>
+        /// 模块的DNS地址
+        /// </summary>
+        DnsAddress = 0X00C8,
+
+        /// <summary>
+        /// 模块的DHCP功能
+        /// </summary>
+        DhcpFunction = 0X00C9,
+
+        /// <summary>
+        /// 模块的MAC地址
+        /// </summary>
+        MacAddress = 0X00CA,
+
+        /// <summary>
+        /// 模块使用的网络协议
+        /// </summary>
+        NetworkProtocol = 0X00CB,
+
+        /// <summary>
+        /// TCP连接使用的端口
+        /// </summary>
+        TcpPort = 0X00CC,
+
+        /// <summary>
+        /// UDP连接使用的端口
+        /// </summary>
+        UdpPort = 0X00CD,
+
+        /// <summary>
+        /// HTTP服务器使用的端口
+        /// </summary>
+        HttpPort = 0X00CE,
+
+        /// <summary>
+        /// 访问服务器的IP地址
+        /// </summary>
+        ServerIpAddress = 0X00D0,
+
+        /// <summary>
+        /// 访问服务器的域名
+        /// </summary>
+        ServerDomainName = 0X00D1,
+
+        /// <summary>
+        /// 访问服务器的端口
+        /// </summary>
+        ServerPort = 0X00D2,
+
+        /// <summary>
+        /// 访问服务器的用户名
+        /// </summary>
+        ServerUserName = 0X00D3,
+
+        /// <summary>
+        /// 访问服务器的密码
+        /// </summary>
+        ServerPassword = 0X00D4,
+
+        /// <summary>
+        /// 打开或关闭
+        /// </summary>
+        Switch = 0X1000,
+
+        /// <summary>
+        /// 亮度
+        /// </summary>
+        Brightness = 0X1001,
+
+        /// <summary>
+        /// 色温
+        /// </summary>
+        ColorTemperature = 0X1002,
+
+        /// <summary>
+        /// 红绿蓝白（RGBW）
+        /// </summary>
+        Rgbw = 0X1003,
+
+        /// <summary>
+        /// 布尔类型参数
+        /// </summary>
+        BooleanTypeParameter = 0XE000,
+
+        /// <summary>
+        /// 枚举类型参数
+        /// </summary>
+        EnumerationTypeParameter = 0XE001,
+
+        /// <summary>
+        /// 数字类型参数
+        /// </summary>
+        NumericalTypeParameter = 0XE002,
+
+        /// <summary>
+        /// 扩展类型参数
+        /// </summary>
+        ExtensionTypeParameter = 0XE003,
 
         /// <summary>
         /// 响应码
         /// </summary>
-        ResponseCode = 0XFF
+        ResponseCode = 0XFFFF
     }
 
     /// <summary>
