@@ -24,11 +24,11 @@ namespace ThisCoder.AirHome
         public ConfigAction(UInt64 devId = 0X0000000000000000, Byte circuitNo = 0X00) : base(devId, circuitNo) { }
 
         /// <summary>
-        /// 设备或回路分区的命令
+        /// 设置设备或回路分区的命令
         /// </summary>
         /// <param name="partitionNo">分区编号</param>
         /// <returns></returns>
-        public Byte[] Partition(UInt32 partitionNo)
+        public Byte[] ConfigPartitionCommand(UInt32 partitionNo)
         {
             return GetDatagram(MessageId.ConfigPartition,
                 new List<Parameter>{
@@ -44,11 +44,11 @@ namespace ThisCoder.AirHome
         }
 
         /// <summary>
-        /// 设置设备名称
+        /// 设置设备或回路名称的命令
         /// </summary>
         /// <param name="name">设备名称</param>
         /// <returns></returns>
-        public Byte[] DeviceName(string name)
+        public Byte[] ConfigDeviceNameCommand(string name)
         {
             return GetDatagram(MessageId.ConfigName,
                 new List<Parameter>{
@@ -58,11 +58,11 @@ namespace ThisCoder.AirHome
         }
 
         /// <summary>
-        /// 设置设备描述
+        /// 设置设备或回路描述的命令
         /// </summary>
         /// <param name="description">设备描述</param>
         /// <returns></returns>
-        public Byte[] Description(string description)
+        public Byte[] ConfigDescriptionCommand(string description)
         {
             return GetDatagram(MessageId.ConfigDescription,
                 new List<Parameter>{
@@ -72,51 +72,53 @@ namespace ThisCoder.AirHome
         }
 
         /// <summary>
-        /// 设置定时任务时间
+        /// 同步时间到设备中的命令
         /// </summary>
         /// <param name="dateTime">日期时间对象</param>
         /// <returns></returns>
-        public Byte[] TimedTask(DateTime dateTime)
-        {
-            return GetDateTimeArray(MessageId.ConfigTimedTask, dateTime);
-        }
-
-        /// <summary>
-        /// 同步时间到设备中
-        /// </summary>
-        /// <param name="dateTime">日期时间对象</param>
-        /// <returns></returns>
-        public Byte[] SyncTime(DateTime dateTime)
-        {
-            return GetDateTimeArray(MessageId.ConfigSyncTime, dateTime);
-        }
-
-        /// <summary>
-        /// 恢复出厂设备
-        ///     <para>该功能会清除所有数据，请慎用</para>
-        /// </summary>
-        /// <returns></returns>
-        public Byte[] Reset()
-        {
-            return GetDatagram(MessageId.ConfigReset, new Parameter(ParameterType.None, 0X00));
-        }
-
-        /// <summary>
-        /// 获取与时间相关的配置动作行为的字节数组
-        /// </summary>
-        /// <param name="messageId">消息ID的枚举值</param>
-        /// <param name="dateTime">日期时间对象</param>
-        /// <returns></returns>
-        private Byte[] GetDateTimeArray(MessageId messageId, DateTime dateTime)
+        public Byte[] ConfigSyncTimeCommand(DateTime dateTime)
         {
             UInt32 second = (UInt32)dateTime.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
             string hexString = second.ToString("X2").PadLeft(4, '0');
 
-            return GetDatagram(messageId,
+            return GetDatagram(MessageId.ConfigSyncTime,
                 new List<Parameter>{
                     new Parameter(ParameterType.CircuitNo, CircuitNo),
-                    new Parameter(ParameterType.DateTime, GetByteArray(hexString))
+                    new Parameter(ParameterType.DateTime2, GetByteArray(hexString))
                 });
+        }
+
+        /// <summary>
+        /// 设置设备或回路定时任务时间或时段的命令
+        /// </summary>
+        /// <param name="dateTimes">日期时间对象</param>
+        /// <returns></returns>
+        public Byte[] ConfigTimedTaskCommand(params DateTime[] dateTimes)
+        {
+            UInt32 second;
+            string hexString = string.Empty;
+            List<Parameter> pmtList = new List<Parameter>{
+                new Parameter(ParameterType.CircuitNo, CircuitNo)
+            };
+
+            foreach (var dateTime in dateTimes)
+            {
+                second = (UInt32)dateTime.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+                hexString = second.ToString("X2").PadLeft(4, '0');
+                pmtList.Add(new Parameter(ParameterType.DateTime2, GetByteArray(hexString)));
+            }
+
+            return GetDatagram(MessageId.ConfigTimedTask, pmtList);
+        }
+
+        /// <summary>
+        /// 设备恢复出厂设置的命令
+        ///     <para>该功能会清除所有数据，请慎用</para>
+        /// </summary>
+        /// <returns></returns>
+        public Byte[] ConfigResetCommand()
+        {
+            return GetDatagram(MessageId.ConfigReset, new Parameter(ParameterType.None, 0X00));
         }
     }
 }
