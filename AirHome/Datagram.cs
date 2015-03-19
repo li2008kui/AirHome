@@ -259,8 +259,8 @@ namespace ThisCoder.AirHome
                 Parameter parameter = new Parameter(); ;
                 List<Byte> byteList = new List<Byte>();
 
-                parameter.Length = byteArray[index];
-                parameter.Type = (ParameterType)byteArray[index + 2];
+                parameter.Type = (ParameterType)((byteArray[index] << 8) + byteArray[index + 1]);
+                parameter.Length = byteArray[index + 2];
 
                 for (int j = index + 3; j < index + parameter.Length + 3; j++)
                 {
@@ -654,16 +654,16 @@ namespace ThisCoder.AirHome
     public struct Parameter
     {
         /// <summary>
+        /// 参数类型
+        ///     <para>UInt16类型，长度为2个字节</para>
+        /// </summary>
+        public ParameterType Type { get; set; }
+
+        /// <summary>
         /// 参数值长度
         ///     <para>Byte类型，长度为1个字节</para>
         /// </summary>
         public Byte Length { get; set; }
-
-        /// <summary>
-        /// 参数类型
-        ///     <para>Byte类型，长度为1个字节</para>
-        /// </summary>
-        public ParameterType Type { get; set; }
 
         /// <summary>
         /// 参数值字节列表
@@ -676,14 +676,14 @@ namespace ThisCoder.AirHome
         /// </summary>
         /// <param name="type">
         /// 参数类型
-        ///     <para>Byte类型，长度为1个字节</para>
+        ///     <para>UInt16类型，长度为2个字节</para>
         /// </param>
         /// <param name="byteValue">Byte类型的参数值</param>
         public Parameter(ParameterType type, Byte byteValue)
             : this()
         {
-            Length = 0X01;
             Type = type;
+            Length = 0X01;
             Value = new List<byte> { byteValue };
         }
 
@@ -692,14 +692,14 @@ namespace ThisCoder.AirHome
         /// </summary>
         /// <param name="type">
         /// 参数类型
-        ///     <para>Byte类型，长度为1个字节</para>
+        ///     <para>UInt16类型，长度为2个字节</para>
         /// </param>
         /// <param name="byteArrayValue">字节数组类型的参数值</param>
         public Parameter(ParameterType type, Byte[] byteArrayValue)
             : this()
         {
-            Length = (Byte)byteArrayValue.Length;
             Type = type;
+            Length = (Byte)byteArrayValue.Length;
             Value = new List<byte>(byteArrayValue);
         }
 
@@ -708,7 +708,7 @@ namespace ThisCoder.AirHome
         /// </summary>
         /// <param name="type">
         /// 参数类型
-        ///     <para>Byte类型，长度为1个字节</para>
+        ///     <para>UInt16类型，长度为2个字节</para>
         /// </param>
         /// <param name="stringValue">字符串类型的参数值</param>
         public Parameter(ParameterType type, string stringValue)
@@ -716,8 +716,8 @@ namespace ThisCoder.AirHome
         {
             List<Byte> byteValueList = new List<byte>(Encoding.UTF8.GetBytes(stringValue));
 
-            Length = (Byte)byteValueList.Count;
             Type = type;
+            Length = (Byte)byteValueList.Count;
             Value = byteValueList;
         }
 
@@ -726,7 +726,7 @@ namespace ThisCoder.AirHome
         /// </summary>
         /// <param name="type">
         /// 参数类型
-        ///     <para>Byte类型，长度为1个字节</para>
+        ///     <para>UInt16类型，长度为2个字节</para>
         /// </param>
         /// <param name="byteValueList">
         /// 参数值字节列表
@@ -735,8 +735,8 @@ namespace ThisCoder.AirHome
         public Parameter(ParameterType type, List<Byte> byteValueList)
             : this()
         {
-            Length = (Byte)byteValueList.Count;
             Type = type;
+            Length = (Byte)byteValueList.Count;
             Value = byteValueList;
         }
 
@@ -746,7 +746,11 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] GetParameter()
         {
-            List<Byte> pmt = new List<byte> { this.Length, (Byte)((UInt16)(this.Type) >> 8), (Byte)(this.Type) };
+            List<Byte> pmt = new List<byte> {
+                (Byte)((UInt16)(this.Type) >> 8),
+                (Byte)(this.Type),
+                this.Length
+            };
 
             if (this.Value != null && this.Value.Count > 0)
             {
