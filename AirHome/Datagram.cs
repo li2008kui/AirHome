@@ -111,14 +111,13 @@ namespace ThisCoder.AirHome
 
             foreach (var byteArray in newByteArrayList)
             {
-                mh.Length = (UInt16)((byteArray[0] << 8) + byteArray[1]);
-
-                if (!Enum.IsDefined(typeof(MessageType), byteArray[2]))
+                if (!Enum.IsDefined(typeof(MessageType), byteArray[0]))
                 {
                     throw new AirException("不支持该类型的命令。", ResponseCode.NonsupportType);
                 }
 
-                mh.Type = (MessageType)byteArray[2];
+                mh.Type = (MessageType)byteArray[0];
+                mh.Length = (UInt16)((byteArray[1] << 8) + byteArray[2]);
                 mh.SeqNumber = (UInt32)((byteArray[3] << 24) + (byteArray[4] << 16) + (byteArray[5] << 8) + byteArray[6]);
                 mh.Reserved = (UInt32)((byteArray[7] << 16) + (byteArray[8] << 8) + byteArray[9]);
                 mh.Crc = (UInt16)((byteArray[10] << 8) + byteArray[11]);
@@ -349,16 +348,16 @@ namespace ThisCoder.AirHome
     public struct MessageHead
     {
         /// <summary>
-        /// 消息体长度
-        ///     <para>UInt16类型，长度为2个字节</para>
-        /// </summary>
-        public UInt16 Length { get; set; }
-
-        /// <summary>
         /// 消息类型
         ///     <para>Byte类型，长度为1个字节</para>
         /// </summary>
         public MessageType Type { get; set; }
+
+        /// <summary>
+        /// 消息体长度
+        ///     <para>UInt16类型，长度为2个字节</para>
+        /// </summary>
+        public UInt16 Length { get; set; }
 
         /// <summary>
         /// 消息序号
@@ -410,8 +409,8 @@ namespace ThisCoder.AirHome
         public MessageHead(UInt16 length, UInt32 seqNumber, UInt16 crc)
             : this()
         {
-            Length = length;
             Type = MessageType.ServerToDevice;
+            Length = length;
             SeqNumber = seqNumber;
             Crc = crc;
         }
@@ -419,13 +418,13 @@ namespace ThisCoder.AirHome
         /// <summary>
         /// 通过“消息体长度”、“消息类型”、“消息序号”和“消息体CRC校验”初始化消息头对象实例
         /// </summary>
-        /// <param name="length">
-        /// 消息体长度
-        ///     <para>UInt16类型，长度为2个字节</para>
-        /// </param>
         /// <param name="type">
         /// 消息类型
         ///     <para>Byte类型，长度为1个字节</para>
+        /// </param>
+        /// <param name="length">
+        /// 消息体长度
+        ///     <para>UInt16类型，长度为2个字节</para>
         /// </param>
         /// <param name="seqNumber">
         /// 消息序号
@@ -435,11 +434,11 @@ namespace ThisCoder.AirHome
         /// 消息体CRC校验
         ///     <para>UInt16类型，长度为2个字节</para>
         /// </param>
-        public MessageHead(UInt16 length, MessageType type, UInt32 seqNumber, UInt16 crc)
+        public MessageHead(MessageType type, UInt16 length, UInt32 seqNumber, UInt16 crc)
             : this()
         {
-            Length = length;
             Type = type;
+            Length = length;
             SeqNumber = seqNumber;
             Crc = crc;
         }
@@ -451,10 +450,9 @@ namespace ThisCoder.AirHome
         public Byte[] GetHead()
         {
             List<Byte> mh = new List<byte>();
+            mh.Add((Byte)(this.Type));
             mh.Add((Byte)(this.Length >> 8));
             mh.Add((Byte)(this.Length));
-
-            mh.Add((Byte)(this.Type));
 
             for (int i = 24; i >= 0; i -= 8)
             {

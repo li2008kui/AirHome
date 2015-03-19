@@ -67,8 +67,8 @@ namespace ThisCoder.AirHome
 
             // 获取消息头对象
             MessageHead mh = new MessageHead(
-                (UInt16)(msgBody.Length),
                 MessageType.ServerToDevice,
+                (UInt16)(msgBody.Length),
                 Counter.Instance.SeqNumber++,
                 Crc.GetCrc(msgBody));
 
