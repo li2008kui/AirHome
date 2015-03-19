@@ -103,13 +103,14 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         protected Byte[] GetByteArray(string hexString, string separator = "")
         {
+            hexString = separator.Length > 0 ? hexString.Replace(separator, "").Trim() : hexString.Trim();
             List<Byte> byteList = new List<Byte>();
 
             if (!string.IsNullOrEmpty(hexString))
             {
-                if (Regex.IsMatch(hexString.Replace(separator, "").Trim(), "^[0-9A-Fa-F]+$"))
+                if (Regex.IsMatch(hexString, "^[0-9A-Fa-f]+$"))
                 {
-                    if (hexString.IndexOf(separator) >= 0)
+                    if (hexString.IndexOf(separator) > 0)
                     {
                         foreach (var item in hexString.Split(new string[] { separator }, StringSplitOptions.RemoveEmptyEntries))
                         {
