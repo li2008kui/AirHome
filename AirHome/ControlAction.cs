@@ -25,6 +25,15 @@ namespace ThisCoder.AirHome
         public ControlAction(UInt64 devId = 0X0000000000000000, Byte circuitNo = 0X00) : base(devId, circuitNo) { }
 
         /// <summary>
+        /// 定位设备
+        /// </summary>
+        /// <returns></returns>
+        public Byte[] Locate()
+        {
+            return GetDatagram(MessageId.ControlLocateDevice, new Parameter(ParameterType.CircuitNo, CircuitNo));
+        }
+
+        /// <summary>
         /// 对设备进行开关操作
         ///     <para>如继电器开关或将设备亮度调到0%</para>
         /// </summary>

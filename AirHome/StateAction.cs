@@ -23,6 +23,16 @@ namespace ThisCoder.AirHome
         public StateAction(UInt64 devId = 0X0000000000000000, Byte circuitNo = 0X00) : base(devId, circuitNo) { }
 
         /// <summary>
+        /// 搜索设备及回路信息的命令
+        ///     <para>广播UID地址：0X0000000000000000</para>
+        /// </summary>
+        /// <returns></returns>
+        public Byte[] Search()
+        {
+            return GetDatagram(MessageId.StateSearchDevice, new Parameter(ParameterType.None, 0X00));
+        }
+
+        /// <summary>
         /// 获取开关状态
         /// </summary>
         /// <returns></returns>

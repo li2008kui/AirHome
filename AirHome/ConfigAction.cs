@@ -24,26 +24,7 @@ namespace ThisCoder.AirHome
         public ConfigAction(UInt64 devId = 0X0000000000000000, Byte circuitNo = 0X00) : base(devId, circuitNo) { }
 
         /// <summary>
-        /// 搜索设备
-        ///     <para>广播UID地址：0X0000000000000000</para>
-        /// </summary>
-        /// <returns></returns>
-        public Byte[] Search()
-        {
-            return GetDatagram(MessageId.StateSearchDevice, new Parameter(ParameterType.None, 0X00));
-        }
-
-        /// <summary>
-        /// 定位设备
-        /// </summary>
-        /// <returns></returns>
-        public Byte[] Locate()
-        {
-            return GetDatagram(MessageId.ControlLocateDevice, new Parameter(ParameterType.CircuitNo, CircuitNo));
-        }
-
-        /// <summary>
-        /// 设备分区
+        /// 设备或回路分区的命令
         /// </summary>
         /// <param name="partitionNo">分区编号</param>
         /// <returns></returns>
