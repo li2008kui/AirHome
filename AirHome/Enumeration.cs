@@ -399,12 +399,12 @@
         /// <summary>
         /// 通道编号
         /// </summary>
-        CircuitNo = 0X0002,
+        ChannelNo = 0X0002,
 
         /// <summary>
         /// 分区代码
         /// </summary>
-        PartitionNo = 0X0003,
+        PartitionCode = 0X0003,
 
         /// <summary>
         /// 分区名称

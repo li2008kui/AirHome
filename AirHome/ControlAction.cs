@@ -18,11 +18,11 @@ namespace ThisCoder.AirHome
         /// 设备ID
         ///     <para>UInt64类型，长度为8个字节</para>
         /// </param>
-        /// <param name="circuitNo">
-        /// 通道（通道）编号
+        /// <param name="channelNo">
+        /// 通道编号
         ///     <para>取值范围：0X01~0XFF；若为0X00，则表示所有通道，默认值为0X00</para>
         /// </param>
-        public ControlAction(UInt64 devId = 0X0000000000000000, Byte circuitNo = 0X00) : base(devId, circuitNo) { }
+        public ControlAction(UInt64 devId = 0X0000000000000000, Byte channelNo = 0X00) : base(devId, channelNo) { }
 
         /// <summary>
         /// 定位设备
@@ -30,7 +30,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] Locate()
         {
-            return GetDatagram(MessageId.ControlModuleOrChannelLocate, new Parameter(ParameterType.CircuitNo, CircuitNo));
+            return GetDatagram(MessageId.ControlModuleOrChannelLocate, new Parameter(ParameterType.ChannelNo, ChannelNo));
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace ThisCoder.AirHome
 
             return GetDatagram(MessageId.ControlModuleOrChannelSwitch,
                 new List<Parameter>{
-                    new Parameter(ParameterType.CircuitNo, CircuitNo),
+                    new Parameter(ParameterType.ChannelNo, ChannelNo),
                     new Parameter(ParameterType.Switch, status)
             });
         }
@@ -70,7 +70,7 @@ namespace ThisCoder.AirHome
 
             return GetDatagram(MessageId.ControlModuleOrChannelBrightness,
                 new List<Parameter>{
-                    new Parameter(ParameterType.CircuitNo, CircuitNo),
+                    new Parameter(ParameterType.ChannelNo, ChannelNo),
                     new Parameter(ParameterType.Brightness, level)
             });
         }
@@ -89,7 +89,7 @@ namespace ThisCoder.AirHome
         {
             return GetDatagram(MessageId.ControlModuleOrChannelColorTemperature,
                 new List<Parameter>{
-                    new Parameter(ParameterType.CircuitNo, CircuitNo),
+                    new Parameter(ParameterType.ChannelNo, ChannelNo),
                     new Parameter(ParameterType.ColorTemperature, cool)
                 });
         }
@@ -115,7 +115,7 @@ namespace ThisCoder.AirHome
 
             return GetDatagram(MessageId.ControlModuleOrChannelAdjustRgbw,
                 new List<Parameter>{
-                    new Parameter(ParameterType.CircuitNo, CircuitNo),
+                    new Parameter(ParameterType.ChannelNo, ChannelNo),
                     new Parameter(ParameterType.Rgbw, byteList)
                 });
         }
@@ -146,7 +146,7 @@ namespace ThisCoder.AirHome
         {
             return GetDatagram(MessageId.ControlModuleOrChannelAdjustRgbw,
                 new List<Parameter>{
-                    new Parameter(ParameterType.CircuitNo, CircuitNo),
+                    new Parameter(ParameterType.ChannelNo, ChannelNo),
                     new Parameter(ParameterType.Rgbw,
                         new List<Byte>{
                             red,
@@ -167,7 +167,7 @@ namespace ThisCoder.AirHome
         {
             return GetDatagram(MessageId.ControlModuleOrChannelAdjustRgbw,
                 new List<Parameter>{
-                    new Parameter(ParameterType.CircuitNo, CircuitNo),
+                    new Parameter(ParameterType.ChannelNo, ChannelNo),
                     new Parameter(ParameterType.Rgbw,
                         new List<Byte>{
                             color.R,
@@ -196,7 +196,7 @@ namespace ThisCoder.AirHome
                     color = bitmap.GetPixel(x, y);
                     byteArrayList.Add(GetDatagram(MessageId.ControlModuleOrChannelAdjustRgbw,
                         new List<Parameter>{
-                            new Parameter(ParameterType.CircuitNo, CircuitNo),
+                            new Parameter(ParameterType.ChannelNo, ChannelNo),
                             new Parameter(ParameterType.Rgbw,
                                 new List<Byte>{
                                     color.R,

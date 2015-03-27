@@ -19,11 +19,11 @@ namespace ThisCoder.AirHome
         /// 设备ID
         ///     <para>UInt64类型，长度为8个字节</para>
         /// </param>
-        /// <param name="circuitNo">
-        /// 通道（通道）编号
+        /// <param name="ChannelNo">
+        /// 通道编号
         ///     <para>取值范围：0X01~0XFF；若为0X00，则表示所有通道，默认值为0X00</para>
         /// </param>
-        public OperateAction(UInt64 devId = 0X0000000000000000, Byte circuitNo = 0X00) : base(devId, circuitNo) { }
+        public OperateAction(UInt64 devId = 0X0000000000000000, Byte ChannelNo = 0X00) : base(devId, ChannelNo) { }
 
         /// <summary>
         /// 通过“消息ID”、“参数类型”和“参数值字节列表”执行操作

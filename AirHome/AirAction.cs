@@ -8,7 +8,7 @@ namespace ThisCoder.AirHome
     /// 动作行为抽象基类
     ///     <para>只能通过以下子类创建实例对象：</para>
     ///     <para>OperateAction：操作行为类</para>
-    ///     <para>ConfigAction：配置动作行为类</para>
+    ///     <para>SettingAction：设置动作行为类</para>
     ///     <para>ControlAction：控制动作行为类</para>
     ///     <para>StateAction：数据采集行为类</para>
     /// </summary>
@@ -21,10 +21,10 @@ namespace ThisCoder.AirHome
         public UInt64 DevId { get; set; }
 
         /// <summary>
-        /// 通道（通道）编号
+        /// 通道编号
         ///     <para>取值范围：0X01~0XFF；若为0X00，则表示所有通道</para>
         /// </summary>
-        public Byte CircuitNo { get; set; }
+        public Byte ChannelNo { get; set; }
 
         /// <summary>
         /// 通过设备ID和通道编号初始化动作行为类。
@@ -35,14 +35,14 @@ namespace ThisCoder.AirHome
         /// 设备ID
         ///     <para>UInt64类型，长度为8个字节</para>
         /// </param>
-        /// <param name="circuitNo">
-        /// 通道（通道）编号
+        /// <param name="channelNo">
+        /// 通道编号
         ///     <para>取值范围：0X01~0XFF；若为0X00，则表示所有通道，默认值为0X00</para>
         /// </param>
-        protected AirAction(UInt64 devId = 0X0000000000000000, Byte circuitNo = 0X00)
+        protected AirAction(UInt64 devId = 0X0000000000000000, Byte channelNo = 0X00)
         {
             DevId = devId;
-            CircuitNo = circuitNo;
+            ChannelNo = channelNo;
         }
 
         /// <summary>

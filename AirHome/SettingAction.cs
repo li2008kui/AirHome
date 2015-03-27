@@ -17,28 +17,28 @@ namespace ThisCoder.AirHome
         /// 设备ID
         ///     <para>UInt64类型，长度为8个字节</para>
         /// </param>
-        /// <param name="circuitNo">
-        /// 通道（通道）编号
+        /// <param name="ChannelNo">
+        /// 通道编号
         ///     <para>取值范围：0X01~0XFF；若为0X00，则表示所有通道，默认值为0X00</para>
         /// </param>
-        public ConfigAction(UInt64 devId = 0X0000000000000000, Byte circuitNo = 0X00) : base(devId, circuitNo) { }
+        public ConfigAction(UInt64 devId = 0X0000000000000000, Byte ChannelNo = 0X00) : base(devId, ChannelNo) { }
 
         /// <summary>
         /// 设置设备或通道分区的命令
         /// </summary>
-        /// <param name="partitionNo">分区编号</param>
+        /// <param name="partitionCode">分区编号</param>
         /// <returns></returns>
-        public Byte[] ConfigPartitionCommand(UInt32 partitionNo)
+        public Byte[] ConfigPartitionCommand(UInt32 partitionCode)
         {
             return GetDatagram(MessageId.SettingModuleOrChannelPartitionCode,
                 new List<Parameter>{
-                    new Parameter(ParameterType.CircuitNo, CircuitNo),
-                    new Parameter(ParameterType.PartitionNo,
+                    new Parameter(ParameterType.ChannelNo, ChannelNo),
+                    new Parameter(ParameterType.PartitionCode,
                         new List<byte>{
                             0X00,
-                            (Byte)(partitionNo >> 16),
-                            (Byte)(partitionNo >> 8),
-                            (Byte)partitionNo
+                            (Byte)(partitionCode >> 16),
+                            (Byte)(partitionCode >> 8),
+                            (Byte)partitionCode
                         })
                 });
         }
@@ -52,7 +52,7 @@ namespace ThisCoder.AirHome
         {
             return GetDatagram(MessageId.SettingModuleOrChannelName,
                 new List<Parameter>{
-                    new Parameter(ParameterType.CircuitNo, CircuitNo),
+                    new Parameter(ParameterType.ChannelNo, ChannelNo),
                     new Parameter(ParameterType.ModuleOrChannelName, name)
                 });
         }
@@ -66,7 +66,7 @@ namespace ThisCoder.AirHome
         {
             return GetDatagram(MessageId.SettingModuleOrChannelDescription,
                 new List<Parameter>{
-                    new Parameter(ParameterType.CircuitNo, CircuitNo),
+                    new Parameter(ParameterType.ChannelNo, ChannelNo),
                     new Parameter(ParameterType.ModuleOrChannelDescription, description)
                 });
         }
@@ -83,7 +83,7 @@ namespace ThisCoder.AirHome
 
             return GetDatagram(MessageId.SettingSyncTimeToModule,
                 new List<Parameter>{
-                    new Parameter(ParameterType.CircuitNo, CircuitNo),
+                    new Parameter(ParameterType.ChannelNo, ChannelNo),
                     new Parameter(ParameterType.DateTime2, GetByteArray(hexString))
                 });
         }
@@ -98,7 +98,7 @@ namespace ThisCoder.AirHome
             UInt32 second;
             string hexString = string.Empty;
             List<Parameter> pmtList = new List<Parameter>{
-                new Parameter(ParameterType.CircuitNo, CircuitNo)
+                new Parameter(ParameterType.ChannelNo, ChannelNo)
             };
 
             foreach (var dateTime in dateTimes)
