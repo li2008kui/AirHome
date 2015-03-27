@@ -11,17 +11,17 @@ namespace ThisCoder.AirHome
     public class OperateAction : AirAction
     {
         /// <summary>
-        /// 通过设备ID和回路编号初始化操作行为类（包括设置、控制和数据采集）。
+        /// 通过设备ID和通道编号初始化操作行为类（包括设置、控制和数据采集）。
         ///     <para>设备ID默认值为0X0000000000000000。</para>
-        ///     <para>回路编号默认值为0X00。</para>
+        ///     <para>通道编号默认值为0X00。</para>
         /// </summary>
         /// <param name="devId">
         /// 设备ID
         ///     <para>UInt64类型，长度为8个字节</para>
         /// </param>
         /// <param name="circuitNo">
-        /// 回路（通道）编号
-        ///     <para>取值范围：0X01~0XFF；若为0X00，则表示所有回路，默认值为0X00</para>
+        /// 通道（通道）编号
+        ///     <para>取值范围：0X01~0XFF；若为0X00，则表示所有通道，默认值为0X00</para>
         /// </param>
         public OperateAction(UInt64 devId = 0X0000000000000000, Byte circuitNo = 0X00) : base(devId, circuitNo) { }
 

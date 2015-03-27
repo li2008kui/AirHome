@@ -8,28 +8,28 @@ namespace ThisCoder.AirHome
     public class StateAction : AirAction
     {
         /// <summary>
-        /// 通过设备ID和回路编号初始化数据采集行为类。
+        /// 通过设备ID和通道编号初始化数据采集行为类。
         ///     <para>设备ID默认值为0X0000000000000000。</para>
-        ///     <para>回路编号默认值为0X00。</para>
+        ///     <para>通道编号默认值为0X00。</para>
         /// </summary>
         /// <param name="devId">
         /// 设备ID
         ///     <para>UInt64类型，长度为8个字节</para>
         /// </param>
         /// <param name="circuitNo">
-        /// 回路（通道）编号
-        ///     <para>取值范围：0X01~0XFF；若为0X00，则表示所有回路，默认值为0X00</para>
+        /// 通道（通道）编号
+        ///     <para>取值范围：0X01~0XFF；若为0X00，则表示所有通道，默认值为0X00</para>
         /// </param>
         public StateAction(UInt64 devId = 0X0000000000000000, Byte circuitNo = 0X00) : base(devId, circuitNo) { }
 
         /// <summary>
-        /// 搜索设备及回路信息的命令
+        /// 搜索设备及通道信息的命令
         ///     <para>广播UID地址：0X0000000000000000</para>
         /// </summary>
         /// <returns></returns>
         public Byte[] Search()
         {
-            return GetDatagram(MessageId.StateSearchDevice, new Parameter(ParameterType.None, 0X00));
+            return GetDatagram(MessageId.StateModuleOrChannelSearch, new Parameter(ParameterType.None, 0X00));
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] SwitchState()
         {
-            return GetDatagram(MessageId.StateSwitch, new Parameter(ParameterType.CircuitNo, CircuitNo));
+            return GetDatagram(MessageId.StateModuleOrChannelSwitch, new Parameter(ParameterType.CircuitNo, CircuitNo));
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] BrightnessState()
         {
-            return GetDatagram(MessageId.StateBrightness, new Parameter(ParameterType.CircuitNo, CircuitNo));
+            return GetDatagram(MessageId.StateModuleOrChannelBrightness, new Parameter(ParameterType.CircuitNo, CircuitNo));
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] ColorTemperatureState()
         {
-            return GetDatagram(MessageId.StateColorTemperature, new Parameter(ParameterType.CircuitNo, CircuitNo));
+            return GetDatagram(MessageId.StateModuleOrChannelColorTemperature, new Parameter(ParameterType.CircuitNo, CircuitNo));
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] RgbwState()
         {
-            return GetDatagram(MessageId.StateRgbw, new Parameter(ParameterType.CircuitNo, CircuitNo));
+            return GetDatagram(MessageId.StateModuleOrChannelRgbw, new Parameter(ParameterType.CircuitNo, CircuitNo));
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] PartitionState()
         {
-            return GetDatagram(MessageId.StatePartition, new Parameter(ParameterType.CircuitNo, CircuitNo));
+            return GetDatagram(MessageId.StateModuleOrChannelPartition, new Parameter(ParameterType.CircuitNo, CircuitNo));
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] DeviceName()
         {
-            return GetDatagram(MessageId.StateName, new Parameter(ParameterType.CircuitNo, CircuitNo));
+            return GetDatagram(MessageId.StateModuleOrChannelName, new Parameter(ParameterType.CircuitNo, CircuitNo));
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] DeviceDescription()
         {
-            return GetDatagram(MessageId.StateDescription, new Parameter(ParameterType.CircuitNo, CircuitNo));
+            return GetDatagram(MessageId.StateModuleOrChannelDescription, new Parameter(ParameterType.CircuitNo, CircuitNo));
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace ThisCoder.AirHome
         /// <returns></returns>
         public Byte[] MacAddress()
         {
-            return GetDatagram(MessageId.StateMacAddress, new Parameter(ParameterType.None, 0X00));
+            return GetDatagram(MessageId.StateModuleMacAddress, new Parameter(ParameterType.None, 0X00));
         }
     }
 }

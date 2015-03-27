@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AirAction.cs" />
-    <Compile Include="ConfigAction.cs" />
+    <Compile Include="SettingAction.cs" />
     <Compile Include="Counter.cs" />
     <Compile Include="ControlAction.cs" />
     <Compile Include="Crc.cs" />

@@ -38,303 +38,323 @@
         Multifunction = 0X0000,
 
         /// <summary>
-        /// 设备或回路分区
+        /// 设置模块或通道分区代码
         /// </summary>
-        ConfigPartition = 0X0001,
+        SettingModuleOrChannelPartitionCode = 0X0001,
 
         /// <summary>
-        /// 设置或回路名称
+        /// 设置模块或通道分区名称
         /// </summary>
-        ConfigName = 0X0002,
+        SettingModuleOrChannelPartitionName = 0X0002,
 
         /// <summary>
-        /// 设置或回路描述
+        /// 设置模块或通道名称
         /// </summary>
-        ConfigDescription = 0X0003,
+        SettingModuleOrChannelName = 0X0003,
 
         /// <summary>
-        /// 设置设备的时区
+        /// 设置模块或通道描述
         /// </summary>
-        ConfigTimezone = 0X0004,
+        SettingModuleOrChannelDescription = 0X0004,
 
         /// <summary>
-        /// 同步时间到设备中
+        /// 设置模块或通道图片的名称或地址
         /// </summary>
-        ConfigSyncTime = 0X0005,
+        SettingModuleOrChannelImage = 0X0005,
 
         /// <summary>
-        /// 设置设备或回路定时任务时段
+        /// 设置模块的时区
         /// </summary>
-        ConfigTimedTask = 0X0006,
+        SettingModuleTimezone = 0X0006,
+
+        /// <summary>
+        /// 同步时间到模块中
+        /// </summary>
+        SettingSyncTimeToModule = 0X0007,
+
+        /// <summary>
+        /// 设置模块或通道定时任务时段
+        /// </summary>
+        SettingModuleOrChannelTimedTask = 0X0008,
 
         /// <summary>
         /// 设置串口波特率
         /// </summary>
-        ConfigSerialBaud = 0X00B0,
+        SettingModuleSerialBaud = 0X00B0,
 
         /// <summary>
         /// 设置串口数据位
         /// </summary>
-        ConfigSerialDataBit = 0X00B1,
+        SettingModuleSerialDataBit = 0X00B1,
 
         /// <summary>
         /// 设置串口停止位
         /// </summary>
-        ConfigSerialStopBit = 0X00B2,
+        SettingSerialStopBit = 0X00B2,
 
         /// <summary>
         /// 设置串口校验位
         /// </summary>
-        ConfigSerialCheckBit = 0X00B3,
+        SettingModuleSerialParityBit = 0X00B3,
 
         /// <summary>
         /// 设置WiFi模块的运行模式
         /// </summary>
-        ConfigWifiRunMode = 0X00C0,
+        SettingModuleWifiRunMode = 0X00C0,
 
         /// <summary>
         /// 设置WiFi无线网络名称SSID
         /// </summary>
-        ConfigSsidName = 0X00C1,
+        SettingModuleSsidName = 0X00C1,
 
         /// <summary>
         /// 设置模块的WiFi密码
         /// </summary>
-        ConfigWifiPassword = 0X00C2,
+        SettingModuleWifiPassword = 0X00C2,
 
         /// <summary>
         /// 设置模块的IP地址
         /// </summary>
-        ConfigIpAddress = 0X00C3,
+        SettingModuleIpAddress = 0X00C3,
 
         /// <summary>
         /// 设置模块的网关地址
         /// </summary>
-        ConfigGatewayAddress = 0X00C4,
+        SettingModuleGatewayAddress = 0X00C4,
 
         /// <summary>
         /// 设置模块的子网掩码
         /// </summary>
-        ConfigSubnetMask = 0X00C5,
+        SettingModuleSubnetMask = 0X00C5,
 
         /// <summary>
         /// 设置模块的DNS地址
         /// </summary>
-        ConfigDnsAddress = 0X00C6,
+        SettingModuleDnsAddress = 0X00C6,
 
         /// <summary>
         /// 设置模块的DHCP功能
         /// </summary>
-        ConfigDhcpFunction = 0X00C7,
+        SettingModuleDhcpFunction = 0X00C7,
 
         /// <summary>
         /// 设置DHCP地址池起始地址
         /// </summary>
-        ConfigDhcpBeginAddress = 0X00C8,
+        SettingModuleDhcpBeginAddress = 0X00C8,
 
         /// <summary>
         /// 设置DHCP地址池结束地址
         /// </summary>
-        ConfigDhcpEndAddress = 0X00C9,
+        SettingModuleDhcpEndAddress = 0X00C9,
 
         /// <summary>
         /// 设置模块的MAC地址
         /// </summary>
-        ConfigMacAddress = 0X00CA,
+        SettingModuleMacAddress = 0X00CA,
 
         /// <summary>
         /// 设置模块使用的网络协议
         /// </summary>
-        ConfigNetworkProtocol = 0X00CB,
+        SettingModuleNetworkProtocol = 0X00CB,
 
         /// <summary>
         /// 设置TCP连接使用的端口
         /// </summary>
-        ConfigTcpPort = 0X00CC,
+        SettingModuleTcpPort = 0X00CC,
 
         /// <summary>
         /// 设置UDP连接使用的端口
         /// </summary>
-        ConfigUdpPort = 0X00CD,
+        SettingModuleUdpPort = 0X00CD,
 
         /// <summary>
         /// 设置HTTP服务器使用的端口
         /// </summary>
-        ConfigHttpPort = 0X00CE,
+        SettingModuleHttpPort = 0X00CE,
 
         /// <summary>
         /// 设置访问服务器的IP地址
         /// </summary>
-        ConfigServerIpAddress = 0X00D0,
+        SettingAccessServerIpAddress = 0X00D0,
 
         /// <summary>
         /// 设置访问服务器的域名
         /// </summary>
-        ConfigServerDomainName = 0X00D1,
+        SettingAccessServerDomainName = 0X00D1,
 
         /// <summary>
         /// 设置访问服务器的端口
         /// </summary>
-        ConfigServerPort = 0X00D2,
+        SettingAccessServerPort = 0X00D2,
 
         /// <summary>
         /// 设置访问服务器的用户名
         /// </summary>
-        ConfigServerUserName = 0X00D3,
+        SettingAccessServerUserName = 0X00D3,
 
         /// <summary>
         /// 设置访问服务器的密码
         /// </summary>
-        ConfigServerPassword = 0X00D4,
+        SettingAccessServerPassword = 0X00D4,
 
         /// <summary>
         /// 设置事件上报等待时间
         /// </summary>
-        ConfigEventReportWaitTime = 0X00E0,
+        SettingEventReportWaitTime = 0X00E0,
 
         /// <summary>
         /// 设置事件上报重发次数
         /// </summary>
-        ConfigEventReportRepeatCount = 0X00E1,
-
-        /// <summary>
-        /// 发送心跳包
-        /// </summary>
-        ConfigHeartbeatPacket = 0X00E2,
+        SettingEventReportRepeatCount = 0X00E1,
 
         /// <summary>
         /// 设置心跳包间隔时间
         /// </summary>
-        ConfigHeartbeatTntervalTime = 0X00E3,
+        SettingHeartbeatTntervalTime = 0X00E3,
 
         /// <summary>
         /// 设置心跳包等待时间
         /// </summary>
-        ConfigHeartbeatWaitTime = 0X00E4,
+        SettingHeartbeatWaitTime = 0X00E4,
 
         /// <summary>
         /// 设置心跳包重发次数
         /// </summary>
-        ConfigHeartbeatRepeatCount = 0X00E5,
+        SettingHeartbeatRepeatCount = 0X00E5,
 
         /// <summary>
         /// 恢复出厂设备
         /// </summary>
-        ConfigReset = 0X00FF,
+        SettingResetFactory = 0X00FF,
         #endregion
 
         #region 控制功能
         /// <summary>
-        /// 定位设备或回路
+        /// 定位模块或通道
         /// </summary>
-        ControlLocateDevice = 0X1000,
+        ControlModuleOrChannelLocate = 0X1000,
 
         /// <summary>
-        /// 打开或关闭设备
+        /// 打开或关闭模块或通道
         /// </summary>
-        ControlSwitch = 0X1001,
+        ControlModuleOrChannelSwitch = 0X1001,
 
         /// <summary>
-        /// 调节亮度
+        /// 调节模块或通道亮度
         /// </summary>
-        ControlBrightness = 0X1002,
+        ControlModuleOrChannelBrightness = 0X1002,
 
         /// <summary>
-        /// 调节色温
+        /// 调节模块或通道色温
         /// </summary>
-        ControlColorTemperature = 0X1003,
+        ControlModuleOrChannelColorTemperature = 0X1003,
 
         /// <summary>
-        /// 调节红绿蓝白（RGBW）
+        /// 调节模块或通道红绿蓝白（RGBW）
         /// </summary>
-        ControlAdjustRgbw = 0X1004,
+        ControlModuleOrChannelAdjustRgbw = 0X1004,
         #endregion
 
         #region 数据采集
         /// <summary>
-        /// 搜索设备及回路
+        /// 搜索模块及通道
         /// </summary>
-        StateSearchDevice = 0X2000,
+        StateModuleOrChannelSearch = 0X2000,
 
         /// <summary>
-        /// 获取设备或回路的开关状态
+        /// 发送心跳包到模块
         /// </summary>
-        StateSwitch = 0X2001,
+        StateHeartbeatPacketToModule = 0X2001,
 
         /// <summary>
-        /// 获取设备或回路的亮度等级
+        /// 获取模块或通道的开关状态
         /// </summary>
-        StateBrightness = 0X2002,
+        StateModuleOrChannelSwitch = 0X2002,
 
         /// <summary>
-        /// 获取设备或回路的色温数据
+        /// 获取模块或通道的亮度等级
         /// </summary>
-        StateColorTemperature = 0X2003,
+        StateModuleOrChannelBrightness = 0X2003,
 
         /// <summary>
-        /// 获取设备或回路的红绿蓝白（RGBW）颜色数据
+        /// 获取模块或通道的色温数据
         /// </summary>
-        StateRgbw = 0X2004,
+        StateModuleOrChannelColorTemperature = 0X2004,
 
         /// <summary>
-        /// 获取设备或回路的分区
+        /// 获取模块或通道的红绿蓝白（RGBW）颜色数据
         /// </summary>
-        StatePartition = 0X2005,
+        StateModuleOrChannelRgbw = 0X2005,
 
         /// <summary>
-        /// 获取设备或回路的名称
+        /// 获取模块或通道的分区代码
         /// </summary>
-        StateName = 0X2006,
+        StateModuleOrChannelPartitionCode = 0X2006,
 
         /// <summary>
-        /// 获取设备或回路的描述
+        /// 获取模块或通道分区名称
         /// </summary>
-        StateDescription = 0X2007,
+        StateModuleOrChannelPartitionName = 0X2007,
 
         /// <summary>
-        /// 获取通信类型
+        /// 获取模块或通道的名称
         /// </summary>
-        StateCommunicationType = 0X20C0,
+        StateModuleOrChannelName = 0X2008,
+
+        /// <summary>
+        /// 获取模块或通道的描述
+        /// </summary>
+        StateModuleOrChannelDescription = 0X2009,
+
+        /// <summary>
+        /// 获取模块或通道图片名称或地址
+        /// </summary>
+        StateModuleOrChannelImage = 0X000A,
+
+        /// <summary>
+        /// 获取模块的通信类型
+        /// </summary>
+        StateModuleCommunicationType = 0X20C0,
 
         /// <summary>
         /// 获取WiFi模块的运行模式
         /// </summary>
-        StateWifiRunMode = 0X20C1,
+        StateModuleWifiRunMode = 0X20C1,
 
         /// <summary>
-        /// 获取设备的无线网络名称SSID和信号强度
+        /// 获取模块的无线网络名称SSID和信号强度
         /// </summary>
-        StateSsidAndPower = 0X20C2,
+        StateModuleSsidAndPower = 0X20C2,
 
         /// <summary>
-        /// 获取设备附近的无线网络名称SSID和信号强度
+        /// 获取模块附近的无线网络名称SSID和信号强度
         /// </summary>
-        StateNearbySsidAndPower = 0X20C3,
+        StateModuleNearbySsidAndPower = 0X20C3,
 
         /// <summary>
-        /// 获取设备的IP地址
+        /// 获取模块的IP地址
         /// </summary>
-        StateIpAddress = 0X20C4,
+        StateModuleIpAddress = 0X20C4,
 
         /// <summary>
-        /// 获取设备的网关地址
+        /// 获取模块的网关地址
         /// </summary>
-        StateGatewayAddress = 0x20C5,
+        StateModuleGatewayAddress = 0x20C5,
 
         /// <summary>
-        /// 获取设备的子网掩码
+        /// 获取模块的子网掩码
         /// </summary>
-        StateSubnetMas = 0X20C6,
+        StateModuleSubnetMask = 0X20C6,
 
         /// <summary>
-        /// 获取设备的DNS地址
+        /// 获取模块的DNS地址
         /// </summary>
-        StateDnsAddress = 0X20C7,
+        StateModuleDnsAddress = 0X20C7,
 
         /// <summary>
-        /// 获取设备的MAC地址
+        /// 获取模块的MAC地址
         /// </summary>
-        StateMacAddress = 0X20C8,
+        StateModuleMacAddress = 0X20C8,
         #endregion
 
         #region 主动请求
@@ -346,7 +366,7 @@
         /// <summary>
         /// 发送心跳包到服务器
         /// </summary>
-        RequestSendheartbeat = 0X3001,
+        RequestHeartbeatPacketToServer = 0X3001,
         #endregion
 
         #region 事件上报
@@ -372,61 +392,71 @@
         None = 0X0000,
 
         /// <summary>
-        /// 回路数量
+        /// 通道数量
         /// </summary>
         CircuitCount = 0X0001,
 
         /// <summary>
-        /// 回路编号
+        /// 通道编号
         /// </summary>
         CircuitNo = 0X0002,
 
         /// <summary>
-        /// 分区编号
+        /// 分区代码
         /// </summary>
         PartitionNo = 0X0003,
 
         /// <summary>
-        /// 设备或回路功能
+        /// 分区名称
         /// </summary>
-        DeviceFunction = 0X0004,
+        PartitionName = 0X0004,
 
         /// <summary>
-        /// 设备或回路名称
+        /// 模块或通道功能
         /// </summary>
-        DeviceName = 0X0005,
+        ModuleOrChannelFunction = 0X0005,
 
         /// <summary>
-        /// 描述或回路信息
+        /// 模块或通道名称
         /// </summary>
-        DeviceDescription = 0X0006,
+        ModuleOrChannelName = 0X0006,
+
+        /// <summary>
+        /// 模块或通道描述
+        /// </summary>
+        ModuleOrChannelDescription = 0X0007,
+
+        /// <summary>
+        /// 模块或通道图片名称或地址
+        /// </summary>
+        ModuleOrChannelImage = 0X0008,
 
         /// <summary>
         /// 时区
         /// </summary>
-        Timezone = 0X0007,
+        Timezone = 0X0009,
 
         /// <summary>
         /// 日期时间
         /// </summary>
-        DateTime = 0X0008,
+        DateTime = 0X000A,
 
         /// <summary>
         /// 日期时间
         ///     <para>表示格林威治标准时间（GMT）1970年1月1日0时0分0秒到当前时间所间隔的秒数。</para>
         /// </summary>
-        DateTime2 = 0X0009,
+        DateTime2 = 0X000B,
 
         /// <summary>
         /// 间隔时间，单位秒
         /// </summary>
-        TntervalTime = 0X000A,
+        TntervalTime = 0X000C,
 
         /// <summary>
         /// 次数
         ///     <para>一个字节的标量数值。</para>
         /// </summary>
-        Count = 0X000B,
+        Count = 0X000D,
 
         /// <summary>
         /// 串口波特率
