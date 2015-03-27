@@ -630,59 +630,124 @@
     public enum DeviceFunction : byte
     {
         /// <summary>
-        /// 定时功能
+        /// 支持时钟功能
         /// </summary>
         Timing = 0X00,
 
         /// <summary>
+        /// 支持本地语音功控制
+        /// </summary>
+        LocalVoice = 0X01,
+
+        /// <summary>
+        /// 支持电话指令控制
+        /// </summary>
+        PhoneCommand = 0X02,
+
+        /// <summary>
+        /// 支持手机短信控制
+        /// </summary>
+        ShortMessage = 0X03,
+
+        /// <summary>
+        /// 可随音乐变换场景
+        /// </summary>
+        FollowMusic = 0X04,
+
+        /// <summary>
+        /// 可随视频变换场景
+        /// </summary>
+        FollowVideo = 0X05,
+
+        /// <summary>
+        /// 可随图片变换场景
+        /// </summary>
+        FollowImage = 0X06,
+
+        /// <summary>
+        /// 支持IFTTT功能
+        /// </summary>
+        SupportIfttt = 0X07,
+
+        /// <summary>
+        /// 支持HomeKit平台
+        /// </summary>
+        SupportHomeKit = 0X08,
+
+        /// <summary>
+        /// 支持微信设备功能
+        /// </summary>
+        SupportWeChat = 0X09,
+
+        /// <summary>
+        /// 支持QQ物联平台
+        /// </summary>
+        SupportQq = 0X0A,
+
+        /// <summary>
+        /// 支持阿里智能云物联平台
+        /// </summary>
+        SupportAli = 0X0B,
+
+        /// <summary>
+        /// 支持京东微联
+        /// </summary>
+        SupportJd = 0X0C,
+
+        /// <summary>
+        /// 支持海尔U+平台
+        /// </summary>
+        SupportUPlus = 0X0D,
+
+        /// <summary>
         /// 灯具开关
         /// </summary>
-        LightSwitch = 0X10,
+        LightSwitch = 0X30,
 
         /// <summary>
         /// 亮度调节功能
         /// </summary>
-        Brightness = 0X11,
+        Brightness = 0X31,
 
         /// <summary>
         /// 色温调节功能
         /// </summary>
-        ColorTemperature = 0X12,
+        ColorTemperature = 0X32,
 
         /// <summary>
         /// RGB调节功能
         /// </summary>
-        Rgb = 0X13,
+        LightRgb = 0X33,
 
         /// <summary>
         /// 摄像头开关
         /// </summary>
-        CameraSwitch = 0X20,
+        CameraSwitch = 0X40,
 
         /// <summary>
         /// 拍照功能
         /// </summary>
-        Photograph = 0X21,
+        Photograph = 0X41,
 
         /// <summary>
         /// 录像功能
         /// </summary>
-        Video = 0X22,
+        Video = 0X42,
 
         /// <summary>
         /// 温度传感器
         /// </summary>
-        TemperatureSensor = 0X50,
+        TemperatureSensor = 0XE0,
 
         /// <summary>
         /// 湿度传感器
         /// </summary>
-        HumiditySensor = 0X51,
+        HumiditySensor = 0XE1,
 
         /// <summary>
         /// PM2.5传感器
         /// </summary>
-        Pm25 = 0X55
+        Pm25 = 0XE5
     }
 
     /// <summary>
