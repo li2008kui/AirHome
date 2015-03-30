@@ -52,7 +52,7 @@ namespace ThisCoder.AirHome
         public Device(UInt64 devId)
         {
             DevId = devId;
-            Name = devId.ToString();
+            Name = devId.ToString("X8");
             Partition = new KeyValuePair<uint, string>(0X00000000, "all");
         }
 
@@ -68,12 +68,12 @@ namespace ThisCoder.AirHome
             byte[] byteArray = devId.ToByteArray();
             DevId = 0X0000000000000000;
 
-            for (int i = 0; i < byteArray.Length; i++)
+            for (int i = 0; i < byteArray.Length && i < 8; i++)
             {
-                DevId += (UInt64)(byteArray[byteArray.Length - (i + 1)] << (8 * i));
+                DevId += (((UInt64)(byteArray[byteArray.Length - (i + 1)])) << (8 * i));
             }
 
-            Name = DevId.ToString();
+            Name = DevId.ToString("X8");
             Partition = new KeyValuePair<uint, string>(0X00000000, "all");
         }
     }
