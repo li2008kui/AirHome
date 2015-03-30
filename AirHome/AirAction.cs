@@ -7,10 +7,10 @@ namespace ThisCoder.AirHome
     /// <summary>
     /// 动作行为抽象基类
     ///     <para>只能通过以下子类创建实例对象：</para>
-    ///     <para>OperateAction：操作行为类</para>
+    ///     <para>OperateAction：操作动作行为类</para>
     ///     <para>SettingAction：设置动作行为类</para>
     ///     <para>ControlAction：控制动作行为类</para>
-    ///     <para>StateAction：数据采集行为类</para>
+    ///     <para>StateAction：数据采集动作行为类</para>
     /// </summary>
     public abstract class AirAction
     {

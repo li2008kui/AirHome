@@ -33,7 +33,7 @@ namespace ThisCoder.AirHome
 
         /// <summary>
         /// 设备分区
-        ///     <para>键为分区编号，值为分区名称</para>
+        ///     <para>键为分区代码，值为分区名称</para>
         /// </summary>
         public KeyValuePair<UInt32, string> Partition { get; set; }
 

@@ -800,4 +800,21 @@
         /// </summary>
         Unknown = 0XFF,
     }
+
+    /// <summary>
+    /// 设备类型
+    /// </summary>
+    public enum DeviceType
+    {
+        /// <summary>
+        /// 模块
+        /// </summary>
+        Module,
+
+        /// <summary>
+        /// 通道
+        ///     <para>即回路，每个通道对应一个子设备</para>
+        /// </summary>
+        Channel
+    }
 }
