@@ -38,7 +38,7 @@ namespace System
         {
             if (!value.IsNullOrEmpty())
             {
-                value = value.Trim();
+                value = value.Replace(" ", "");
 
                 if (value.IsMatch("^[0-9A-Fa-f]+$"))
                 {
