@@ -32,9 +32,9 @@ namespace ThisCoder.AirHome
         /// <param name="pmtType">参数的类型枚举值</param>
         /// <param name="pmtValueByteList">参数值字节列表</param>
         /// <returns></returns>
-        public Byte[] Operate(MessageId msgId, ParameterType pmtType, List<Byte> pmtValueByteList)
+        public Byte[] OperateCommand(MessageId msgId, ParameterType pmtType, List<Byte> pmtValueByteList)
         {
-            return Operate(msgId,
+            return OperateCommand(msgId,
                 new Parameter(pmtType, pmtValueByteList)
             );
         }
@@ -46,9 +46,9 @@ namespace ThisCoder.AirHome
         /// <param name="pmtType">参数的类型枚举值</param>
         /// <param name="pmtValueByte">字节类型的参数值</param>
         /// <returns></returns>
-        public Byte[] Operate(MessageId msgId, ParameterType pmtType, Byte pmtValueByte)
+        public Byte[] OperateCommand(MessageId msgId, ParameterType pmtType, Byte pmtValueByte)
         {
-            return Operate(msgId,
+            return OperateCommand(msgId,
                 new Parameter(pmtType,
                     new List<Byte> {
                         pmtValueByte
@@ -69,12 +69,12 @@ namespace ThisCoder.AirHome
         ///     <para>默认为空字符</para>
         /// </param>
         /// <returns></returns>
-        public Byte[] Operate(MessageId msgId, ParameterType pmtType, string pmtValueString, bool isHex = false, string separator = "")
+        public Byte[] OperateCommand(MessageId msgId, ParameterType pmtType, string pmtValueString, bool isHex = false, string separator = "")
         {
             Byte[] byteArray = isHex ?
                 GetByteArray(pmtValueString, separator) :
                 Encoding.UTF8.GetBytes(pmtValueString);
-            return Operate(msgId, pmtType, GetByteList(byteArray));
+            return OperateCommand(msgId, pmtType, GetByteList(byteArray));
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace ThisCoder.AirHome
         /// <param name="msgId">消息ID的枚举值</param>
         /// <param name="parameter">参数结构体对象</param>
         /// <returns></returns>
-        public Byte[] Operate(MessageId msgId, Parameter parameter)
+        public Byte[] OperateCommand(MessageId msgId, Parameter parameter)
         {
             return GetDatagram(msgId,
                 new List<Parameter> {
@@ -98,7 +98,7 @@ namespace ThisCoder.AirHome
         /// <param name="msgId">消息ID的枚举值</param>
         /// <param name="pmtList">参数结构体对象列表</param>
         /// <returns></returns>
-        public Byte[] Operate(MessageId msgId, List<Parameter> pmtList)
+        public Byte[] OperateCommand(MessageId msgId, List<Parameter> pmtList)
         {
             return GetDatagram(msgId, pmtList);
         }
@@ -109,7 +109,7 @@ namespace ThisCoder.AirHome
         /// <param name="msgId">消息ID的枚举值</param>
         /// <param name="pmtKeyValueList">键值对参数列表</param>
         /// <returns></returns>
-        public Byte[] Operate(MessageId msgId, List<KeyValuePair<ParameterType, List<Byte>>> pmtKeyValueList)
+        public Byte[] OperateCommand(MessageId msgId, List<KeyValuePair<ParameterType, List<Byte>>> pmtKeyValueList)
         {
             List<Parameter> pmtList = new List<Parameter>();
 
