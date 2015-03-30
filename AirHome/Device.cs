@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Text.RegularExpressions;
 
 namespace ThisCoder.AirHome
 {
@@ -42,7 +43,7 @@ namespace ThisCoder.AirHome
         public IPAddress IPAddress { get; set; }
 
         /// <summary>
-        /// 通过设备ID初始化设备对象
+        /// 通过UInt64类型的设备ID初始化设备对象
         /// </summary>
         /// <param name="devId">
         /// 设备ID
@@ -52,6 +53,27 @@ namespace ThisCoder.AirHome
         {
             DevId = devId;
             Name = devId.ToString();
+            Partition = new KeyValuePair<uint, string>(0X00000000, "all");
+        }
+
+        /// <summary>
+        /// 通过字符串类型的设备ID初始化设备对象
+        /// </summary>
+        /// <param name="devId">
+        /// 设备ID
+        ///     <para>字符串类型，长度为8个字符</para>
+        /// </param>
+        public Device(string devId)
+        {
+            byte[] byteArray = devId.ToByteArray();
+            DevId = 0X0000000000000000;
+
+            for (int i = 0; i < byteArray.Length; i++)
+            {
+                DevId += (UInt64)(byteArray[byteArray.Length - (i + 1)] << (8 * i));
+            }
+
+            Name = DevId.ToString();
             Partition = new KeyValuePair<uint, string>(0X00000000, "all");
         }
     }
