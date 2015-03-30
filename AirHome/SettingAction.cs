@@ -24,11 +24,54 @@ namespace ThisCoder.AirHome
         public SettingAction(UInt64 devId = 0X0000000000000000, Byte ChannelNo = 0X00) : base(devId, ChannelNo) { }
 
         /// <summary>
+        /// 设置模块或通道分区的命令
+        /// </summary>
+        /// <param name="partition">包含分区代码和分区名称的键/值对</param>
+        /// <returns></returns>
+        public Byte[] SettingModuleOrChannelPartitionCommand(KeyValuePair<UInt32, string> partition)
+        {
+            return GetDatagram(MessageId.Multifunction,
+                new List<Parameter>{
+                    new Parameter(ParameterType.ChannelNo, ChannelNo),
+                    new Parameter(ParameterType.PartitionCode,
+                        new List<byte>{
+                            0X00,
+                            (Byte)(partition.Key >> 16),
+                            (Byte)(partition.Key >> 8),
+                            (Byte)partition.Key
+                        }),
+                    new Parameter(ParameterType.PartitionName,partition.Value)
+                });
+        }
+
+        /// <summary>
+        /// 设置模块或通道分区的命令
+        /// </summary>
+        /// <param name="partitionCode">分区代码</param>
+        /// <param name="partitionName">分区名称</param>
+        /// <returns></returns>
+        public Byte[] SettingModuleOrChannelPartitionCommand(UInt32 partitionCode, string partitionName)
+        {
+            return GetDatagram(MessageId.Multifunction,
+                new List<Parameter>{
+                    new Parameter(ParameterType.ChannelNo, ChannelNo),
+                    new Parameter(ParameterType.PartitionCode,
+                        new List<byte>{
+                            0X00,
+                            (Byte)(partitionCode >> 16),
+                            (Byte)(partitionCode >> 8),
+                            (Byte)partitionCode
+                        }),
+                    new Parameter(ParameterType.PartitionName,partitionName)
+                });
+        }
+
+        /// <summary>
         /// 设置模块或通道分区代码的命令
         /// </summary>
         /// <param name="partitionCode">分区代码</param>
         /// <returns></returns>
-        public Byte[] SettingPartitionCommand(UInt32 partitionCode)
+        public Byte[] SettingModuleOrChannelPartitionCodeCommand(UInt32 partitionCode)
         {
             return GetDatagram(MessageId.SettingModuleOrChannelPartitionCode,
                 new List<Parameter>{
@@ -40,6 +83,20 @@ namespace ThisCoder.AirHome
                             (Byte)(partitionCode >> 8),
                             (Byte)partitionCode
                         })
+                });
+        }
+
+        /// <summary>
+        /// 设置模块或通道分区名称的命令
+        /// </summary>
+        /// <param name="partitionName">分区名称</param>
+        /// <returns></returns>
+        public Byte[] SettingModuleOrChannelPartitionNameCommand(string partitionName)
+        {
+            return GetDatagram(MessageId.SettingModuleOrChannelPartitionName,
+                new List<Parameter>{
+                    new Parameter(ParameterType.ChannelNo, ChannelNo),
+                    new Parameter(ParameterType.PartitionName,partitionName)
                 });
         }
 
