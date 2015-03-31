@@ -24,7 +24,57 @@ namespace ThisCoder.AirHome
         public SettingAction(UInt64 devId = 0X0000000000000000, Byte ChannelNo = 0X00) : base(devId, ChannelNo) { }
 
         /// <summary>
-        /// 设置模块或通道分区的命令
+        /// 设置模块或通道信息的命令
+        /// </summary>
+        /// <param name="partitionCode">分区代码</param>
+        /// <param name="partitionName">分区名称</param>
+        /// <param name="moduleOrChannelName">模块或通道名称</param>
+        /// <param name="description">模块或通道描述</param>
+        /// <param name="imageName">图片名称或地址</param>
+        /// <param name="deviceType">设备类型</param>
+        /// <returns></returns>
+        public Byte[] SettingModuleOrChannelInfoCommand(UInt32 partitionCode, string partitionName, string moduleOrChannelName, string description, string imageName, DeviceType deviceType = DeviceType.Module)
+        {
+            List<Parameter> pmtList = new List<Parameter>();
+
+            if (deviceType == DeviceType.Channel)
+            {
+                pmtList.Add(new Parameter(ParameterType.ChannelNo, ChannelNo));
+            }
+
+            pmtList.Add(new Parameter(ParameterType.PartitionCode,
+                        new List<byte>{
+                            0X00,
+                            (Byte)(partitionCode >> 16),
+                            (Byte)(partitionCode >> 8),
+                            (Byte)partitionCode
+                        }));
+            pmtList.Add(new Parameter(ParameterType.PartitionName, partitionName));
+            pmtList.Add(new Parameter(ParameterType.ModuleOrChannelName, moduleOrChannelName));
+            pmtList.Add(new Parameter(ParameterType.ModuleOrChannelDescription, description));
+            pmtList.Add(new Parameter(ParameterType.ModuleOrChannelImage, imageName));
+            return GetDatagram(MessageId.Multifunction, pmtList);
+        }
+
+        /// <summary>
+        /// 设置模块或通道信息的命令
+        /// </summary>
+        /// <param name="moduleOrChannelInfo">模块或通道信息</param>
+        /// <param name="deviceType">设备类型</param>
+        /// <returns></returns>
+        public Byte[] SettingModuleOrChannelInfoCommand(ModuleOrChannelInfo moduleOrChannelInfo, DeviceType deviceType = DeviceType.Module)
+        {
+            return SettingModuleOrChannelInfoCommand(
+                moduleOrChannelInfo.PartitionCode,
+                moduleOrChannelInfo.PartitionName,
+                moduleOrChannelInfo.ModuleOrChannelName,
+                moduleOrChannelInfo.Description,
+                moduleOrChannelInfo.ImageName,
+                deviceType);
+        }
+
+        /// <summary>
+        /// 设置模块或通道分区代码和分区名称的命令
         /// </summary>
         /// <param name="partition">包含分区代码和分区名称的键/值对</param>
         /// <returns></returns>
@@ -45,7 +95,7 @@ namespace ThisCoder.AirHome
         }
 
         /// <summary>
-        /// 设置模块或通道分区的命令
+        /// 设置模块或通道分区代码和分区名称的命令
         /// </summary>
         /// <param name="partitionCode">分区代码</param>
         /// <param name="partitionName">分区名称</param>
@@ -103,44 +153,62 @@ namespace ThisCoder.AirHome
         /// <summary>
         /// 设置模块或通道名称的命令
         /// </summary>
-        /// <param name="name">模块或通道名称</param>
+        /// <param name="moduleOrChannelName">模块或通道名称</param>
         /// <param name="deviceType">设备类型</param>
         /// <returns></returns>
-        public Byte[] SettingModuleOrChannelNameCommand(string name, DeviceType deviceType)
+        public Byte[] SettingModuleOrChannelNameCommand(string moduleOrChannelName, DeviceType deviceType = DeviceType.Module)
         {
-            if (deviceType == DeviceType.Module)
+            List<Parameter> pmtList = new List<Parameter>();
+
+            if (deviceType == DeviceType.Channel)
             {
-                return GetDatagram(MessageId.SettingModuleOrChannelName,
-                    new List<Parameter>{
-                    new Parameter(ParameterType.ModuleOrChannelName, name)
-                });
+                pmtList.Add(new Parameter(ParameterType.ChannelNo, ChannelNo));
             }
-            else
-            {
-                return GetDatagram(MessageId.SettingModuleOrChannelName,
-                    new List<Parameter>{
-                    new Parameter(ParameterType.ChannelNo, ChannelNo),
-                    new Parameter(ParameterType.ModuleOrChannelName, name)
-                });
-            }
+
+            pmtList.Add(new Parameter(ParameterType.ModuleOrChannelName, moduleOrChannelName));
+            return GetDatagram(MessageId.SettingModuleOrChannelName, pmtList);
         }
 
         /// <summary>
-        /// 设置设备或通道描述的命令
+        /// 设置模块或通道描述的命令
         /// </summary>
-        /// <param name="description">设备描述</param>
+        /// <param name="description">模块或通道描述</param>
+        /// <param name="deviceType">设备类型</param>
         /// <returns></returns>
-        public Byte[] SettingDescriptionCommand(string description)
+        public Byte[] SettingModuleOrChannelDescriptionCommand(string description, DeviceType deviceType = DeviceType.Module)
         {
-            return GetDatagram(MessageId.SettingModuleOrChannelDescription,
-                new List<Parameter>{
-                    new Parameter(ParameterType.ChannelNo, ChannelNo),
-                    new Parameter(ParameterType.ModuleOrChannelDescription, description)
-                });
+            List<Parameter> pmtList = new List<Parameter>();
+
+            if (deviceType == DeviceType.Channel)
+            {
+                pmtList.Add(new Parameter(ParameterType.ChannelNo, ChannelNo));
+            }
+
+            pmtList.Add(new Parameter(ParameterType.ModuleOrChannelDescription, description));
+            return GetDatagram(MessageId.SettingModuleOrChannelDescription, pmtList);
         }
 
         /// <summary>
-        /// 同步时间到设备中的命令
+        /// 设置模块或通道图片名称或地址的命令
+        /// </summary>
+        /// <param name="imageName">图片名称或地址</param>
+        /// <param name="deviceType">设备类型</param>
+        /// <returns></returns>
+        public Byte[] SettingModuleOrChannelImageCommand(string imageName, DeviceType deviceType = DeviceType.Module)
+        {
+            List<Parameter> pmtList = new List<Parameter>();
+
+            if (deviceType == DeviceType.Channel)
+            {
+                pmtList.Add(new Parameter(ParameterType.ChannelNo, ChannelNo));
+            }
+
+            pmtList.Add(new Parameter(ParameterType.ModuleOrChannelImage, imageName));
+            return GetDatagram(MessageId.SettingModuleOrChannelImage, pmtList);
+        }
+
+        /// <summary>
+        /// 同步时间到模块中的命令
         /// </summary>
         /// <param name="dateTime">日期时间对象</param>
         /// <returns></returns>
