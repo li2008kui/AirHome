@@ -77,4 +77,53 @@ namespace ThisCoder.AirHome
             Partition = new KeyValuePair<uint, string>(0X00000000, "all");
         }
     }
+
+    /// <summary>
+    /// 模块或通道信息
+    /// </summary>
+    public struct ModuleOrChannelInfo
+    {
+        /// <summary>
+        /// 分区代码
+        /// </summary>
+        public UInt32 PartitionCode { get; set; }
+
+        /// <summary>
+        /// 分区名称
+        /// </summary>
+        public string PartitionName { get; set; }
+
+        /// <summary>
+        /// 模块或通道名称
+        /// </summary>
+        public string ModuleOrChannelName { get; set; }
+
+        /// <summary>
+        /// 模块或通道描述
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
+        /// 图片名称或地址
+        /// </summary>
+        public string ImageName { get; set; }
+
+        /// <summary>
+        /// 获取模块或通道信息对象实例
+        /// </summary>
+        /// <param name="partitionCode">分区代码</param>
+        /// <param name="partitionName">分区名称</param>
+        /// <param name="moduleOrChannelName">模块或通道名称</param>
+        /// <param name="description">模块或通道描述</param>
+        /// <param name="imageName">图片名称或地址</param>
+        public ModuleOrChannelInfo(UInt32 partitionCode, string partitionName, string moduleOrChannelName, string description, string imageName)
+            : this()
+        {
+            PartitionCode = partitionCode;
+            PartitionName = partitionName;
+            ModuleOrChannelName = moduleOrChannelName;
+            Description = description;
+            ImageName = imageName;
+        }
+    }
 }
