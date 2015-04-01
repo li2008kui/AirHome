@@ -208,30 +208,50 @@ namespace ThisCoder.AirHome
         }
 
         /// <summary>
-        /// 同步时间到模块中的命令
+        /// 设置模块时区的命令
         /// </summary>
-        /// <param name="dateTime">日期时间对象</param>
+        /// <param name="timeZoneInfo">时区信息对象</param>
         /// <returns></returns>
-        public Byte[] SettingSyncTimeCommand(DateTime dateTime)
+        public Byte[] SettingModuleTimezoneCommand(TimeZoneInfo timeZoneInfo)
         {
-            UInt32 second = (UInt32)dateTime.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
-            string hexString = second.ToString("X2").PadLeft(4, '0');
+            timeZoneInfo = timeZoneInfo ?? TimeZoneInfo.Local;
 
-            return GetDatagram(MessageId.SettingSyncTimeToModule,
+            return GetDatagram(MessageId.SettingModuleTimezone,
                 new List<Parameter>{
-                    new Parameter(ParameterType.ChannelNo, ChannelNo),
-                    new Parameter(ParameterType.DateTime2, GetByteArray(hexString))
+                    new Parameter(ParameterType.Timezone,
+                        new byte[]{
+                            (byte)(timeZoneInfo.BaseUtcOffset.Hours > 0 ? 0X00 : 0X01),
+                            (byte)(timeZoneInfo.BaseUtcOffset.Hours),
+                            (byte)(timeZoneInfo.BaseUtcOffset.Minutes),
+                            0X00
+                        })
                 });
         }
 
         /// <summary>
-        /// 设置设备或通道定时任务时间或时段的命令
+        /// 同步时间到模块中的命令
+        /// </summary>
+        /// <param name="dateTime">日期时间对象</param>
+        /// <returns></returns>
+        public Byte[] SettingSyncTimeToModuleCommand(DateTime dateTime)
+        {
+            UInt32 secondCount = (UInt32)dateTime.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+            string hexString = secondCount.ToString("X2").PadLeft(4, '0');
+
+            return GetDatagram(MessageId.SettingSyncTimeToModule,
+                new List<Parameter>{
+                    new Parameter(ParameterType.DateTime2, hexString.ToByteArray())
+                });
+        }
+
+        /// <summary>
+        /// 设置模块或通道定时任务时间或时段的命令
         /// </summary>
         /// <param name="dateTimes">日期时间对象</param>
         /// <returns></returns>
-        public Byte[] SettingTimedTaskCommand(params DateTime[] dateTimes)
+        public Byte[] SettingModuleOrChannelTimedTaskCommand(params DateTime[] dateTimes)
         {
-            UInt32 second;
+            UInt32 secondCount;
             string hexString = string.Empty;
             List<Parameter> pmtList = new List<Parameter>{
                 new Parameter(ParameterType.ChannelNo, ChannelNo)
@@ -239,16 +259,16 @@ namespace ThisCoder.AirHome
 
             foreach (var dateTime in dateTimes)
             {
-                second = (UInt32)dateTime.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
-                hexString = second.ToString("X2").PadLeft(4, '0');
-                pmtList.Add(new Parameter(ParameterType.DateTime2, GetByteArray(hexString)));
+                secondCount = (UInt32)dateTime.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+                hexString = secondCount.ToString("X2").PadLeft(4, '0');
+                pmtList.Add(new Parameter(ParameterType.DateTime2, hexString.ToByteArray()));
             }
 
             return GetDatagram(MessageId.SettingModuleOrChannelTimedTask, pmtList);
         }
 
         /// <summary>
-        /// 设备恢复出厂设置的命令
+        /// 模块恢复出厂设置的命令
         ///     <para>该功能会清除所有数据，请慎用</para>
         /// </summary>
         /// <returns></returns>

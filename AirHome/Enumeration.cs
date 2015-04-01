@@ -223,7 +223,7 @@
         SettingHeartbeatRepeatCount = 0X00E5,
 
         /// <summary>
-        /// 恢复出厂设备
+        /// 恢复出厂设置
         /// </summary>
         SettingResetFactory = 0X00FF,
         #endregion

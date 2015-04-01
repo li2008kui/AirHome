@@ -93,55 +93,6 @@ namespace ThisCoder.AirHome
         }
 
         /// <summary>
-        /// 通过十六进制字符串获取字节数组
-        /// </summary>
-        /// <param name="hexString">十六进制字符串</param>
-        /// <param name="separator">
-        /// 分隔符
-        ///     <para>默认为空字符</para>
-        /// </param>
-        /// <returns></returns>
-        protected Byte[] GetByteArray(string hexString, string separator = "")
-        {
-            hexString = separator.Length > 0 ? hexString.Replace(separator, "").Trim() : hexString.Trim();
-            List<Byte> byteList = new List<Byte>();
-
-            if (!string.IsNullOrEmpty(hexString))
-            {
-                if (Regex.IsMatch(hexString, "^[0-9A-Fa-f]+$"))
-                {
-                    if (hexString.IndexOf(separator) > 0)
-                    {
-                        foreach (var item in hexString.Split(new string[] { separator }, StringSplitOptions.RemoveEmptyEntries))
-                        {
-                            byteList.Add(Convert.ToByte(item, 16));
-                        }
-                    }
-                    else
-                    {
-                        hexString = hexString.Trim();
-                        hexString = ((hexString.Length % 2) != 0) ? ("0" + hexString) : hexString;
-
-                        for (int i = 0; i < hexString.Length; i += 2)
-                        {
-                            byteList.Add(Convert.ToByte(hexString.Substring(i, 2), 16));
-                        }
-                    }
-                }
-                else
-                {
-                    byteList.Add(0X00);
-                }
-            }
-            else
-            {
-                byteList.Add(0X00);
-            }
-
-            return byteList.ToArray();
-        }
-
-        /// <summary>
         /// 通过字节数组获取字节列表
         /// </summary>
         /// <param name="byteArray">字节数组</param>
