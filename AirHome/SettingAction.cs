@@ -8,6 +8,7 @@ namespace ThisCoder.AirHome
     /// </summary>
     public class SettingAction : AirAction
     {
+        #region 设置模块或通道基本信息
         /// <summary>
         /// 通过设备ID和通道编号初始化配置动作行为类。
         ///     <para>设备ID默认值为0X0000000000000000。</para>
@@ -236,36 +237,54 @@ namespace ThisCoder.AirHome
         public Byte[] SettingSyncTimeToModuleCommand(DateTime dateTime)
         {
             UInt32 secondCount = (UInt32)dateTime.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
-            string hexString = secondCount.ToString("X2").PadLeft(4, '0');
 
             return GetDatagram(MessageId.SettingSyncTimeToModule,
                 new List<Parameter>{
-                    new Parameter(ParameterType.DateTime2, hexString.ToByteArray())
+                    new Parameter(ParameterType.DateTime2, secondCount.ToByteArray())
                 });
         }
 
         /// <summary>
         /// 设置模块或通道定时任务时间或时段的命令
         /// </summary>
+        /// <param name="deviceType">设备类型</param>
         /// <param name="dateTimes">日期时间对象</param>
         /// <returns></returns>
-        public Byte[] SettingModuleOrChannelTimedTaskCommand(params DateTime[] dateTimes)
+        public Byte[] SettingModuleOrChannelTimedTaskCommand(DeviceType deviceType = DeviceType.Module, params DateTime[] dateTimes)
         {
             UInt32 secondCount;
-            string hexString = string.Empty;
-            List<Parameter> pmtList = new List<Parameter>{
-                new Parameter(ParameterType.ChannelNo, ChannelNo)
-            };
+            List<Parameter> pmtList = new List<Parameter>();
+
+            if (deviceType == DeviceType.Channel)
+            {
+                pmtList.Add(new Parameter(ParameterType.ChannelNo, ChannelNo));
+            }
 
             foreach (var dateTime in dateTimes)
             {
                 secondCount = (UInt32)dateTime.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
-                hexString = secondCount.ToString("X2").PadLeft(4, '0');
-                pmtList.Add(new Parameter(ParameterType.DateTime2, hexString.ToByteArray()));
+                pmtList.Add(new Parameter(ParameterType.DateTime2, secondCount.ToByteArray()));
             }
 
             return GetDatagram(MessageId.SettingModuleOrChannelTimedTask, pmtList);
         }
+        #endregion
+
+        #region 设置模块串口信息
+        /// <summary>
+        /// 设置模块串口波特率的命令
+        /// </summary>
+        /// <param name="baud">波特率</param>
+        /// <returns></returns>
+        public Byte[] SettingModuleSerialBaudCommand(UInt32 baud)
+        {
+            return GetDatagram(MessageId.SettingModuleSerialBaud,
+                new List<Parameter>{
+                    new Parameter(ParameterType.DateTime2, baud.ToByteArray(4))
+                });
+        }
+
+        #endregion
 
         /// <summary>
         /// 模块恢复出厂设置的命令
