@@ -60,6 +60,7 @@
     <Compile Include="Room.cs" />
     <Compile Include="StateAction.cs" />
     <Compile Include="StringHelper.cs" />
+    <Compile Include="UIntHelper.cs" />
     <Compile Include="UpdateArgs.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Zone.cs" />
