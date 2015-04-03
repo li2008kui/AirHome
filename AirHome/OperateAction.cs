@@ -58,23 +58,27 @@ namespace ThisCoder.AirHome
         }
 
         /// <summary>
+        /// 通过“消息ID”、“参数类型”和“字节数组类型的参数值”执行操作
+        /// </summary>
+        /// <param name="msgId">消息ID的枚举值</param>
+        /// <param name="pmtType">参数的类型枚举值</param>
+        /// <param name="byteArray">字节数组类型的参数值</param>
+        /// <returns></returns>
+        public Byte[] OperateCommand(MessageId msgId, ParameterType pmtType, Byte[] byteArray)
+        {
+            return OperateCommand(msgId, pmtType, GetByteList(byteArray));
+        }
+
+        /// <summary>
         /// 通过“消息ID”、“参数类型”和“字符串类型的参数值”执行操作
         /// </summary>
         /// <param name="msgId">消息ID的枚举值</param>
         /// <param name="pmtType">参数的类型枚举值</param>
         /// <param name="pmtValueString">字符串类型的参数值</param>
-        /// <param name="isHex">字符串类型的pmtValueString参数值是否是十六进制</param>
-        /// <param name="separator">
-        /// 分隔符
-        ///     <para>默认为空字符</para>
-        /// </param>
         /// <returns></returns>
-        public Byte[] OperateCommand(MessageId msgId, ParameterType pmtType, string pmtValueString, bool isHex = false, string separator = "")
+        public Byte[] OperateCommand(MessageId msgId, ParameterType pmtType, string pmtValueString)
         {
-            Byte[] byteArray = isHex ?
-                GetByteArray(pmtValueString, separator) :
-                Encoding.UTF8.GetBytes(pmtValueString);
-            return OperateCommand(msgId, pmtType, GetByteList(byteArray));
+            return OperateCommand(msgId, pmtType, pmtValueString.ToByteArray());
         }
 
         /// <summary>
