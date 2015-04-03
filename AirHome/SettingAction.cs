@@ -78,21 +78,26 @@ namespace ThisCoder.AirHome
         /// 设置模块或通道分区代码和分区名称的命令
         /// </summary>
         /// <param name="partition">包含分区代码和分区名称的键/值对</param>
+        /// <param name="deviceType">设备类型</param>
         /// <returns></returns>
-        public Byte[] SettingModuleOrChannelPartitionCommand(KeyValuePair<UInt32, string> partition)
+        public Byte[] SettingModuleOrChannelPartitionCommand(KeyValuePair<UInt32, string> partition, DeviceType deviceType = DeviceType.Module)
         {
-            return GetDatagram(MessageId.Multifunction,
-                new List<Parameter>{
-                    new Parameter(ParameterType.ChannelNo, ChannelNo),
-                    new Parameter(ParameterType.PartitionCode,
-                        new List<byte>{
-                            0X00,
-                            (Byte)(partition.Key >> 16),
-                            (Byte)(partition.Key >> 8),
-                            (Byte)partition.Key
-                        }),
-                    new Parameter(ParameterType.PartitionName,partition.Value)
-                });
+            List<Parameter> pmtList = new List<Parameter>();
+
+            if (deviceType == DeviceType.Channel)
+            {
+                pmtList.Add(new Parameter(ParameterType.ChannelNo, ChannelNo));
+            }
+
+            pmtList.Add(new Parameter(ParameterType.PartitionCode,
+                new List<byte>{
+                    0X00,
+                    (Byte)(partition.Key >> 16),
+                    (Byte)(partition.Key >> 8),
+                    (Byte)partition.Key
+                }));
+            pmtList.Add(new Parameter(ParameterType.PartitionName, partition.Value));
+            return GetDatagram(MessageId.Multifunction, pmtList);
         }
 
         /// <summary>
@@ -100,55 +105,57 @@ namespace ThisCoder.AirHome
         /// </summary>
         /// <param name="partitionCode">分区代码</param>
         /// <param name="partitionName">分区名称</param>
+        /// <param name="deviceType">设备类型</param>
         /// <returns></returns>
-        public Byte[] SettingModuleOrChannelPartitionCommand(UInt32 partitionCode, string partitionName)
+        public Byte[] SettingModuleOrChannelPartitionCommand(UInt32 partitionCode, string partitionName, DeviceType deviceType = DeviceType.Module)
         {
-            return GetDatagram(MessageId.Multifunction,
-                new List<Parameter>{
-                    new Parameter(ParameterType.ChannelNo, ChannelNo),
-                    new Parameter(ParameterType.PartitionCode,
-                        new List<byte>{
-                            0X00,
-                            (Byte)(partitionCode >> 16),
-                            (Byte)(partitionCode >> 8),
-                            (Byte)partitionCode
-                        }),
-                    new Parameter(ParameterType.PartitionName,partitionName)
-                });
+            return SettingModuleOrChannelPartitionCommand(
+                new KeyValuePair<uint, string>(partitionCode, partitionName),
+                deviceType);
         }
 
         /// <summary>
         /// 设置模块或通道分区代码的命令
         /// </summary>
         /// <param name="partitionCode">分区代码</param>
+        /// <param name="deviceType">设备类型</param>
         /// <returns></returns>
-        public Byte[] SettingModuleOrChannelPartitionCodeCommand(UInt32 partitionCode)
+        public Byte[] SettingModuleOrChannelPartitionCodeCommand(UInt32 partitionCode, DeviceType deviceType = DeviceType.Module)
         {
-            return GetDatagram(MessageId.SettingModuleOrChannelPartitionCode,
-                new List<Parameter>{
-                    new Parameter(ParameterType.ChannelNo, ChannelNo),
-                    new Parameter(ParameterType.PartitionCode,
-                        new List<byte>{
-                            0X00,
-                            (Byte)(partitionCode >> 16),
-                            (Byte)(partitionCode >> 8),
-                            (Byte)partitionCode
-                        })
-                });
+            List<Parameter> pmtList = new List<Parameter>();
+
+            if (deviceType == DeviceType.Channel)
+            {
+                pmtList.Add(new Parameter(ParameterType.ChannelNo, ChannelNo));
+            }
+
+            pmtList.Add(new Parameter(ParameterType.PartitionCode,
+                new List<byte>{
+                    0X00,
+                    (Byte)(partitionCode >> 16),
+                    (Byte)(partitionCode >> 8),
+                    (Byte)partitionCode
+                }));
+            return GetDatagram(MessageId.SettingModuleOrChannelPartitionCode, pmtList);
         }
 
         /// <summary>
         /// 设置模块或通道分区名称的命令
         /// </summary>
         /// <param name="partitionName">分区名称</param>
+        /// <param name="deviceType">设备类型</param>
         /// <returns></returns>
-        public Byte[] SettingModuleOrChannelPartitionNameCommand(string partitionName)
+        public Byte[] SettingModuleOrChannelPartitionNameCommand(string partitionName, DeviceType deviceType = DeviceType.Module)
         {
-            return GetDatagram(MessageId.SettingModuleOrChannelPartitionName,
-                new List<Parameter>{
-                    new Parameter(ParameterType.ChannelNo, ChannelNo),
-                    new Parameter(ParameterType.PartitionName,partitionName)
-                });
+            List<Parameter> pmtList = new List<Parameter>();
+
+            if (deviceType == DeviceType.Channel)
+            {
+                pmtList.Add(new Parameter(ParameterType.ChannelNo, ChannelNo));
+            }
+
+            pmtList.Add(new Parameter(ParameterType.PartitionName, partitionName));
+            return GetDatagram(MessageId.SettingModuleOrChannelPartitionName, pmtList);
         }
 
         /// <summary>
@@ -279,9 +286,7 @@ namespace ThisCoder.AirHome
         public Byte[] SettingModuleSerialBaudCommand(UInt32 baud)
         {
             return GetDatagram(MessageId.SettingModuleSerialBaud,
-                new List<Parameter>{
-                    new Parameter(ParameterType.DateTime2, baud.ToByteArray(4))
-                });
+                new Parameter(ParameterType.DateTime2, baud.ToByteArray(4)));
         }
 
         #endregion
