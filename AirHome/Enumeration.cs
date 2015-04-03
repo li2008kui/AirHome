@@ -90,7 +90,7 @@
         /// <summary>
         /// 设置串口停止位
         /// </summary>
-        SettingSerialStopBit = 0X00B2,
+        SettingModuleSerialStopBit = 0X00B2,
 
         /// <summary>
         /// 设置串口校验位
@@ -476,7 +476,7 @@
         /// <summary>
         /// 串口校验位
         /// </summary>
-        SerialCheckBit = 0X00B3,
+        SerialParityBit = 0X00B3,
 
         /// <summary>
         /// WiFi模块的运行模式
@@ -804,7 +804,7 @@
     /// <summary>
     /// 设备类型
     /// </summary>
-    public enum DeviceType
+    public enum DeviceType : byte
     {
         /// <summary>
         /// 模块
@@ -816,5 +816,31 @@
         ///     <para>即回路，每个通道对应一个子设备</para>
         /// </summary>
         Channel
+    }
+
+    /// <summary>
+    /// 指定在 System.IO.Ports.SerialPort 对象上使用的据位数数。
+    /// </summary>
+    public enum DataBits : byte
+    {
+        /// <summary>
+        /// 数据位长度为5
+        /// </summary>
+        DataBit5 = 0X05,
+
+        /// <summary>
+        /// 数据位长度为6
+        /// </summary>
+        DataBit6 = 0X06,
+
+        /// <summary>
+        /// 数据位长度为7
+        /// </summary>
+        DataBit7 = 0X07,
+
+        /// <summary>
+        /// 数据位长度为8
+        /// </summary>
+        DataBit8 = 0X08
     }
 }
