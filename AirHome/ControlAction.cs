@@ -162,11 +162,11 @@ namespace ThisCoder.AirHome
         /// <param name="white">
         /// 白色（W）的分量
         ///     <para>取值范围：0X00~0XFF</para>
-        ///     <para>如果没有白光，默认为0X00</para>
+        ///     <para>如果没有白光，默认为0XFF</para>
         /// </param>
         /// <param name="deviceType">设备类型</param>
         /// <returns></returns>
-        public Byte[] ControlModuleOrChannelRgbwCommand(Byte red, Byte green, Byte blue, Byte white = 0X00, DeviceType deviceType = DeviceType.Module)
+        public Byte[] ControlModuleOrChannelRgbwCommand(Byte red, Byte green, Byte blue, Byte white = 0XFF, DeviceType deviceType = DeviceType.Module)
         {
             List<Parameter> pmtList = new List<Parameter>();
 
