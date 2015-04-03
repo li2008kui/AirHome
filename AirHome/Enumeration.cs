@@ -267,7 +267,7 @@
         StateHeartbeatPacketToModule = 0X2001,
 
         /// <summary>
-        /// 获取模块或通道的开关状态
+        /// 获取模块或通道的打开或关闭状态
         /// </summary>
         StateModuleOrChannelSwitch = 0X2002,
 
