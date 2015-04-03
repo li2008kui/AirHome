@@ -214,5 +214,19 @@ namespace ThisCoder.AirHome
                 }
             }
         }
+
+        /// <summary>
+        /// 调节模块或通道RGBW的命令
+        ///     <para>参数值为BMP图片</para>
+        /// </summary>
+        /// <param name="bitmap">BMP图片对象</param>
+        /// <param name="x">要检索的像素的 x 坐标。</param>
+        /// <param name="y">要检索的像素的 y 坐标。</param>
+        /// <param name="deviceType">设备类型</param>
+        /// <returns></returns>
+        public Byte[] ControlModuleOrChannelRgbwCommand(Bitmap bitmap, int x, int y, DeviceType deviceType = DeviceType.Module)
+        {
+            return ControlModuleOrChannelRgbwCommand(bitmap.GetPixel(x, y), deviceType);
+        }
     }
 }
