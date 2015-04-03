@@ -252,7 +252,7 @@
         /// <summary>
         /// 调节模块或通道红绿蓝白（RGBW）
         /// </summary>
-        ControlModuleOrChannelAdjustRgbw = 0X1004,
+        ControlModuleOrChannelRgbw = 0X1004,
         #endregion
 
         #region 数据采集
