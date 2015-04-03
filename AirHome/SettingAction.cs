@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.Ports;
 
 namespace ThisCoder.AirHome
 {
@@ -279,6 +280,39 @@ namespace ThisCoder.AirHome
 
         #region 设置模块串口信息
         /// <summary>
+        /// 设置模块串口信息的命令
+        /// </summary>
+        /// <param name="baud">波特率</param>
+        /// <param name="dataBit">数据位</param>
+        /// <param name="stopBit">停止位</param>
+        /// <param name="parityBit">校验位</param>
+        /// <returns></returns>
+        public Byte[] SettingModuleSerialInfoCommand(UInt32 baud, DataBits dataBit, StopBits stopBit, Parity parityBit)
+        {
+            return GetDatagram(MessageId.Multifunction,
+                new List<Parameter>{
+                    new Parameter(ParameterType.SerialBaud, baud.ToByteArray(3)),
+                    new Parameter(ParameterType.SerialDataBit, (Byte)dataBit),
+                    new Parameter(ParameterType.SerialStopBit, (Byte)stopBit),
+                    new Parameter(ParameterType.SerialParityBit,(Byte)parityBit)
+                });
+        }
+
+        /// <summary>
+        /// 设置模块串口信息的命令
+        /// </summary>
+        /// <param name="serialPort">串口对象</param>
+        /// <returns></returns>
+        public Byte[] SettingModuleSerialInfoCommand(SerialPort serialPort)
+        {
+            return SettingModuleSerialInfoCommand(
+                (UInt32)(serialPort.BaudRate),
+                (DataBits)(serialPort.DataBits),
+                serialPort.StopBits,
+                serialPort.Parity);
+        }
+
+        /// <summary>
         /// 设置模块串口波特率的命令
         /// </summary>
         /// <param name="baud">波特率</param>
@@ -286,9 +320,41 @@ namespace ThisCoder.AirHome
         public Byte[] SettingModuleSerialBaudCommand(UInt32 baud)
         {
             return GetDatagram(MessageId.SettingModuleSerialBaud,
-                new Parameter(ParameterType.DateTime2, baud.ToByteArray(4)));
+                new Parameter(ParameterType.SerialBaud, baud.ToByteArray(3)));
         }
 
+        /// <summary>
+        /// 设置模块串口数据位的命令
+        /// </summary>
+        /// <param name="dataBit">数据位</param>
+        /// <returns></returns>
+        public Byte[] SettingModuleSerialDataBitCommand(Byte dataBit)
+        {
+            return GetDatagram(MessageId.SettingModuleSerialDataBit,
+                new Parameter(ParameterType.SerialDataBit, dataBit));
+        }
+
+        /// <summary>
+        /// 设置模块串口停止位的命令
+        /// </summary>
+        /// <param name="stopBit">停止位</param>
+        /// <returns></returns>
+        public Byte[] SettingModuleSerialStopBitCommand(Byte stopBit)
+        {
+            return GetDatagram(MessageId.SettingModuleSerialStopBit,
+                new Parameter(ParameterType.SerialStopBit, stopBit));
+        }
+
+        /// <summary>
+        /// 设置模块串口校验位的命令
+        /// </summary>
+        /// <param name="parityBit">校验位</param>
+        /// <returns></returns>
+        public Byte[] SettingModuleSerialParityBitCommand(Byte parityBit)
+        {
+            return GetDatagram(MessageId.SettingModuleSerialParityBit,
+                new Parameter(ParameterType.SerialParityBit, parityBit));
+        }
         #endregion
 
         /// <summary>
