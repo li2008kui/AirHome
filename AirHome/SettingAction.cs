@@ -357,6 +357,19 @@ namespace ThisCoder.AirHome
         }
         #endregion
 
+        #region 设置WiFi模块信息
+
+        #endregion
+
+        #region 设置模块访问服务器信息
+
+        #endregion
+
+        #region 设置事件上报及心跳参数
+
+        #endregion
+
+        #region 设置其他参数信息
         /// <summary>
         /// 模块恢复出厂设置的命令
         ///     <para>该功能会清除所有数据，请慎用</para>
@@ -366,5 +379,6 @@ namespace ThisCoder.AirHome
         {
             return GetDatagram(MessageId.SettingResetFactory, new Parameter(ParameterType.None, 0X00));
         }
+        #endregion
     }
 }
