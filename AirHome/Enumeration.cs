@@ -874,4 +874,25 @@
         WPA2_MIXED = 0X06,
         AUTO = 0X07
     }
+
+    /// <summary>
+    /// WiFi模块DHCP功能
+    /// </summary>
+    public enum WifiDhcpFunction : byte
+    {
+        /// <summary>
+        /// 关闭DHCP功能
+        /// </summary>
+        DisableDhcp = 0X00,
+
+        /// <summary>
+        /// 启用DHCP客户端
+        /// </summary>
+        EnableDhcp = 0X01,
+
+        /// <summary>
+        /// 创建DHCP服务器
+        /// </summary>
+        CreateDhcp = 0X02
+    }
 }
