@@ -585,7 +585,63 @@ namespace ThisCoder.AirHome
         #endregion
 
         #region 设置事件上报及心跳参数
+        /// <summary>
+        /// 设置事件上报等待时间的命令
+        /// </summary>
+        /// <param name="waitTime">事件上报等待时间</param>
+        /// <returns></returns>
+        public Byte[] SettingEventReportWaitTimeCommand(UInt16 waitTime)
+        {
+            return GetDatagram(MessageId.SettingEventReportWaitTime,
+                new Parameter(ParameterType.TntervalTime, waitTime.ToByteArray()));
+        }
 
+        /// <summary>
+        /// 设置事件上报重发次数的命令
+        /// </summary>
+        /// <param name="repeatCount">事件上报重发次数</param>
+        /// <returns></returns>
+        public Byte[] SettingEventReportRepeatCountCommand(Byte repeatCount)
+        {
+            return GetDatagram(MessageId.SettingEventReportRepeatCount,
+                new Parameter(ParameterType.Count, repeatCount));
+        }
+
+
+        /// <summary>
+        /// 设置心跳包间隔时间的命令
+        /// </summary>
+        /// <param name="tntervalTime">心跳包间隔时间</param>
+        /// <returns></returns>
+        public Byte[] SettingHeartbeatTntervalTimeCommand(UInt16 tntervalTime)
+        {
+            return GetDatagram(MessageId.SettingHeartbeatTntervalTime,
+                new Parameter(ParameterType.TntervalTime, tntervalTime.ToByteArray()));
+        }
+
+
+        /// <summary>
+        /// 设置心跳包等待时间的命令
+        /// </summary>
+        /// <param name="waitTime">心跳包等待时间</param>
+        /// <returns></returns>
+        public Byte[] SettingHeartbeatWaitTimeCommand(UInt16 waitTime)
+        {
+            return GetDatagram(MessageId.SettingHeartbeatWaitTime,
+                new Parameter(ParameterType.TntervalTime, waitTime.ToByteArray()));
+        }
+
+
+        /// <summary>
+        /// 设置心跳包重发次数的命令
+        /// </summary>
+        /// <param name="repeatCount">心跳包重发次数</param>
+        /// <returns></returns>
+        public Byte[] SettingHeartbeatRepeatCountCommand(Byte repeatCount)
+        {
+            return GetDatagram(MessageId.SettingHeartbeatRepeatCount,
+                new Parameter(ParameterType.Count, repeatCount));
+        }
         #endregion
 
         #region 设置其他参数信息
