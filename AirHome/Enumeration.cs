@@ -138,12 +138,12 @@
         SettingModuleDhcpFunction = 0X00C7,
 
         /// <summary>
-        /// 设置DHCP地址池起始地址
+        /// 设置模块DHCP地址池起始地址
         /// </summary>
         SettingModuleDhcpBeginAddress = 0X00C8,
 
         /// <summary>
-        /// 设置DHCP地址池结束地址
+        /// 设置模块DHCP地址池结束地址
         /// </summary>
         SettingModuleDhcpEndAddress = 0X00C9,
 
@@ -158,17 +158,17 @@
         SettingModuleNetworkProtocol = 0X00CB,
 
         /// <summary>
-        /// 设置TCP连接使用的端口
+        /// 设置模块TCP连接使用的端口
         /// </summary>
         SettingModuleTcpPort = 0X00CC,
 
         /// <summary>
-        /// 设置UDP连接使用的端口
+        /// 设置模块UDP连接使用的端口
         /// </summary>
         SettingModuleUdpPort = 0X00CD,
 
         /// <summary>
-        /// 设置HTTP服务器使用的端口
+        /// 设置模块HTTP服务器使用的端口
         /// </summary>
         SettingModuleHttpPort = 0X00CE,
 
@@ -842,5 +842,21 @@
         /// 数据位长度为8
         /// </summary>
         DataBit8 = 0X08
+    }
+
+    /// <summary>
+    /// WiFi无线网络模块的运行模式
+    /// </summary>
+    public enum WifiRunMode : byte
+    {
+        /// <summary>
+        /// 服务器模式
+        /// </summary>
+        Server = 0X00,
+
+        /// <summary>
+        /// 客户端模式
+        /// </summary>
+        Client = 0X01
     }
 }
