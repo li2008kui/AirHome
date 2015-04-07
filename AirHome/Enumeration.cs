@@ -902,14 +902,14 @@
     public enum NetworkProtocol : byte
     {
         /// <summary>
-        /// 用户数据报协议
-        /// </summary>
-        UDP = 0X00,
-
-        /// <summary>
         /// 传输控制协议
         /// </summary>
-        TCP = 0X01,
+        TCP = 0X00,
+
+        /// <summary>
+        /// 用户数据报协议
+        /// </summary>
+        UDP = 0X01,
 
         /// <summary>
         /// 超文本传输协议
