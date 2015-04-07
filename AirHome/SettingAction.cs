@@ -528,7 +528,60 @@ namespace ThisCoder.AirHome
         #endregion
 
         #region 设置模块访问服务器信息
+        /// <summary>
+        /// 设置访问服务器的IP地址的命令
+        /// </summary>
+        /// <param name="ipAddress">访问服务器的IP地址</param>
+        /// <returns></returns>
+        public Byte[] SettingAccessServerIpAddressCommand(string ipAddress)
+        {
+            return GetDatagram(MessageId.SettingAccessServerIpAddress,
+                new Parameter(ParameterType.ServerIpAddress, ipAddress));
+        }
 
+        /// <summary>
+        /// 设置访问服务器的域名的命令
+        /// </summary>
+        /// <param name="domainName">访问服务器的域名</param>
+        /// <returns></returns>
+        public Byte[] SettingAccessServerDomainNameCommand(string domainName)
+        {
+            return GetDatagram(MessageId.SettingAccessServerDomainName,
+                new Parameter(ParameterType.ServerDomainName, domainName));
+        }
+
+        /// <summary>
+        /// 设置访问服务器的端口的命令
+        /// </summary>
+        /// <param name="serverPort">访问服务器的端口</param>
+        /// <returns></returns>
+        public Byte[] SettingAccessServerPortCommand(UInt16 serverPort)
+        {
+            return GetDatagram(MessageId.SettingAccessServerPort,
+                new Parameter(ParameterType.ServerPort, serverPort.ToByteArray()));
+        }
+
+        /// <summary>
+        /// 设置访问服务器的用户名的命令
+        /// </summary>
+        /// <param name="userName">访问服务器的用户名</param>
+        /// <returns></returns>
+        public Byte[] SettingAccessServerUserNameCommand(string userName)
+        {
+            return GetDatagram(MessageId.SettingAccessServerUserName,
+                new Parameter(ParameterType.ServerUserName, userName));
+        }
+
+        /// <summary>
+        /// 设置访问服务器的密码的命令
+        /// </summary>
+        /// <param name="password">访问服务器的密码</param>
+        /// <returns></returns>
+        public Byte[] SettingAccessServerPasswordCommand(string password)
+        {
+            return GetDatagram(MessageId.SettingAccessServerPassword,
+                new Parameter(ParameterType.ServerPassword, password));
+        }
         #endregion
 
         #region 设置事件上报及心跳参数
