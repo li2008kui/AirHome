@@ -358,7 +358,173 @@ namespace ThisCoder.AirHome
         #endregion
 
         #region 设置WiFi模块信息
+        /// <summary>
+        /// 设置WiFi模块运行模式的命令
+        /// </summary>
+        /// <param name="wifiRunMode">WiFi模块运行模式</param>
+        /// <returns></returns>
+        public Byte[] SettingModuleWifiRunModeCommand(WifiRunMode wifiRunMode)
+        {
+            return GetDatagram(MessageId.SettingModuleWifiRunMode,
+                new Parameter(ParameterType.WifiRunMode, (Byte)wifiRunMode));
+        }
 
+        /// <summary>
+        /// 设置WiFi无线网络名称SSID的命令
+        /// </summary>
+        /// <param name="ssidName">WiFi无线网络名称SSID</param>
+        /// <returns></returns>
+        public Byte[] SettingModuleSsidNameCommand(string ssidName)
+        {
+            return GetDatagram(MessageId.SettingModuleSsidName,
+                new Parameter(ParameterType.SsidName, ssidName));
+        }
+
+        /// <summary>
+        /// 设置模块WiFi密码的命令
+        /// </summary>
+        /// <param name="wifiPassword">模块的WiFi密码</param>
+        /// <returns></returns>
+        public Byte[] SettingModuleWifiPasswordCommand(string wifiPassword)
+        {
+            return GetDatagram(MessageId.SettingModuleWifiPassword,
+                new Parameter(ParameterType.WifiPassword, wifiPassword));
+        }
+
+        /// <summary>
+        /// 设置模块IP地址的命令
+        /// </summary>
+        /// <param name="ipAddress">模块的IP地址</param>
+        /// <returns></returns>
+        public Byte[] SettingModuleIpAddressCommand(string ipAddress)
+        {
+            return GetDatagram(MessageId.SettingModuleIpAddress,
+                new Parameter(ParameterType.IpAddress, ipAddress));
+        }
+
+        /// <summary>
+        /// 设置模块网关地址的命令
+        /// </summary>
+        /// <param name="gatewayAddress">模块的网关地址</param>
+        /// <returns></returns>
+        public Byte[] SettingModuleGatewayAddressCommand(string gatewayAddress)
+        {
+            return GetDatagram(MessageId.SettingModuleGatewayAddress,
+                new Parameter(ParameterType.GatewayAddress, gatewayAddress));
+        }
+
+        /// <summary>
+        /// 设置模块子网掩码的命令
+        /// </summary>
+        /// <param name="subnetMask">模块的子网掩码</param>
+        /// <returns></returns>
+        public Byte[] SettingModuleSubnetMaskCommand(string subnetMask)
+        {
+            return GetDatagram(MessageId.SettingModuleSubnetMask,
+                new Parameter(ParameterType.SubnetMask, subnetMask));
+        }
+
+        /// <summary>
+        /// 设置模块DNS地址的命令
+        /// </summary>
+        /// <param name="dnsAddress">模块的DNS地址</param>
+        /// <returns></returns>
+        public Byte[] SettingModuleDnsAddressCommand(string dnsAddress)
+        {
+            return GetDatagram(MessageId.SettingModuleDnsAddress,
+                new Parameter(ParameterType.DnsAddress, dnsAddress));
+        }
+
+        /// <summary>
+        /// 设置模块DHCP功能的命令
+        /// </summary>
+        /// <param name="wifiDhcpFunction">模块的DHCP功能</param>
+        /// <returns></returns>
+        public Byte[] SettingModuleDhcpFunctionCommand(WifiDhcpFunction wifiDhcpFunction)
+        {
+            return GetDatagram(MessageId.SettingModuleDhcpFunction,
+                new Parameter(ParameterType.DhcpFunction, (Byte)wifiDhcpFunction));
+        }
+
+        /// <summary>
+        /// 设置模块DHCP地址池起始地址的命令
+        /// </summary>
+        /// <param name="ipAddress">模块DHCP地址池起始IP地址</param>
+        /// <returns></returns>
+        public Byte[] SettingModuleDhcpBeginAddressCommand(string ipAddress)
+        {
+            return GetDatagram(MessageId.SettingModuleDhcpBeginAddress,
+                new Parameter(ParameterType.IpAddress, ipAddress));
+        }
+
+        /// <summary>
+        /// 设置模块DHCP地址池结束地址的命令
+        /// </summary>
+        /// <param name="ipAddress">模块DHCP地址池结束IP地址</param>
+        /// <returns></returns>
+        public Byte[] SettingModuleDhcpEndAddressCommand(string ipAddress)
+        {
+            return GetDatagram(MessageId.SettingModuleDhcpEndAddress,
+                new Parameter(ParameterType.IpAddress, ipAddress));
+        }
+
+        /// <summary>
+        /// 设置模块MAC地址的命令
+        /// </summary>
+        /// <param name="macAddress">模块的MAC地址</param>
+        /// <returns></returns>
+        public Byte[] SettingModuleMacAddressCommand(string macAddress)
+        {
+            return GetDatagram(MessageId.SettingModuleMacAddress,
+                new Parameter(ParameterType.MacAddress, macAddress));
+        }
+
+        /// <summary>
+        /// 设置模块使用网络协议的命令
+        /// </summary>
+        /// <param name="networkProtocol">模块使用的网络协议</param>
+        /// <returns></returns>
+        public Byte[] SettingModuleNetworkProtocolCommand(NetworkProtocol networkProtocol)
+        {
+            return GetDatagram(MessageId.SettingModuleNetworkProtocol,
+                new Parameter(ParameterType.NetworkProtocol, (Byte)networkProtocol));
+        }
+
+        /// <summary>
+        /// 设置TCP连接使用的端口的命令
+        /// </summary>
+        /// <param name="tcpPort">TCP连接使用的端口</param>
+        /// <returns></returns>
+        public Byte[] SettingModuleTcpPortCommand(UInt16 tcpPort)
+        {
+            return GetDatagram(MessageId.SettingModuleTcpPort,
+                new Parameter(ParameterType.TcpPort, tcpPort.ToByteArray()));
+        }
+
+        /// <summary>
+        /// 设置UDP连接使用的端口的命令
+        /// </summary>
+        /// <param name="udpPort">UDP连接使用的端口</param>
+        /// <returns></returns>
+        public Byte[] SettingModuleUdpPortCommand(UInt16 udpPort)
+        {
+            return GetDatagram(MessageId.SettingModuleUdpPort,
+                new Parameter(ParameterType.UdpPort, udpPort.ToByteArray()));
+        }
+
+        /// <summary>
+        /// 设置设置HTTP服务器使用的端口的命令
+        /// </summary>
+        /// <param name="httpPort">
+        ///     设置HTTP服务器使用的端口。
+        ///     <para>默认为80端口</para>
+        /// </param>
+        /// <returns></returns>
+        public Byte[] SettingModuleHttpPortCommand(UInt16 httpPort = 0X50)
+        {
+            return GetDatagram(MessageId.SettingModuleHttpPort,
+                new Parameter(ParameterType.HttpPort, httpPort.ToByteArray()));
+        }
         #endregion
 
         #region 设置模块访问服务器信息
