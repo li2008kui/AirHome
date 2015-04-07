@@ -859,4 +859,19 @@
         /// </summary>
         Client = 0X01
     }
+
+    /// <summary>
+    /// WiFi无线网络的加密方式
+    /// </summary>
+    public enum WifiSecurityType : byte
+    {
+        NONE = 0X00,
+        WEP = 0X01,
+        WPA_TKIP = 0X02,
+        WPA_AES = 0X03,
+        WPA2_TKIP = 0X04,
+        WPA2_AES = 0X05,
+        WPA2_MIXED = 0X06,
+        AUTO = 0X07
+    }
 }
