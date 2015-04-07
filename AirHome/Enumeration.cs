@@ -899,7 +899,7 @@
     /// <summary>
     /// WiFi模块支持的网络协议
     /// </summary>
-    public enum NetworkingProtocol : byte
+    public enum NetworkProtocol : byte
     {
         /// <summary>
         /// 用户数据报协议
