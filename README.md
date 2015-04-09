@@ -88,7 +88,7 @@
 
 &emsp;&emsp;消息报文格式的定义由起始符、消息头、消息体和结束符组成，其具体长度随消息体长度的改变而变化。
 
-<table style="border-collapse: collapse; text-align: center; width: 700px;">
+<table style="border-collapse: collapse; text-align: center;">
 <tr><th></th><th>起始符</th><th>消息头</th><th>消息体</th><th>结束符</th></tr>
 <tr><th>表示</th><td>STX</td><td>HEAD</td><td>BODY</td><td>ETX</td></tr>
 <tr><th>长度</th><td>1Byte</td><td>12Byte</td><td>可变</td><td>1Byte</td></tr>
@@ -107,7 +107,7 @@
 
 &emsp;&emsp;消息头的长度总共有12个字节，依次定义了1个字节的消息类型、2个字节的消息体长度、4个字节的消息序号、3个字节的预留字段和2个字节的消息体CRC校验。
 
-<table style="border-collapse: collapse; text-align: center; width: 700px;">
+<table style="border-collapse: collapse; text-align: center;">
 <tr><th></th><th>消息类型</th><th>消息体长度</th><th>消息序号</th><th>预留</th><th>CRC校验</th></tr>
 <tr><th>长度</th><td>1Byte</td><td>2Byte</td><td>4Byte</td><td>3Byte</td><td>2Byte</td></tr>
 <tr><th>取值</th><td>00~FF</td><td>0000~FFFF</td><td>00000000~FFFFFFFF</td><td>000000</td><td>0000~FFFF</td></tr>
@@ -122,7 +122,7 @@
 
 &emsp;&emsp;消息体定义了消息ID、设备ID和参数列表，其中参数列表由多个参数依次排列，每个参数由参数类型、参数值长度和参数值组成。消息体的长度由参数值长度及参数个数不同而不固定。
 
-<table style="border-collapse: collapse; text-align: center; width: 700px;">
+<table style="border-collapse: collapse; text-align: center;">
 <tr><th rowspan="2"></th><th rowspan="2">消息ID</th><th rowspan="2">设备ID</th><th colspan="4">参数列表</th></tr>
 <tr><th>参数1类型</th><th>参数1值长度</th><th>参数1值</th><th>参数2...</th></tr>
 <tr><th>长度</th><td>2Byte</td><td>8Byte</td><td>2Byte</td><td>1Byte</td><td>可变</td><td></td></tr>
@@ -137,18 +137,18 @@
 
 ### 消息类型 ###
 
-<table style="border-collapse: collapse; width: 700px;">
+<table style="border-collapse: collapse;">
 <tr><th>代码</th><th>含义</th><th>备注</th></tr>
-<tr><th>0X00</th><td>表示服务器或APP客户端到终端设备的配置、控制和获取状态操作。</td><td></td></tr>
-<tr><th>0X01</th><td>表示终端设备反馈相关信息到服务器或APP客户端。</td><td>即反馈0X00操作执行的结果。</td></tr>
-<tr><th>0X02</th><td>表示终端设备主动请求或上报自己的状态或告警到服务器或APP客户端。</td><td></td></tr>
-<tr><th>0X03</th><td>表示服务器或APP客户端响应终端设备的状态上报或告警。</td><td>即响应0X1BE7请求或上报操作执行的结果。</td></tr>
+<tr><th>0X00</th><td>表示服务器或APP客户端到终端设备<br/>的配置、控制和获取状态操作。</td><td></td></tr>
+<tr><th>0X01</th><td>表示终端设备反馈相关信息到服务器<br/>或APP客户端。</td><td>即反馈0X00操作执行的结果。</td></tr>
+<tr><th>0X02</th><td>表示终端设备主动请求或上报自己的<br/>状态或告警到服务器或APP客户端。</td><td></td></tr>
+<tr><th>0X03</th><td>表示服务器或APP客户端响应终端设<br/>备的状态上报或告警。</td><td>即响应0X1BE7请求或上报<br/>操作执行的结果。</td></tr>
 <tr><th>0X04</th><td>预留</td><td></td></tr>
 </table>
 
 ### 消息ID ###
 
-<table style="border-collapse: collapse; width: 700px;">
+<table style="border-collapse: collapse;">
 <tr><th>代码</th><th>范围</th><th>功能</th><th>备注</th></tr>
 <tr><th>0X0000</th><td rowspan="49">配置</td><td></td><td>指令包含多个功能</td></tr>
 <tr><th>0X0001</th><td>设置模块或通道分区代码</td><td></td></tr>
@@ -223,13 +223,13 @@
 <tr><th>0X20C0</th><td>获取设备通信类型</td><td>如WIFI、GPRS、3G、4G、<br/>ZigBee、蓝牙和红外等</td></tr>
 <tr><th>0X20C1</th><td>获取WiFi模块的运行模式</td><td></td></tr>
 <tr><th>0X20C2</th><td>获取SSID无线网络名称和信号强度</td><td>模块本身或接入路由器的<br/>SSID</td></tr>
-<tr><th>0X2003</th><td>获取模块周围无线网络的名称和信号强度</td><td>可以包括多个无线网络名称<br/>和信号强度</td></tr>
-<tr><th>0X2004</th><td>获取设备的IP地址</td><td></td></tr>
-<tr><th>0X2005</th><td>获取设备的网关地址</td><td></td></tr>
-<tr><th>0X2006</th><td>获取设备的子网掩码</td><td></td></tr>
-<tr><th>0X2007</th><td>获取设备的DNS地址</td><td></td></tr>
-<tr><th>0X2008</th><td>获取设备的MAC地址</td><td></td></tr>
-<tr><th>0X2009</th><td></td><td></td></tr>
+<tr><th>0X20C3</th><td>获取模块周围无线网络的名称和<br/>信号强度</td><td>可以包括多个无线网络名称<br/>和信号强度</td></tr>
+<tr><th>0X20C4</th><td>获取设备的IP地址</td><td></td></tr>
+<tr><th>0X20C5</th><td>获取设备的网关地址</td><td></td></tr>
+<tr><th>0X20C6</th><td>获取设备的子网掩码</td><td></td></tr>
+<tr><th>0X20C7</th><td>获取设备的DNS地址</td><td></td></tr>
+<tr><th>0X20C8</th><td>获取设备的MAC地址</td><td></td></tr>
+<tr><th>0X20C9</th><td></td><td></td></tr>
 <tr><th>...</th><td></td><td></td><td></td></tr>
 <tr><th>0X3000</th><td rowspan="5">主动请求</td><td>登录到服务器</td><td>设备到服务器，上电后自动<br/>连接服务器</td></tr>
 <tr><th>0X3001</th><td>发送心跳包</td><td>设备向服务器</td></tr>
@@ -248,20 +248,20 @@
 
 ### 参数类型 ###
 
-<table style="border-collapse: collapse; width: 700px;">
+<table style="border-collapse: collapse;">
 <tr><th>代码</th><th>取值最大长度</th><th>含义</th><th>取值</th><th>备注</th></tr>
 <tr><th>0X0000</th><td>1Byte</td><td>无参数</td><td>0X00</td><td>用于占位</td></tr>
 <tr><th>0X0001</th><td>1Byte</td><td>通道数量</td><td>0X01~0XFF</td><td>表示一个设备中控制模块所能控制的“子设备”的数量，每个“子设备”的功能可能不一样。</td></tr>
 <tr><th>0X001BE7</th><td>1Byte</td><td>通道编号</td><td>0X01~0XFF</td><td>表示一个设备中控制模块所能控制的“子设备”的编号。0X00表示所有通道。</td></tr>
-<tr><th>0X001BE8</th><td>4Byte</td><td>模块或通道分区代码</td><td>0X00000000~0XFFFFFFFF</td><td>0X000000表示所有区<br/>第1个Byte预留<br/>第2个Byte表示住宅<br/>第3个Byte表示区域<br/>第4个Byte表示房间</td></tr>
+<tr><th>0X001BE8</th><td>4Byte</td><td>模块或通道分区代码</td><td>0X00000000~<br/>0XFFFFFFFF</td><td>0X000000表示所有区<br/>第1个Byte预留<br/>第2个Byte表示住宅<br/>第3个Byte表示区域<br/>第4个Byte表示房间</td></tr>
 <tr><th>0X0004</th><td>50Byte</td><td>模块或通道分区名称</td><td></td><td></td></tr>
 <tr><th>0X0005</th><td>1Byte</td><td>模块及通道功能</td><td></td><td>表示设备具有的功能。一个功能与一个“子设备”对应，每个子设备可能有多个功能。</td></tr>
 <tr><th>0X0006</th><td>50Byte</td><td>模块或通道名称</td><td></td><td></td></tr>
 <tr><th>0X0007</th><td>100Byte</td><td>模块或通道描述信息</td><td></td><td></td></tr>
-<tr><th>0X0008</th><td>100Byte</td><td>模块或通道图片的名称或地址</td><td></td><td></td></tr>
+<tr><th>0X0008</th><td>100Byte</td><td>模块或通道图片的<br/>名称或地址</td><td></td><td></td></tr>
 <tr><th>0X0009</th><td>4Byte</td><td>时区</td><td></td><td>表示方式：±HHmm00<br/>第1个Byte使用0X00表示东时区，0X01表示西时区<br/>第 2个Byte表示时区小时量<br/>第3个Byte表示时区分钟量<br/>第4个Byte预留<br/>例如0X00080000表示东八区</td></tr>
 <tr><th>0X000A</th><td>8Byte</td><td>日期时间</td><td>例如<br/>0X07DE0C040B1E00<br/>表示<br/>2014-12-04 11：30：00</td><td>第1~2个Byte表示年<br/>第3个Byte表示月<br/>第4个Byte表示日<br/>第5个Byte表示小时<br/>第6个Byte表示分钟<br/>第7个Byte表示秒钟<br/>第8个Byte预留</td></tr>
-<tr><th>0X000B</th><td>4Byte</td><td>日期时间（另一种形式）</td><td>0X00000000~0XFFFFFFFF</td><td>表示格林威治标准时间（GMT）1970年1月1日0时0分0秒到当前时间所间隔的秒数</td></tr>
+<tr><th>0X000B</th><td>4Byte</td><td>日期时间（另一种形式）</td><td>0X00000000~<br/>0XFFFFFFFF</td><td>表示格林威治标准时间（GMT）1970年1月1日0时0分0秒到当前时间所间隔的秒数</td></tr>
 <tr><th>0X000C</th><td>2Byte</td><td>时间间隔</td><td>0X0000~0XFFFF</td><td>单位为秒</td></tr>
 <tr><th>0X000D</th><td>1Byte</td><td>次数</td><td>0X01~0XFF</td><td>一个字节的标量数值</td></tr>
 <tr><th>0X000E</th><td></td><td></td><td></td><td></td></tr>
@@ -283,7 +283,7 @@
 <tr><th>0X00C6</th><td>15Byte</td><td>模块网关地址</td><td></td><td>如：192.168.1.1</td></tr>
 <tr><th>0X00C7</th><td>15Byte</td><td>模块子网掩码</td><td></td><td>如：255.255.255.0</td></tr>
 <tr><th>0X00C8</th><td>15Byte</td><td>模块DNS地址</td><td></td><td>如：192.168.1.1</td></tr>
-<tr><th>0X00C9</th><td>1Byte</td><td>模块是否启用DHCP模式</td><td></td><td>0X00表示禁用<br/>0X01表示启用<br/>0X1BE7表示创建DHCP服务器</td></tr>
+<tr><th>0X00C9</th><td>1Byte</td><td>模块是否启用<br/>DHCP模式</td><td></td><td>0X00表示禁用<br/>0X01表示启用<br/>0X1BE7表示创建DHCP服务器</td></tr>
 <tr><th>0X00CA</th><td>17Byte</td><td>模块MAC地址</td><td></td><td>如：AA-BB-CC-DD-EE-FF</td></tr>
 <tr><th>0X00CB</th><td>1Byte</td><td>网络协议</td><td>0X00~0XFF</td><td>0X01表示TCP<br/>0X00表示UDP<br/>0X1BE7表示HTTP</td></tr>
 <tr><th>0X00CC</th><td>2Byte</td><td>TCP端口</td><td>0X0000~0XFFFF</td><td></td></tr>
@@ -301,7 +301,7 @@
 <tr><th>0X1000</th><td>1Byte</td><td>打开或关闭</td><td>0X00、0X01</td><td>0X00表示关<br/>0X01表示开</td></tr>
 <tr><th>0X1001</th><td>1Byte</td><td>亮度</td><td>0X01~0XFF</td><td>0X01表示1%亮度<br/>0XFF表示100%亮度</td></tr>
 <tr><th>0X101BE7</th><td>1Byte</td><td>冷色温分量</td><td>0X00~0XFF</td><td>与灯具设备有关，取值表示冷色温分量，暖色温分量由单片机处理。<br/>公式：<br>冷色温+暖色温=当前亮度<br/>此作法是为了使调节色温时功率（表现为亮度）不变，同理调节功率（表现为亮度）时也要求色温不变。</td></tr>
-<tr><th>0X101BE8</th><td>4Byte</td><td>RGB</td><td>0X00000000~0XFFFFFFFF</td><td>第1个Byte表示红分量<br/>第2个Byte表示绿分量<br/>第3个Byte表示蓝分量<br/>第4个Byte表示白光。00表示暖白，FF表示冷白</td></tr>
+<tr><th>0X101BE8</th><td>4Byte</td><td>RGB</td><td>0X00000000~<br/>0XFFFFFFFF</td><td>第1个Byte表示红分量<br/>第2个Byte表示绿分量<br/>第3个Byte表示蓝分量<br/>第4个Byte表示白光。00表示暖白，FF表示冷白</td></tr>
 <tr><th>0X1004</th><td></td><td></td><td></td><td></td></tr>
 <tr><th>...</th><td></td><td></td><td></td><td></td></tr>
 <tr><th>0XE000</th><td>1Byte</td><td>布尔类型参数</td><td></td><td></td></tr>
@@ -315,7 +315,7 @@
 
 ### 消息类型 ###
 
-<table style="border-collapse: collapse; width: 700px;">
+<table style="border-collapse: collapse;">
 <tr><th>代码</th><th>含义</th><th>备注</th></tr>
 <tr><th>0X00</th><td>具有时钟功能的设备</td><td>拥有定时和同步时间功能</td></tr>
 <tr><th>0X01</th><td>支持本地语音控制的设备</td><td rowspan="15">用于扩展的功能，可为上层<br/>APP界面提供数据来源</td></tr>
@@ -383,7 +383,7 @@
 
 ### 响应代码 ###
 
-<table style="border-collapse: collapse; width: 700px;">
+<table style="border-collapse: collapse;">
 <tr><th>代码</th><th>描述</th><th>备注</th></tr>
 <tr><th>0X00</th><td>成功</td><td></td></tr>
 <tr><th>0X01</th><td>命令格式错误</td><td></td></tr>
