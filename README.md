@@ -251,17 +251,17 @@
 <table style="border-collapse: collapse;">
 <tr><th>代码</th><th>取值最<br/>大长度</th><th>含义</th><th>取值</th><th>备注</th></tr>
 <tr><th>0X0000</th><td>1Byte</td><td>无参数</td><td>0X00</td><td>用于占位</td></tr>
-<tr><th>0X0001</th><td>1Byte</td><td>通道数量</td><td>0X01~0XFF</td><td>表示一个设备中控制模块所能控制的“子设备”的数量，每个“子设备”的功能可能不一样。</td></tr>
-<tr><th>0X001BE7</th><td>1Byte</td><td>通道编号</td><td>0X01~0XFF</td><td>表示一个设备中控制模块所能控制的“子设备”的编号。0X00表示所有通道。</td></tr>
+<tr><th>0X0001</th><td>1Byte</td><td>通道数量</td><td>0X01~0XFF</td><td>表示一个设备中控制模块<br/>所能控制的“子设备”的数<br/>量，每个“子设备”的功能<br/>可能不一样。</td></tr>
+<tr><th>0X001BE7</th><td>1Byte</td><td>通道编号</td><td>0X01~0XFF</td><td>表示一个设备中控制模块<br/>所能控制的“子设备”的编号。<br/>0X00表示所有通道。</td></tr>
 <tr><th>0X001BE8</th><td>4Byte</td><td>模块或通道分区代码</td><td>0X00000000~<br/>0XFFFFFFFF</td><td>0X000000表示所有区<br/>第1个Byte预留<br/>第2个Byte表示住宅<br/>第3个Byte表示区域<br/>第4个Byte表示房间</td></tr>
 <tr><th>0X0004</th><td>50Byte</td><td>模块或通道分区名称</td><td></td><td></td></tr>
-<tr><th>0X0005</th><td>1Byte</td><td>模块及通道功能</td><td></td><td>表示设备具有的功能。一个功能与一个“子设备”对应，每个子设备可能有多个功能。</td></tr>
+<tr><th>0X0005</th><td>1Byte</td><td>模块及通道功能</td><td></td><td>表示设备具有的功能。<br/>一个功能与一个“子设备”<br/>对应，每个子设备可能有<br/>多个功能。</td></tr>
 <tr><th>0X0006</th><td>50Byte</td><td>模块或通道名称</td><td></td><td></td></tr>
 <tr><th>0X0007</th><td>100Byte</td><td>模块或通道描述信息</td><td></td><td></td></tr>
 <tr><th>0X0008</th><td>100Byte</td><td>模块或通道图片的<br/>名称或地址</td><td></td><td></td></tr>
-<tr><th>0X0009</th><td>4Byte</td><td>时区</td><td></td><td>表示方式：±HHmm00<br/>第1个Byte使用0X00表示东时区，0X01表示西时区<br/>第 2个Byte表示时区小时量<br/>第3个Byte表示时区分钟量<br/>第4个Byte预留<br/>例如0X00080000表示东八区</td></tr>
+<tr><th>0X0009</th><td>4Byte</td><td>时区</td><td></td><td>表示方式：±HHmm00<br/>第1个Byte表示时区<br/>&emsp;0X00表示东时区，<br/>&emsp;0X01表示西时区<br/>第 2个Byte表示时区小时量<br/>第3个Byte表示时区分钟量<br/>第4个Byte预留<br/>例如0X00080000表示东八区</td></tr>
 <tr><th>0X000A</th><td>8Byte</td><td>日期时间</td><td>例如<br/>0X07DE0C04<br/>0B1E0000<br/>表示<br/>2014-12-04<br/>11:30:00</td><td>第1~2个Byte表示年<br/>第3个Byte表示月<br/>第4个Byte表示日<br/>第5个Byte表示小时<br/>第6个Byte表示分钟<br/>第7个Byte表示秒钟<br/>第8个Byte预留</td></tr>
-<tr><th>0X000B</th><td>4Byte</td><td>日期时间<br/>（另一种形式）</td><td>0X00000000~<br/>0XFFFFFFFF</td><td>表示格林威治标准时间（GMT）1970年1月1日0时0分0秒到当前时间所间隔的秒数</td></tr>
+<tr><th>0X000B</th><td>4Byte</td><td>日期时间<br/>（另一种形式）</td><td>0X00000000~<br/>0XFFFFFFFF</td><td>表示格林威治标准时间<br/>（GMT）1970年1月1日<br/>0时0分0秒到当前时间所<br/>间隔的秒数</td></tr>
 <tr><th>0X000C</th><td>2Byte</td><td>时间间隔</td><td>0X0000~<br/>0XFFFF</td><td>单位为秒</td></tr>
 <tr><th>0X000D</th><td>1Byte</td><td>次数</td><td>0X01~0XFF</td><td>一个字节的标量数值</td></tr>
 <tr><th>0X000E</th><td></td><td></td><td></td><td></td></tr>
@@ -275,8 +275,8 @@
 <tr><th>0X00B4</th><td></td><td></td><td></td><td></td></tr>
 <tr><th>...</th><td></td><td></td><td></td><td></td></tr>
 <tr><th>0X00C0</th><td>1Byte</td><td>WiFi模式</td><td>0X00~0XFF</td><td>0X00表示服务器模式<br/>0X01表示客户端模式</td></tr>
-<tr><th>0X00C1</th><td>32Byte</td><td>SSID无线网络名称</td><td>xxx</td><td>xxx</td></tr>
-<tr><th>0X00C2</th><td>64Byte</td><td>WiFi密码</td><td>xxx</td><td>xxx</td></tr>
+<tr><th>0X00C1</th><td>32Byte</td><td>SSID无线网络名称</td><td></td><td></td></tr>
+<tr><th>0X00C2</th><td>64Byte</td><td>WiFi密码</td><td></td><td></td></tr>
 <tr><th>0X00C3</th><td>1Byte</td><td>加密方式</td><td>0X00~0X07</td><td>0X00表示NONE<br/>0X01表示WEP<br/>0X1BE7表示WPA_TKIP<br/>0X1BE8表示WPA_AES<br/>0X04表示WPA2_TKIP<br/>0X05表示WPA2_AES<br/>0X06表示WPA2_MIXED<br/>0X07表示AUTO</td></tr>
 <tr><th>0X00C4</th><td>1Byte</td><td>信号强度</td><td>0X00~0XFF</td><td>只读属性</td></tr>
 <tr><th>0X00C5</th><td>15Byte</td><td>模块IP地址</td><td></td><td>如：192.168.1.100</td></tr>
@@ -295,13 +295,13 @@
 <tr><th>0X00D1</th><td>50Byte</td><td>访问服务器的域名</td><td></td><td></td></tr>
 <tr><th>0X00D2</th><td>2Byte</td><td>服务器监听的端口号</td><td>0X0000~<br/>0XFFFF</td><td></td></tr>
 <tr><th>0X00D3</th><td>20Byte</td><td>登录服务器的用户名</td><td></td><td>默认为admin</td></tr>
-<tr><th>0X00D4</th><td>32Byte</td><td>登录服务器的密码</td><td></td><td>默认为空。32位MD5加密，为空时不加密。</td></tr>
+<tr><th>0X00D4</th><td>32Byte</td><td>登录服务器的密码</td><td></td><td>默认为空。32位MD5加密，<br/>为空时不加密。</td></tr>
 <tr><th>0X00D5</th><td></td><td></td><td></td><td></td></tr>
 <tr><th>...</th><td></td><td></td><td></td><td></td></tr>
 <tr><th>0X1000</th><td>1Byte</td><td>打开或关闭</td><td>0X00、0X01</td><td>0X00表示关<br/>0X01表示开</td></tr>
 <tr><th>0X1001</th><td>1Byte</td><td>亮度</td><td>0X01~0XFF</td><td>0X01表示1%亮度<br/>0XFF表示100%亮度</td></tr>
-<tr><th>0X101BE7</th><td>1Byte</td><td>冷色温分量</td><td>0X00~0XFF</td><td>与灯具设备有关，取值表示冷色温分量，暖色温分量由单片机处理。<br/>公式：<br>冷色温+暖色温=当前亮度<br/>此作法是为了使调节色温时功率（表现为亮度）不变，同理调节功率（表现为亮度）时也要求色温不变。</td></tr>
-<tr><th>0X101BE8</th><td>4Byte</td><td>RGB</td><td>0X00000000~<br/>0XFFFFFFFF</td><td>第1个Byte表示红分量<br/>第2个Byte表示绿分量<br/>第3个Byte表示蓝分量<br/>第4个Byte表示白光。00表示暖白，FF表示冷白</td></tr>
+<tr><th>0X101BE7</th><td>1Byte</td><td>冷色温分量</td><td>0X00~0XFF</td><td>&emsp;与灯具设备有关，取值表<br/>示冷色温分量，暖色温分量<br/>由单片机处理。<br/>公式：<br>冷色温+暖色温=当前亮度<br/>&emsp;此作法是为了使调节色温时<br/>功率（表现为亮度）不变，<br/>同理调节功率（表现为亮度）<br/>时也要求色温不变。</td></tr>
+<tr><th>0X101BE8</th><td>4Byte</td><td>RGB</td><td>0X00000000~<br/>0XFFFFFFFF</td><td>第1个Byte表示红分量<br/>第2个Byte表示绿分量<br/>第3个Byte表示蓝分量<br/>第4个Byte表示白光。<br/>&emsp;00表示暖白，FF表示冷白</td></tr>
 <tr><th>0X1004</th><td></td><td></td><td></td><td></td></tr>
 <tr><th>...</th><td></td><td></td><td></td><td></td></tr>
 <tr><th>0XE000</th><td>1Byte</td><td>布尔类型参数</td><td></td><td></td></tr>
@@ -310,7 +310,7 @@
 <tr><th>0XE01BE8</th><td>4Byte</td><td>扩展类型参数</td><td></td><td></td></tr>
 <tr><th>0XE004</th><td>100Byte</td><td></td><td></td><td></td></tr>
 <tr><th>...</th><td></td><td></td><td></td><td></td></tr>
-<tr><th>0XFFFF</th><td>1Byte</td><td>响应码</td><td>0X00~0XFF</td><td>0X00表示成功，其他代码表示错误。</td></tr>
+<tr><th>0XFFFF</th><td>1Byte</td><td>响应码</td><td>0X00~0XFF</td><td>0X00表示成功，其他代码<br/>表示错误。</td></tr>
 </table>
 
 ### 设备功能 ###
