@@ -249,7 +249,7 @@
 ### 参数类型 ###
 
 <table style="border-collapse: collapse;">
-<tr><th>代码</th><th>取值最大长度</th><th>含义</th><th>取值</th><th>备注</th></tr>
+<tr><th>代码</th><th>取值最<br/>大长度</th><th>含义</th><th>取值</th><th>备注</th></tr>
 <tr><th>0X0000</th><td>1Byte</td><td>无参数</td><td>0X00</td><td>用于占位</td></tr>
 <tr><th>0X0001</th><td>1Byte</td><td>通道数量</td><td>0X01~0XFF</td><td>表示一个设备中控制模块所能控制的“子设备”的数量，每个“子设备”的功能可能不一样。</td></tr>
 <tr><th>0X001BE7</th><td>1Byte</td><td>通道编号</td><td>0X01~0XFF</td><td>表示一个设备中控制模块所能控制的“子设备”的编号。0X00表示所有通道。</td></tr>
@@ -260,15 +260,15 @@
 <tr><th>0X0007</th><td>100Byte</td><td>模块或通道描述信息</td><td></td><td></td></tr>
 <tr><th>0X0008</th><td>100Byte</td><td>模块或通道图片的<br/>名称或地址</td><td></td><td></td></tr>
 <tr><th>0X0009</th><td>4Byte</td><td>时区</td><td></td><td>表示方式：±HHmm00<br/>第1个Byte使用0X00表示东时区，0X01表示西时区<br/>第 2个Byte表示时区小时量<br/>第3个Byte表示时区分钟量<br/>第4个Byte预留<br/>例如0X00080000表示东八区</td></tr>
-<tr><th>0X000A</th><td>8Byte</td><td>日期时间</td><td>例如<br/>0X07DE0C040B1E00<br/>表示<br/>2014-12-04 11：30：00</td><td>第1~2个Byte表示年<br/>第3个Byte表示月<br/>第4个Byte表示日<br/>第5个Byte表示小时<br/>第6个Byte表示分钟<br/>第7个Byte表示秒钟<br/>第8个Byte预留</td></tr>
-<tr><th>0X000B</th><td>4Byte</td><td>日期时间（另一种形式）</td><td>0X00000000~<br/>0XFFFFFFFF</td><td>表示格林威治标准时间（GMT）1970年1月1日0时0分0秒到当前时间所间隔的秒数</td></tr>
-<tr><th>0X000C</th><td>2Byte</td><td>时间间隔</td><td>0X0000~0XFFFF</td><td>单位为秒</td></tr>
+<tr><th>0X000A</th><td>8Byte</td><td>日期时间</td><td>例如<br/>0X07DE0C04<br/>0B1E0000<br/>表示<br/>2014-12-04<br/>11:30:00</td><td>第1~2个Byte表示年<br/>第3个Byte表示月<br/>第4个Byte表示日<br/>第5个Byte表示小时<br/>第6个Byte表示分钟<br/>第7个Byte表示秒钟<br/>第8个Byte预留</td></tr>
+<tr><th>0X000B</th><td>4Byte</td><td>日期时间<br/>（另一种形式）</td><td>0X00000000~<br/>0XFFFFFFFF</td><td>表示格林威治标准时间（GMT）1970年1月1日0时0分0秒到当前时间所间隔的秒数</td></tr>
+<tr><th>0X000C</th><td>2Byte</td><td>时间间隔</td><td>0X0000~<br/>0XFFFF</td><td>单位为秒</td></tr>
 <tr><th>0X000D</th><td>1Byte</td><td>次数</td><td>0X01~0XFF</td><td>一个字节的标量数值</td></tr>
 <tr><th>0X000E</th><td></td><td></td><td></td><td></td></tr>
 <tr><th>...</th><td></td><td></td><td></td><td></td></tr>
 <tr><th>0X00A0</th><td></td><td></td><td></td><td></td></tr>
 <tr><th>...</th><td></td><td></td><td></td><td></td></tr>
-<tr><th>0X00B0</th><td>3Byte</td><td>波特率</td><td>0X000000~0XFFFFFF</td><td></td></tr>
+<tr><th>0X00B0</th><td>3Byte</td><td>波特率</td><td>0X000000~<br/>0XFFFFFF</td><td></td></tr>
 <tr><th>0X00B1</th><td>1Byte</td><td>数据位</td><td>0X05~0X08</td><td></td></tr>
 <tr><th>0X00B2</th><td>1Byte</td><td>停止位</td><td>0X00~0X03</td><td>0X00表示None<br/>0X01表示One<br/>0X1BE7表示Two<br/>0X1BE8表示OnePointFive</td></tr>
 <tr><th>0X00B3</th><td>1Byte</td><td>校验位</td><td>0X00~0X04</td><td>0X00表示无<br/>0X01表示奇校验<br/>0X1BE7表示偶校验<br/>0X1BE8表示标志校验<br/>0X04表示空检验</td></tr>
@@ -286,14 +286,14 @@
 <tr><th>0X00C9</th><td>1Byte</td><td>模块是否启用<br/>DHCP模式</td><td></td><td>0X00表示禁用<br/>0X01表示启用<br/>0X1BE7表示创建DHCP服务器</td></tr>
 <tr><th>0X00CA</th><td>17Byte</td><td>模块MAC地址</td><td></td><td>如：AA-BB-CC-DD-EE-FF</td></tr>
 <tr><th>0X00CB</th><td>1Byte</td><td>网络协议</td><td>0X00~0XFF</td><td>0X01表示TCP<br/>0X00表示UDP<br/>0X1BE7表示HTTP</td></tr>
-<tr><th>0X00CC</th><td>2Byte</td><td>TCP端口</td><td>0X0000~0XFFFF</td><td></td></tr>
-<tr><th>0X00CD</th><td>2Byte</td><td>UDP端口</td><td>0X0000~0XFFFF</td><td></td></tr>
-<tr><th>0X00CE</th><td>2Byte</td><td>HTTP端口</td><td>0X0000~0XFFFF</td><td>默认80</td></tr>
+<tr><th>0X00CC</th><td>2Byte</td><td>TCP端口</td><td>0X0000~<br/>0XFFFF</td><td></td></tr>
+<tr><th>0X00CD</th><td>2Byte</td><td>UDP端口</td><td>0X0000~<br/>0XFFFF</td><td></td></tr>
+<tr><th>0X00CE</th><td>2Byte</td><td>HTTP端口</td><td>0X0000~<br/>0XFFFF</td><td>默认80</td></tr>
 <tr><th>0X00CF</th><td></td><td></td><td></td><td></td></tr>
 <tr><th>...</th><td></td><td></td><td></td><td></td></tr>
 <tr><th>0X00D0</th><td>15Byte</td><td>服务器IP地址</td><td></td><td></td></tr>
 <tr><th>0X00D1</th><td>50Byte</td><td>访问服务器的域名</td><td></td><td></td></tr>
-<tr><th>0X00D2</th><td>2Byte</td><td>服务器监听的端口号</td><td>0X0000~0XFFFF</td><td></td></tr>
+<tr><th>0X00D2</th><td>2Byte</td><td>服务器监听的端口号</td><td>0X0000~<br/>0XFFFF</td><td></td></tr>
 <tr><th>0X00D3</th><td>20Byte</td><td>登录服务器的用户名</td><td></td><td>默认为admin</td></tr>
 <tr><th>0X00D4</th><td>32Byte</td><td>登录服务器的密码</td><td></td><td>默认为空。32位MD5加密，为空时不加密。</td></tr>
 <tr><th>0X00D5</th><td></td><td></td><td></td><td></td></tr>
@@ -313,7 +313,7 @@
 <tr><th>0XFFFF</th><td>1Byte</td><td>响应码</td><td>0X00~0XFF</td><td>0X00表示成功，其他代码表示错误。</td></tr>
 </table>
 
-### 消息类型 ###
+### 设备功能 ###
 
 <table style="border-collapse: collapse;">
 <tr><th>代码</th><th>含义</th><th>备注</th></tr>
