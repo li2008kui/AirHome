@@ -191,7 +191,7 @@
 <tr><th>0X00D4</th><td>设置访问服务器的密码</td><td></td></tr>
 <tr><th>0X00D5</th><td></td><td></td></tr>
 <tr><th>...</th><td></td><td></td></tr>
-<tr><th>0X00E0</th><td>设置事件上报等待时间</td><td>t2</td></tr>
+<tr><th>0X00E0</th><td>设置事件上报等待时间</td><td>T2</td></tr>
 <tr><th>0X00E1</th><td>设置事件上报重发次数</td><td>N2</td></tr>
 <tr><th>0X00E2</th><td>设置心跳包间隔时间</td><td>T3</td></tr>
 <tr><th>0X00E3</th><td>设置心跳包等待时间</td><td>T4</td></tr>
@@ -283,7 +283,7 @@
 <tr><th>0X00C6</th><td>15Byte</td><td>模块网关地址</td><td></td><td>如：192.168.1.1</td></tr>
 <tr><th>0X00C7</th><td>15Byte</td><td>模块子网掩码</td><td></td><td>如：255.255.255.0</td></tr>
 <tr><th>0X00C8</th><td>15Byte</td><td>模块DNS地址</td><td></td><td>如：192.168.1.1</td></tr>
-<tr><th>0X00C9</th><td>1Byte</td><td>模块是否启用<br/>DHCP模式</td><td></td><td>0X00表示禁用<br/>0X01表示启用<br/>0X1BE7表示创建DHCP服务器</td></tr>
+<tr><th>0X00C9</th><td>1Byte</td><td>模块是否启用<br/>DHCP模式</td><td></td><td>0X00表示禁用<br/>0X01表示启用<br/>0X1BE7<br/>&emsp;表示创建DHCP服务器</td></tr>
 <tr><th>0X00CA</th><td>17Byte</td><td>模块MAC地址</td><td></td><td>如：AA-BB-CC-DD-EE-FF</td></tr>
 <tr><th>0X00CB</th><td>1Byte</td><td>网络协议</td><td>0X00~0XFF</td><td>0X01表示TCP<br/>0X00表示UDP<br/>0X1BE7表示HTTP</td></tr>
 <tr><th>0X00CC</th><td>2Byte</td><td>TCP端口</td><td>0X0000~<br/>0XFFFF</td><td></td></tr>
