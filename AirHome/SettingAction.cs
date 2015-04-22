@@ -276,6 +276,17 @@ namespace ThisCoder.AirHome
 
             return GetDatagram(MessageId.SettingModuleOrChannelTimedTask, pmtList);
         }
+
+        /// <summary>
+        /// 设置模块型号的命令
+        /// </summary>
+        /// <param name="modelNumber">模块型号</param>
+        /// <returns></returns>
+        public Byte[] SettingModuleModelNumberCommand(Byte modelNumber)
+        {
+            return GetDatagram(MessageId.SettingModuleModelNumber,
+                new Parameter(ParameterType.ModelNumber, modelNumber));
+        }
         #endregion
 
         #region 设置模块串口信息

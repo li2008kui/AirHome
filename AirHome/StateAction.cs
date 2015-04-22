@@ -123,6 +123,15 @@ namespace ThisCoder.AirHome
         }
 
         /// <summary>
+        /// 获取模块型号的命令
+        /// </summary>
+        /// <returns></returns>
+        public Byte[] StateModuleModelNumberCommand(Byte modelNumber)
+        {
+            return GetDatagram(MessageId.StateModuleModelNumber, new Parameter(ParameterType.None, 0X00));
+        }
+
+        /// <summary>
         /// 获取模块通信类型的命令
         /// </summary>
         /// <returns></returns>

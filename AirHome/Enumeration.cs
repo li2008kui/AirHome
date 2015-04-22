@@ -78,6 +78,11 @@
         SettingModuleOrChannelTimedTask = 0X0008,
 
         /// <summary>
+        /// 设置模块型号
+        /// </summary>
+        SettingModuleModelNumber = 0X0010,
+
+        /// <summary>
         /// 设置串口波特率
         /// </summary>
         SettingModuleSerialBaud = 0X00B0,
@@ -309,7 +314,12 @@
         /// <summary>
         /// 获取模块或通道图片名称或地址
         /// </summary>
-        StateModuleOrChannelImage = 0X000A,
+        StateModuleOrChannelImage = 0X200A,
+
+        /// <summary>
+        /// 获取模块型号
+        /// </summary>
+        StateModuleModelNumber = 0X2010,
 
         /// <summary>
         /// 获取模块的通信类型
@@ -457,6 +467,11 @@
         ///     <para>一个字节的标量数值。</para>
         /// </summary>
         Count = 0X000D,
+
+        /// <summary>
+        /// 模块型号
+        /// </summary>
+        ModelNumber = 0X0010,
 
         /// <summary>
         /// 串口波特率
