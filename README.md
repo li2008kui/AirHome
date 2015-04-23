@@ -170,6 +170,9 @@
 <tr><th>0X0007</th><td>同步时间到模块中</td><td>需要有时钟功能</td></tr>
 <tr><th>0X0008</th><td>设置模块或通道定时任务时段</td><td>如对灯具进行定时打开、关闭<br/>以及调光等，也可以设置触发<br/>报警的时间段。可以只有开始<br/>时间，也可以包含开始时间和<br/>结束时间。若开始时间大于结<br/>束时间，则表示结束时间为第<br/>二天；若包含两个以上的参数，<br/>则表示设置多个时段。</td></tr>
 <tr><th>0X0009</th><td></td><td></td></tr>
+<tr><th>0X000A</th><td></td><td></td></tr>
+<tr><th>...</th><td></td><td></td></tr>
+<tr><th>0X0010</th><td>设置模块的型号</td><td>通过配置工具进行配置，一般<br/>情况下在出厂时配置，后继不<br/>能随意更改。</td></tr>
 <tr><th>...</th><td></td><td></td></tr>
 <tr><th>0X00B0</th><td>设置串口波特率</td><td></td></tr>
 <tr><th>0X00B1</th><td>设置串口数据位</td><td></td></tr>
@@ -230,6 +233,8 @@
 <tr><th>0X200A</th><td>获取模块或通道的图片名称或地址</td><td></td></tr>
 <tr><th>0X200B</th><td></td><td></td></tr>
 <tr><th>...</th><td></td><td></td></tr>
+<tr><th>0X2010</th><td>获取模块型号</td><td>可在一定程度上代替搜索<br/>指令</td></tr>
+<tr><th>...</th><td></td><td></td></tr>
 <tr><th>0X20C0</th><td>获取设备通信类型</td><td>如WIFI、GPRS、3G、4G、<br/>ZigBee、蓝牙和红外等</td></tr>
 <tr><th>0X20C1</th><td>获取WiFi模块的运行模式</td><td></td></tr>
 <tr><th>0X20C2</th><td>获取SSID无线网络名称和信号强度</td><td>模块本身或接入路由器的<br/>SSID</td></tr>
@@ -275,6 +280,8 @@
 <tr><th>0X000C</th><td>2Byte</td><td>时间间隔</td><td>0X0000~<br/>0XFFFF</td><td>单位为秒</td></tr>
 <tr><th>0X000D</th><td>1Byte</td><td>次数</td><td>0X01~0XFF</td><td>一个字节的标量数值</td></tr>
 <tr><th>0X000E</th><td></td><td></td><td></td><td></td></tr>
+<tr><th>...</th><td></td><td></td><td></td><td></td></tr>
+<tr><th>0X0010</th><td>1Byte</td><td>模块型号</td><td>0X00~0XFF</td><td>通过此型号可以知道模块<br/>所具有的功能</td></tr>
 <tr><th>...</th><td></td><td></td><td></td><td></td></tr>
 <tr><th>0X00A0</th><td></td><td></td><td></td><td></td></tr>
 <tr><th>...</th><td></td><td></td><td></td><td></td></tr>
@@ -486,7 +493,7 @@
 
 <span style="color:purple;font-size:22">10<span style="text-decoration:underline">1BE8</span> 00…00 00<span style="text-decoration:underline">1BE7</span> 01 01 1002 01 FF</span>
 
-3. 去除转义字符
+* 去除转义字符
 
 &emsp;&emsp;上述消息头和消息体组成的内容包含了特殊字符的转义，需要将其替换回原字符，以便于后继数据的读取。替换回原字符后得到的内容如下所示：
 
