@@ -160,7 +160,7 @@
 
 <table style="border-collapse: collapse;">
 <tr><th>代码</th><th>范围</th><th>功能</th><th>备注</th></tr>
-<tr><th>0X0000</th><td rowspan="49">配置</td><td></td><td>指令包含多个功能</td></tr>
+<tr><th>0X0000</th><td rowspan="52">配置</td><td></td><td>指令包含多个功能</td></tr>
 <tr><th>0X0001</th><td>设置模块或通道分区代码</td><td></td></tr>
 <tr><th>0X001BE7</th><td>设置模块或通道分区名称</td><td></td></tr>
 <tr><th>0X001BE8</th><td>设置模块或通道名称</td><td></td></tr>
@@ -220,7 +220,7 @@
 <tr><th>0X1004</th><td>调节灯具RGB</td><td></td></tr>
 <tr><th>0X1005</th><td></td><td></td></tr>
 <tr><th>...</th><td></td><td></td></tr>
-<tr><th>0X2000</th><td rowspan="23">数据采集</td><td>搜索模块及通道</td><td>设备登录后服务器进行查询</td></tr>
+<tr><th>0X2000</th><td rowspan="25">数据采集</td><td>搜索模块及通道</td><td>设备登录后服务器进行查询</td></tr>
 <tr><th>0X2001</th><td>发送心跳包</td><td>服务器向设备</td></tr>
 <tr><th>0X201BE7</th><td>获取模块或通道的开关状态</td><td></td></tr>
 <tr><th>0X201BE8</th><td>获取模块或通道的亮度</td><td></td></tr>
@@ -251,7 +251,7 @@
 <tr><th>0X301BE7</th><td></td><td></td></tr>
 <tr><th>0X301BE8</th><td></td><td></td></tr>
 <tr><th>0X3004</th><td></td><td></td></tr>
-<tr><th>...</th><td></td><td></td></tr>
+<tr><th>...</th><td></td><td></td><td></td></tr>
 <tr><th>0X4000</th><td rowspan="5">事件上报</td><td></td><td></td></tr>
 <tr><th>0X4001</th><td></td><td></td></tr>
 <tr><th>0X401BE7</th><td></td><td></td></tr>
