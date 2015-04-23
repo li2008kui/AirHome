@@ -264,107 +264,107 @@
         /// <summary>
         /// 搜索模块及通道
         /// </summary>
-        StateModuleOrChannelSearch = 0X2000,
+        StatusModuleOrChannelSearch = 0X2000,
 
         /// <summary>
         /// 发送心跳包到模块
         /// </summary>
-        StateHeartbeatPacketToModule = 0X2001,
+        StatusHeartbeatPacketToModule = 0X2001,
 
         /// <summary>
         /// 获取模块或通道的打开或关闭状态
         /// </summary>
-        StateModuleOrChannelSwitch = 0X2002,
+        StatusModuleOrChannelSwitch = 0X2002,
 
         /// <summary>
         /// 获取模块或通道的亮度等级
         /// </summary>
-        StateModuleOrChannelBrightness = 0X2003,
+        StatusModuleOrChannelBrightness = 0X2003,
 
         /// <summary>
         /// 获取模块或通道的色温数据
         /// </summary>
-        StateModuleOrChannelColorTemperature = 0X2004,
+        StatusModuleOrChannelColorTemperature = 0X2004,
 
         /// <summary>
         /// 获取模块或通道的红绿蓝白（RGBW）颜色数据
         /// </summary>
-        StateModuleOrChannelRgbw = 0X2005,
+        StatusModuleOrChannelRgbw = 0X2005,
 
         /// <summary>
         /// 获取模块或通道的分区代码
         /// </summary>
-        StateModuleOrChannelPartitionCode = 0X2006,
+        StatusModuleOrChannelPartitionCode = 0X2006,
 
         /// <summary>
         /// 获取模块或通道分区名称
         /// </summary>
-        StateModuleOrChannelPartitionName = 0X2007,
+        StatusModuleOrChannelPartitionName = 0X2007,
 
         /// <summary>
         /// 获取模块或通道的名称
         /// </summary>
-        StateModuleOrChannelName = 0X2008,
+        StatusModuleOrChannelName = 0X2008,
 
         /// <summary>
         /// 获取模块或通道的描述
         /// </summary>
-        StateModuleOrChannelDescription = 0X2009,
+        StatusModuleOrChannelDescription = 0X2009,
 
         /// <summary>
         /// 获取模块或通道图片名称或地址
         /// </summary>
-        StateModuleOrChannelImage = 0X200A,
+        StatusModuleOrChannelImage = 0X200A,
 
         /// <summary>
         /// 获取模块型号
         /// </summary>
-        StateModuleModelNumber = 0X2010,
+        StatusModuleModelNumber = 0X2010,
 
         /// <summary>
         /// 获取模块的通信类型
         /// </summary>
-        StateModuleCommunicationType = 0X20C0,
+        StatusModuleCommunicationType = 0X20C0,
 
         /// <summary>
         /// 获取WiFi模块的运行模式
         /// </summary>
-        StateModuleWifiRunMode = 0X20C1,
+        StatusModuleWifiRunMode = 0X20C1,
 
         /// <summary>
         /// 获取模块的无线网络名称SSID和信号强度
         /// </summary>
-        StateModuleSsidAndPower = 0X20C2,
+        StatusModuleSsidAndPower = 0X20C2,
 
         /// <summary>
         /// 获取模块附近的无线网络名称SSID和信号强度
         /// </summary>
-        StateModuleNearbySsidAndPower = 0X20C3,
+        StatusModuleNearbySsidAndPower = 0X20C3,
 
         /// <summary>
         /// 获取模块的IP地址
         /// </summary>
-        StateModuleIpAddress = 0X20C4,
+        StatusModuleIpAddress = 0X20C4,
 
         /// <summary>
         /// 获取模块的网关地址
         /// </summary>
-        StateModuleGatewayAddress = 0x20C5,
+        StatusModuleGatewayAddress = 0x20C5,
 
         /// <summary>
         /// 获取模块的子网掩码
         /// </summary>
-        StateModuleSubnetMask = 0X20C6,
+        StatusModuleSubnetMask = 0X20C6,
 
         /// <summary>
         /// 获取模块的DNS地址
         /// </summary>
-        StateModuleDnsAddress = 0X20C7,
+        StatusModuleDnsAddress = 0X20C7,
 
         /// <summary>
         /// 获取模块的MAC地址
         /// </summary>
-        StateModuleMacAddress = 0X20C8,
+        StatusModuleMacAddress = 0X20C8,
         #endregion
 
         #region 主动请求

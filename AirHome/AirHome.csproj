@@ -58,7 +58,7 @@
     <Compile Include="OperateAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Room.cs" />
-    <Compile Include="StateAction.cs" />
+    <Compile Include="StatusAction.cs" />
     <Compile Include="StringHelper.cs" />
     <Compile Include="UIntHelper.cs" />
     <Compile Include="UpdateArgs.cs" />

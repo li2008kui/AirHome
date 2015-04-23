@@ -10,7 +10,7 @@ namespace ThisCoder.AirHome
     ///     <para>OperateAction：操作动作行为类</para>
     ///     <para>SettingAction：设置动作行为类</para>
     ///     <para>ControlAction：控制动作行为类</para>
-    ///     <para>StateAction：数据采集动作行为类</para>
+    ///     <para>StatusAction：数据采集动作行为类</para>
     /// </summary>
     public abstract class AirAction
     {
