@@ -404,7 +404,7 @@
         /// <summary>
         /// 通道数量
         /// </summary>
-        CircuitCount = 0X0001,
+        ChannelCount = 0X0001,
 
         /// <summary>
         /// 通道编号
