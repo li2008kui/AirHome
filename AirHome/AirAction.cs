@@ -15,6 +15,11 @@ namespace ThisCoder.AirHome
     public abstract class AirAction
     {
         /// <summary>
+        /// 消息类型
+        /// </summary>
+        public MessageType MessageType { get; set; }
+
+        /// <summary>
         /// 设备ID
         ///     <para>UInt64类型，长度为8个字节</para>
         /// </summary>
@@ -31,6 +36,10 @@ namespace ThisCoder.AirHome
         ///     <para>设备ID默认值为0X0000000000000000。</para>
         ///     <para>通道编号默认值为0X00。</para>
         /// </summary>
+        /// <param name="messageType">
+        /// 消息类型
+        ///     <para>消息类型枚举，默认值为ServerToDevice</para>
+        /// </param>
         /// <param name="devId">
         /// 设备ID
         ///     <para>UInt64类型，长度为8个字节</para>
@@ -39,8 +48,9 @@ namespace ThisCoder.AirHome
         /// 通道编号
         ///     <para>取值范围：0X01~0XFF；若为0X00，则表示所有通道，默认值为0X00</para>
         /// </param>
-        protected AirAction(UInt64 devId = 0X0000000000000000, Byte channelNo = 0X00)
+        protected AirAction(MessageType messageType = MessageType.ServerToDevice, UInt64 devId = 0X0000000000000000, Byte channelNo = 0X00)
         {
+            MessageType = messageType;
             DevId = devId;
             ChannelNo = channelNo;
         }
@@ -67,7 +77,7 @@ namespace ThisCoder.AirHome
 
             // 获取消息头对象
             MessageHead mh = new MessageHead(
-                MessageType.ServerToDevice,
+                MessageType,
                 (UInt16)(msgBody.Length),
                 Counter.Instance.SeqNumber++,
                 Crc.GetCrc(msgBody));

@@ -12,6 +12,10 @@ namespace ThisCoder.AirHome
         ///     <para>设备ID默认值为0X0000000000000000。</para>
         ///     <para>通道编号默认值为0X00。</para>
         /// </summary>
+        /// <param name="messageType">
+        /// 消息类型
+        ///     <para>消息类型枚举，默认值为ServerToDevice</para>
+        /// </param>
         /// <param name="devId">
         /// 设备ID
         ///     <para>UInt64类型，长度为8个字节</para>
@@ -20,7 +24,8 @@ namespace ThisCoder.AirHome
         /// 通道编号
         ///     <para>取值范围：0X01~0XFF；若为0X00，则表示所有通道，默认值为0X00</para>
         /// </param>
-        public StatusAction(UInt64 devId = 0X0000000000000000, Byte ChannelNo = 0X00) : base(devId, ChannelNo) { }
+        public StatusAction(MessageType messageType = MessageType.ServerToDevice, UInt64 devId = 0X0000000000000000, Byte ChannelNo = 0X00)
+            : base(messageType, devId, ChannelNo) { }
 
         /// <summary>
         /// 搜索模块及通道信息的命令
