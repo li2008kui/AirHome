@@ -662,13 +662,13 @@ namespace ThisCoder.AirHome
 
         #region 设置其他参数信息
         /// <summary>
-        /// 模块恢复出厂设置的命令
+        /// 设备恢复出厂设置的命令
         ///     <para>该功能会清除所有数据，请慎用</para>
         /// </summary>
         /// <returns></returns>
         public Byte[] SettingResetFactoryCommand()
         {
-            return GetDatagram(MessageId.SettingResetFactory, new Parameter(ParameterType.None, 0X00));
+            return GetDatagram(MessageId.SettingDeviceResetFactory, new Parameter(ParameterType.None, 0X00));
         }
         #endregion
     }

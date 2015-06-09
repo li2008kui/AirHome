@@ -64,7 +64,7 @@ namespace ThisCoder.AirHome
                 pmtList.Add(new Parameter(ParameterType.ChannelNo, ChannelNo));
             }
 
-            pmtList.Add(new Parameter(ParameterType.Switch, status));
+            pmtList.Add(new Parameter(ParameterType.LampSwitch, status));
             return GetDatagram(MessageId.ControlModuleOrChannelSwitch, pmtList);
         }
 
