@@ -11,7 +11,7 @@
         ServerToDevice = 0X00,
 
         /// <summary>
-        /// 设备到服务器
+        /// 设备反馈到服务器
         /// </summary>
         DeviceToServer = 0X01,
 
@@ -479,6 +479,11 @@
         /// 发送心跳包到服务器
         /// </summary>
         RequestHeartbeatPacketToServer = 0X3001,
+
+        /// <summary>
+        /// 请求服务器时间
+        /// </summary>
+        RequestServerTime = 0X3002,
 
         /// <summary>
         /// 读取摄像头时间
