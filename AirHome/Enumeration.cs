@@ -73,14 +73,79 @@
         SettingSyncTimeToModule = 0X0007,
 
         /// <summary>
-        /// 设置模块或通道定时任务时段
+        /// 设置模块或通道定时任务
         /// </summary>
         SettingModuleOrChannelTimedTask = 0X0008,
+
+        /// <summary>
+        /// 取消定时任务
+        /// </summary>
+        SettingCancelTimedTask = 0X0009,
 
         /// <summary>
         /// 设置模块型号
         /// </summary>
         SettingModuleModelNumber = 0X0010,
+
+        /// <summary>
+        /// 设置模块或通道运行的模式
+        /// </summary>
+        SettingModuleOrChannelMode = 0X0020,
+
+        /// <summary>
+        /// 设置模块或通道运行的场景
+        /// </summary>
+        SettingModuleOrChannelScene = 0X0030,
+
+        /// <summary>
+        /// 取消当前运行的场景
+        /// </summary>
+        SettingCancelScene = 0X0031,
+
+        /// <summary>
+        /// 开启或关闭语音对讲功能
+        /// </summary>
+        SettingSwitchVoiceTalkback = 0X0080,
+
+        /// <summary>
+        /// 开启或关闭语音提示音功能
+        /// </summary>
+        SettingSwitchVoiceReminder = 0X0081,
+
+        /// <summary>
+        /// 开启或关闭语音识别功能
+        /// </summary>
+        SettingSwitchVoiceRecognition = 0X0082,
+
+        /// <summary>
+        /// 设置越界报警音
+        /// </summary>
+        SettingSlopOverWarningTone = 0X008A,
+
+        /// <summary>
+        /// 设置移动物体侦测报警音
+        /// </summary>
+        SettingMoveObjectWarningTone = 0X008B,
+
+        /// <summary>
+        /// 开启或关闭视频
+        /// </summary>
+        SettingSwitchVideo = 0X0090,
+
+        /// <summary>
+        /// 开启或关闭越界报警功能
+        /// </summary>
+        SettingSwitchSlopOver = 0X0091,
+
+        /// <summary>
+        /// 开启或关闭移动物体侦测功能
+        /// </summary>
+        SettingSwitchMoveObject = 0X0092,
+
+        /// <summary>
+        /// 开启或关闭设备分享功能
+        /// </summary>
+        SettingSwitchDeviceShare = 0X00A0,
 
         /// <summary>
         /// 设置串口波特率
@@ -228,9 +293,16 @@
         SettingHeartbeatRepeatCount = 0X00E5,
 
         /// <summary>
-        /// 恢复出厂设置
+        /// 模块恢复出厂设置
+        ///     <para>网络恢复</para>
         /// </summary>
-        SettingResetFactory = 0X00FF,
+        SettingModuleResetFactory = 0X00FE,
+
+        /// <summary>
+        /// 设备恢复出厂设置
+        ///     <para>数据恢复，慎用</para>
+        /// </summary>
+        SettingDeviceResetFactory = 0X00FF,
         #endregion
 
         #region 控制功能
@@ -258,6 +330,26 @@
         /// 调节模块或通道红绿蓝白（RGBW）
         /// </summary>
         ControlModuleOrChannelRgbw = 0X1004,
+
+        /// <summary>
+        /// 随机变化状态
+        /// </summary>
+        ControlModuleOrChannelRandom = 0X1010,
+
+        /// <summary>
+        /// 检测到敏感词
+        /// </summary>
+        ControlSensitiveWord = 0X1011,
+
+        /// <summary>
+        /// 发生越界报警
+        /// </summary>
+        ControlHappenSlopOver = 0X1090,
+
+        /// <summary>
+        /// 发生移动物体侦测报警
+        /// </summary>
+        ControlHappenMoveObject = 0X1091,
         #endregion
 
         #region 数据采集
@@ -322,6 +414,16 @@
         StatusModuleModelNumber = 0X2010,
 
         /// <summary>
+        /// 获取当前运行的模式标识
+        /// </summary>
+        StatusModuleModeMark = 0X2020,
+
+        /// <summary>
+        /// 获取当前运行的场景标识
+        /// </summary>
+        StatusModuleSceneMark = 0X2030,
+
+        /// <summary>
         /// 获取模块的通信类型
         /// </summary>
         StatusModuleCommunicationType = 0X20C0,
@@ -377,10 +479,53 @@
         /// 发送心跳包到服务器
         /// </summary>
         RequestHeartbeatPacketToServer = 0X3001,
+
+        /// <summary>
+        /// 读取摄像头时间
+        /// </summary>
+        RequestCameraTime = 0X3090,
+
+        /// <summary>
+        /// 读取摄像头ID
+        /// </summary>
+        RequestCameraIdentification = 0X3091,
         #endregion
 
         #region 事件上报
+        /// <summary>
+        /// 上报模块或通道的打开或关闭状态
+        /// </summary>
+        ReportModuleOrChannelSwitch = 0X4000,
 
+        /// <summary>
+        /// 上报模块或通道的亮度等级
+        /// </summary>
+        ReportModuleOrChannelBrightness = 0X4001,
+
+        /// <summary>
+        /// 上报模块或通道的色温数据
+        /// </summary>
+        ReportModuleOrChannelColorTemperature = 0X4002,
+
+        /// <summary>
+        /// 上报模块或通道的红绿蓝白（RGBW）颜色数据
+        /// </summary>
+        ReportModuleOrChannelRgbw = 0X4003,
+
+        /// <summary>
+        /// 上报当前运行的模式标识
+        /// </summary>
+        ReportModuleModeMark = 0X4020,
+
+        /// <summary>
+        /// 上报当前运行的场景标识
+        /// </summary>
+        ReportModuleSceneMark = 0X4030,
+
+        /// <summary>
+        /// 上报模块或通道的状态
+        /// </summary>
+        ReportModuleOrChannelStatus = 0X40FF,
         #endregion
 
         #region 其他功能
@@ -469,9 +614,80 @@
         Count = 0X000D,
 
         /// <summary>
+        /// 序号或编号
+        /// </summary>
+        SerialNumber = 0X000E,
+
+        /// <summary>
+        /// 星期标识
+        ///     <para>使用1个Byte的二进制形式表示，从低位到第7位分别表示周1至周日，最高位保留，全为0表示不重复。</para>
+        /// </summary>
+        WeekMark = 0X000F,
+
+        /// <summary>
         /// 模块型号
         /// </summary>
         ModelNumber = 0X0010,
+
+        /// <summary>
+        /// 模式标识
+        /// </summary>
+        ModeMark = 0X0020,
+
+        /// <summary>
+        /// 场景标识
+        /// </summary>
+        SceneMark = 0X0030,
+
+        /// <summary>
+        /// 语音对讲开关状态
+        /// </summary>
+        VoiceTalkbackSwitch = 0X0080,
+
+        /// <summary>
+        /// 提示音开关状态
+        /// </summary>
+        VoiceReminderSwitch = 0X0081,
+
+        /// <summary>
+        /// 语音识别开关状态
+        /// </summary>
+        VoiceRecognitionSwitch = 0X0082,
+
+        /// <summary>
+        /// 越界报警音编号
+        /// </summary>
+        SlopOverWarningToneNumber = 0X008A,
+
+        /// <summary>
+        /// 移动物体侦测报警音编号
+        /// </summary>
+        MoveObjectWarningToneNumber = 0X008B,
+
+        /// <summary>
+        /// 视频开关状态
+        /// </summary>
+        VideoSwitch = 0X0090,
+
+        /// <summary>
+        /// 越界报警开关状态
+        /// </summary>
+        SlopOverSwitch = 0X0091,
+
+        /// <summary>
+        /// 移动物体侦测开关状态
+        /// </summary>
+        MoveObjectSwitch = 0X0092,
+
+        /// <summary>
+        /// 摄像头ID
+        /// </summary>
+        CameraIdentification = 0X009A,
+
+        /// <summary>
+        /// 设备分享开关状态
+        /// </summary>
+        DeviceShareSwitch = 0X00A0,
 
         /// <summary>
         /// 串口波特率
@@ -594,17 +810,17 @@
         ServerPassword = 0X00D4,
 
         /// <summary>
-        /// 打开或关闭
+        /// 打开或关闭灯具
         /// </summary>
-        Switch = 0X1000,
+        LampSwitch = 0X1000,
 
         /// <summary>
-        /// 亮度
+        /// 亮度等级
         /// </summary>
         Brightness = 0X1001,
 
         /// <summary>
-        /// 色温
+        /// 冷色温分量
         /// </summary>
         ColorTemperature = 0X1002,
 
@@ -612,6 +828,26 @@
         /// 红绿蓝白（RGBW）
         /// </summary>
         Rgbw = 0X1003,
+
+        /// <summary>
+        /// 亮度等级+
+        /// </summary>
+        BrightnessPlus = 0X2000,
+
+        /// <summary>
+        /// 亮度等级-
+        /// </summary>
+        BrightnessMinus = 0X2001,
+
+        /// <summary>
+        /// 冷色温分量+
+        /// </summary>
+        ColorTemperaturePlus = 0X2002,
+
+        /// <summary>
+        /// 冷色温分量-
+        /// </summary>
+        ColorTemperatureMinus = 0X2003,
 
         /// <summary>
         /// 布尔类型参数
