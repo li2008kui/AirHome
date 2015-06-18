@@ -114,7 +114,7 @@ namespace ThisCoder.AirHome
                 pmtList.Add(new Parameter(ParameterType.ChannelNo, ChannelNo));
             }
 
-            pmtList.Add(new Parameter(ParameterType.ColorTemperature, cool));
+            pmtList.Add(new Parameter(ParameterType.ColdColorTemperature, cool));
             return GetDatagram(MessageId.ControlModuleOrChannelColorTemperature, pmtList);
         }
 

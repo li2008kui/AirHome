@@ -409,6 +409,11 @@
         StatusModuleOrChannelImage = 0X200A,
 
         /// <summary>
+        /// 获取模块或通道的定时任务
+        /// </summary>
+        StatusModuleOrChannelTimedTask = 0X200B,
+
+        /// <summary>
         /// 获取模块型号
         /// </summary>
         StatusModuleModelNumber = 0X2010,
@@ -827,12 +832,17 @@
         /// <summary>
         /// 冷色温分量
         /// </summary>
-        ColorTemperature = 0X1002,
+        ColdColorTemperature = 0X1002,
 
         /// <summary>
         /// 红绿蓝白（RGBW）
         /// </summary>
         Rgbw = 0X1003,
+
+        /// <summary>
+        /// 冷暖色温值
+        /// </summary>
+        ColorTemperature = 0X1004,
 
         /// <summary>
         /// 亮度等级+
