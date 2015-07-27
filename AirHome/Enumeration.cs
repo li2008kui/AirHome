@@ -108,6 +108,11 @@
         SettingBrightnessSensorThreshold = 0X60,
 
         /// <summary>
+        /// 开启或关闭红外补光功能
+        /// </summary>
+        SettingSwitchInfrared = 0X0070,
+
+        /// <summary>
         /// 开启或关闭语音对讲功能
         /// </summary>
         SettingSwitchVoiceTalkback = 0X0080,
@@ -669,6 +674,11 @@
         /// 环境亮度
         /// </summary>
         SambientBrightness = 0X0061,
+
+        /// <summary>
+        /// 红外补光开关状态
+        /// </summary>
+        InfraredSwitch = 0X0070,
 
         /// <summary>
         /// 语音对讲开关状态
