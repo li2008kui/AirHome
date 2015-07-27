@@ -1123,6 +1123,16 @@
         ParameterFormatError = 0X07,
 
         /// <summary>
+        /// 设备未连外网
+        /// </summary>
+        NoInternet = 0XE0,
+
+        /// <summary>
+        /// 已经是最新版本
+        /// </summary>
+        LatestVersion = 0XE1,
+
+        /// <summary>
         /// 未知错误
         /// </summary>
         Unknown = 0XFF,
