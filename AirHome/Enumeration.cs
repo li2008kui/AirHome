@@ -103,6 +103,11 @@
         SettingCancelScene = 0X0031,
 
         /// <summary>
+        /// 设置亮度传感器阈值
+        /// </summary>
+        SettingBrightnessSensorThreshold = 0X60,
+
+        /// <summary>
         /// 开启或关闭语音对讲功能
         /// </summary>
         SettingSwitchVoiceTalkback = 0X0080,
@@ -648,6 +653,12 @@
         /// 场景标识
         /// </summary>
         SceneMark = 0X0030,
+
+        /// <summary>
+        /// 环境亮度阈值
+        ///     <para>第1个字节表示白天阈值，第2个字节表示晚上阈值。</para>
+        /// </summary>
+        BrightnessThreshold = 0X0060,
 
         /// <summary>
         /// 语音对讲开关状态
