@@ -1202,13 +1202,37 @@
     /// </summary>
     public enum WifiSecurityType : byte
     {
+        /// <summary>
+        /// NONE
+        /// </summary>
         NONE = 0X00,
+        /// <summary>
+        /// WEP
+        /// </summary>
         WEP = 0X01,
+        /// <summary>
+        /// WPA_TKIP
+        /// </summary>
         WPA_TKIP = 0X02,
+        /// <summary>
+        /// WPA_AES
+        /// </summary>
         WPA_AES = 0X03,
+        /// <summary>
+        /// WPA2_TKIP
+        /// </summary>
         WPA2_TKIP = 0X04,
+        /// <summary>
+        /// WPA2_AES
+        /// </summary>
         WPA2_AES = 0X05,
+        /// <summary>
+        /// WPA2_MIXED
+        /// </summary>
         WPA2_MIXED = 0X06,
+        /// <summary>
+        /// AUTO
+        /// </summary>
         AUTO = 0X07
     }
 
