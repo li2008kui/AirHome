@@ -90,7 +90,7 @@
         /// <summary>
         /// 升级模块固件
         /// </summary>
-        SettingModuleUpgradeFirmware = 0X0011,
+        SettingUpgradeModuleFirmware = 0X0011,
 
         /// <summary>
         /// 设置模块或通道运行的模式
@@ -551,6 +551,11 @@
         /// 上报模块或通道的红绿蓝白（RGBW）颜色数据
         /// </summary>
         ReportModuleOrChannelRgbw = 0X4003,
+
+        /// <summary>
+        /// 上报升级模块固件情况
+        /// </summary>
+        ReportUpgradeModuleFirmware = 0X4011,
 
         /// <summary>
         /// 上报当前运行的模式标识
