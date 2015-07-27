@@ -680,6 +680,11 @@
         ModelNumber = 0X0010,
 
         /// <summary>
+        /// 固件版本
+        /// </summary>
+        FirmwareVersion = 0X0011,
+
+        /// <summary>
         /// 模式标识
         /// </summary>
         ModeMark = 0X0020,
