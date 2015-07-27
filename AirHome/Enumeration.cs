@@ -441,7 +441,12 @@
         /// <summary>
         /// 获取亮度传感器检测到的环境亮度
         /// </summary>
-        StatuSambientBrightness = 0X2060,
+        StatusSambientBrightness = 0X2060,
+
+        /// <summary>
+        /// 获取亮度传感器的阈值
+        /// </summary>
+        StatusBrightnessSensorThreshold = 0X2061,
 
         /// <summary>
         /// 获取模块的通信类型
