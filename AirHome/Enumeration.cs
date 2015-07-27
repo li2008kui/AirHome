@@ -553,6 +553,11 @@
         ReportModuleOrChannelRgbw = 0X4003,
 
         /// <summary>
+        /// 上报模块的型号
+        /// </summary>
+        ReportModuleModelNumber = 0X4010,
+
+        /// <summary>
         /// 上报升级模块固件情况
         /// </summary>
         ReportUpgradeModuleFirmware = 0X4011,
