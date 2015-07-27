@@ -88,6 +88,11 @@
         SettingModuleModelNumber = 0X0010,
 
         /// <summary>
+        /// 升级模块
+        /// </summary>
+        SettingModuleUpgrade = 0X0011,
+
+        /// <summary>
         /// 设置模块或通道运行的模式
         /// </summary>
         SettingModuleOrChannelMode = 0X0020,
