@@ -434,6 +434,11 @@
         StatusModuleSceneMark = 0X2030,
 
         /// <summary>
+        /// 获取亮度传感器检测到的环境亮度
+        /// </summary>
+        StatuSambientBrightness = 0X2060,
+
+        /// <summary>
         /// 获取模块的通信类型
         /// </summary>
         StatusModuleCommunicationType = 0X20C0,
@@ -659,6 +664,11 @@
         ///     <para>第1个字节表示白天阈值，第2个字节表示晚上阈值。</para>
         /// </summary>
         BrightnessThreshold = 0X0060,
+
+        /// <summary>
+        /// 环境亮度
+        /// </summary>
+        SambientBrightness = 0X0061,
 
         /// <summary>
         /// 语音对讲开关状态
