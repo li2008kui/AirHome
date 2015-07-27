@@ -88,9 +88,9 @@
         SettingModuleModelNumber = 0X0010,
 
         /// <summary>
-        /// 升级模块
+        /// 升级模块固件
         /// </summary>
-        SettingModuleUpgrade = 0X0011,
+        SettingModuleUpgradeFirmware = 0X0011,
 
         /// <summary>
         /// 设置模块或通道运行的模式
@@ -432,6 +432,11 @@
         /// 获取模块型号
         /// </summary>
         StatusModuleModelNumber = 0X2010,
+
+        /// <summary>
+        /// 获取模块固件版本
+        /// </summary>
+        StatusModuleFirmwareVersion = 0X2011,
 
         /// <summary>
         /// 获取当前运行的模式标识
