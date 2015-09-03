@@ -1123,6 +1123,16 @@
         ParameterFormatError = 0X07,
 
         /// <summary>
+        /// 场景不存在
+        /// </summary>
+        SceneNotExist = 0XD0,
+
+        /// <summary>
+        /// 定时任务不存在
+        /// </summary>
+        TimingTaskNotExist = 0XD0,
+
+        /// <summary>
         /// 设备未连外网
         /// </summary>
         NoInternet = 0XE0,
