@@ -544,7 +544,7 @@ namespace ThisCoder.AirHome
         /// </summary>
         /// <param name="devId">
         /// 设备ID
-        ///     <para>UInt64类型，长度为2个字节</para>
+        ///     <para>UInt64类型，长度为8个字节</para>
         /// </param>
         public MessageBody(UInt64 devId)
             : this()
@@ -562,7 +562,7 @@ namespace ThisCoder.AirHome
         /// </param>
         /// <param name="devId">
         /// 设备ID
-        ///     <para>UInt64类型，长度为2个字节</para>
+        ///     <para>UInt64类型，长度为8个字节</para>
         /// </param>
         public MessageBody(MessageId msgId, UInt64 devId)
             : this()
@@ -580,7 +580,7 @@ namespace ThisCoder.AirHome
         /// </param>
         /// <param name="devId">
         /// 设备ID
-        ///     <para>UInt64类型，长度为2个字节</para>
+        ///     <para>UInt64类型，长度为8个字节</para>
         /// </param>
         /// <param name="pmtList">
         /// 参数列表
