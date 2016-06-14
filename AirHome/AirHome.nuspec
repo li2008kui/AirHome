@@ -12,6 +12,6 @@
     <description>$description$</description>
     <releaseNotes>实现协议规定的所有功能。</releaseNotes>
     <copyright>Copyright 2016</copyright>
-    <tags>ThisCoder LiKui AirHome</tags>
+    <tags>LiKui</tags>
   </metadata>
 </package>
